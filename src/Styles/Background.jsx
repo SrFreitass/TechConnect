@@ -6,5 +6,5 @@ export const Background = styled.video`
     object-fit: cover;
     height: 100vh;
     width: 100%;
-    filter: blur(5px);
+    filter: brightness(20%);
 `

@@ -44,18 +44,13 @@ export const SectionContainer = styled.section`
         border: none;
         background: none;
         border: #4d4db5 1px solid;
+        background-color: #4d4db5;
+        filter: drop-shadow(0px 0px 20px #4d4db5);
         border-radius: 5px;
         padding: 1rem;
         color: ${(props) => props.theme.colors.primary};
     }
-
-    div > button:hover {
-        filter: drop-shadow(0px 0px 20px #4d4db5);
-        background-color: #4d4db5;
-        transition: all ease-in-out 0.1s;
-    }
-
-
+    
     @-webkit-keyframes tracking-in-expand {
     0% {
         letter-spacing: -0.5em;
