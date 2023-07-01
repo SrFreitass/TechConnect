@@ -6,7 +6,7 @@ import { Background } from './Styles/Background'
 export function App() {
   return (
     <>
-        <Background src={bgvideo} autoPlay loop/>
+        <Background src={bgvideo} autoPlay loop muted/>
         <Header/>
         <SectionMain/>
     </>
