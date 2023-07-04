@@ -1,14 +1,10 @@
-import { Header } from "./components/Header"
-import { SectionMain } from "./components/SectionMain/index"
-import bgvideo from './assets/videos/background.mp4'
-import { Background } from './Styles/Background'
+import { RouterProvider} from "react-router-dom";
+import { router } from "./pages/routes";
 
 export function App() {
   return (
     <>
-        <Background src={bgvideo} autoPlay loop/>
-        <Header/>
-        <SectionMain/>
+      <RouterProvider router={router}/>
     </>
   )
 }
