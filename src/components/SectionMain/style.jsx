@@ -11,16 +11,6 @@ export const SectionContainer = styled.section`
     h1 {
         font-size: 2rem;
     }
-    
-    @keyframes colorOne {
-        0% {
-            color: ${(props) => props.theme.colors.primary};
-        }
-        
-        100% {
-            color: #4d4db5;
-        }
-    }
 
     h1 {
         color: ${(props) => props.theme.colors.primary};
@@ -34,21 +24,6 @@ export const SectionContainer = styled.section`
     div {
         display: flex;
         gap: 1rem;
-    }
-
-    div > button {
-        display: flex;
-        align-items: center;
-        height: 2.5rem;
-        font-size: 1.2rem;
-        border: none;
-        background: none;
-        border: #4d4db5 1px solid;
-        background-color: #4d4db5;
-        filter: drop-shadow(0px 0px 20px #4d4db5);
-        border-radius: 5px;
-        padding: 1rem;
-        color: ${(props) => props.theme.colors.primary};
     }
     
     @-webkit-keyframes tracking-in-expand {
@@ -77,3 +52,18 @@ export const SectionContainer = styled.section`
     }
 
 `
+
+export const ButtonStyled = styled.button`
+    display: flex;
+    align-items: center;
+    height: 2.5rem;
+    font-size: 1.2rem;
+    border: none;
+    background: none;
+    background-color: ${(props) => props.theme.colors.purple700};
+    filter: drop-shadow(0px 0px 20px ${(props) => props.theme.colors.purple700});
+    border-radius: 5px;
+    padding: 1rem;
+    color: ${(props) => props.theme.colors.primary};
+
+`   

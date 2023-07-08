@@ -40,6 +40,6 @@ export const HeaderContainer = styled.header`
 
     a:hover {
         color: ${(props) => props.theme.colors.primary};
-        transition: all .2s;
+        transition: .2s;
     }
 `
