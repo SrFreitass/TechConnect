@@ -10,8 +10,25 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     body {
-        background-color: ${(props) => props.theme.colors.background};
+        background-color: ${({ theme }) => theme.colors.background};
         font-family: 'Montserrat', 'Arial', 'sans-serif';
     }
 
+
+    ::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: ${({theme}) => theme.colors.black800}; 
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #888; 
+        border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555; 
+    }
 `

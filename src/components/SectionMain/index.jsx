@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import { SectionContainer, ButtonStyled } from "./style"
 
 export function SectionMain() {
@@ -6,8 +7,8 @@ export function SectionMain() {
     <SectionContainer>
       <h1>Inovação, Conexão, Transformação.</h1>
       <div>
-        <ButtonStyled>Ajude nesse projeto!</ButtonStyled>
-        <ButtonStyled>Dê uma olhada em nosso artigos</ButtonStyled>
+        <ButtonStyled><a href="https://github.com/SrFreitass/TechConnect" target="__blank">Ajude nesse projeto!</a></ButtonStyled>
+        <ButtonStyled><Link to="/home">Dê uma olhada em nosso artigos</Link></ButtonStyled>
       </div>
     </SectionContainer>
     </>

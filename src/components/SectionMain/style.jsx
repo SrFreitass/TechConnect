@@ -13,7 +13,7 @@ export const SectionContainer = styled.section`
     }
 
     h1 {
-        color: ${(props) => props.theme.colors.primary};
+        color: ${({ theme }) => theme.colors.primary};
         font-size: 2rem;
         font-weight: bold;
         -webkit-animation: tracking-in-expand 1s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
@@ -60,10 +60,14 @@ export const ButtonStyled = styled.button`
     font-size: 1.2rem;
     border: none;
     background: none;
-    background-color: ${(props) => props.theme.colors.purple700};
-    filter: drop-shadow(0px 0px 20px ${(props) => props.theme.colors.purple700});
+    background-color: ${({ theme }) => theme.colors.purple700};
+    filter: drop-shadow(0px 0px 20px ${({ theme }) => theme.colors.purple700});
     border-radius: 5px;
     padding: 1rem;
-    color: ${(props) => props.theme.colors.primary};
+     
+    a {
+        color: ${({ theme }) => theme.colors.primary};
+        text-decoration: none;
+    }
 
 `   

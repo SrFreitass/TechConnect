@@ -5,7 +5,7 @@ export const HeaderContainer = styled.header`
     align-items: center;
     justify-content: space-between;
     height: 2rem;
-    padding: 4rem;
+    padding: 4rem 0rem;
 
     h1 {
         color: ${(props) => props.theme.colors.primary };

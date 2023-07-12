@@ -17,7 +17,7 @@ export const Section404 = styled.section`
     }
 
     h1 {
-        color: ${(props) => props.theme.colors.primary};
+        color: ${({ theme }) => theme.colors.primary};
     }
 
 
