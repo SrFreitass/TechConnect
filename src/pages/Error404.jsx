@@ -10,3 +10,4 @@ export function Error404() {
       </Wrapper>
     )
 }
+

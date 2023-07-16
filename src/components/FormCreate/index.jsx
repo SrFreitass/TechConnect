@@ -1,27 +1,68 @@
-import { useRef } from 'react'
-import { Editor } from "@tinymce/tinymce-react";
-import { FormStyled } from './style';
+import { FormStyled, PasswordStyled } from './style';
+import { CreateTeste } from './create';
+import { useState } from 'react';
+import { signInWithEmailAndPassword } from '@firebase/auth'
+import { auth } from '../../firebaseconfig'
+import { useNavigate } from 'react-router-dom';
+import imageTypewriter from '../../assets/images/map-icon.svg'
+import { ButtonStyled } from '../SectionMain/style';
+import { Eye, EyeSlash } from '@phosphor-icons/react';
 
 export function FormCreate() {
 
-  const editorRef = useRef()
+    const navigate = useNavigate()
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [user, setUser] = useState(false)
+    const [showPassword, setShowPassword] = useState(false)
 
-  const onClickHandler = () => {
-    console.log(editorRef.current.getContent())
+    const onLogin = (e) => {
+
+    e.preventDefault()
+    signInWithEmailAndPassword(auth, email, password)
+    .then(() => {
+      setUser(true)
+      localStorage.setItem('user', 'true')
+    })
+    .catch(() => {
+       
+    })
   }
 
+  const handlePasswordChange = (e) => {
+    e.preventDefault()
+    setShowPassword(!showPassword)
+  }
 
-  return (
-    <>
-    <h1 style={{color: 'white'}}>Crie o artigo</h1>
-    <FormStyled>
-      <Editor
-        onInit={ (evt, editor ) => editorRef.current = editor}
-      />
+    if (user || localStorage.getItem('user') === 'true') {
+      return <CreateTeste/>
+    } else {
+        return (
+          <>
+          <FormStyled>
+            <img src={imageTypewriter}/>
+            <form>
+              <h1>LOGIN</h1>
 
-      <button type="button" onClick={onClickHandler}>Enviar</button>
-    </FormStyled>
-    </>
-  );
+              <div>
+              <label for="email">E-mail</label>
+              <input type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
+              </div>
+
+              <div>
+              <label for="password">Senha</label>
+              <PasswordStyled>
+              <input type={showPassword ? 'text' : 'password'}  placeholder="Senha" onChange={(e) => setPassword(e.target.value)}/>
+              <button onClick={handlePasswordChange}>{showPassword ? <Eye size={25}/> : <EyeSlash size={25}/>}</button>
+              </PasswordStyled>
+              </div>
+
+              <ButtonStyled type="submit" onClick={onLogin}>ENTRAR</ButtonStyled>
+            </form>
+          </FormStyled>
+          
+        </>
+        )
+    }
 }
 

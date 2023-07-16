@@ -56,14 +56,22 @@ export const SectionContainer = styled.section`
 export const ButtonStyled = styled.button`
     display: flex;
     align-items: center;
+    justify-content: center;
+
     height: 2.5rem;
     font-size: 1.2rem;
+    padding: 1rem;  
+
     border: none;
+    border-radius: 5px;
+
     background: none;
     background-color: ${({ theme }) => theme.colors.purple700};
+    color: ${({ theme }) => theme.colors.primary};
+    font-weight: bold;
     filter: drop-shadow(0px 0px 20px ${({ theme }) => theme.colors.purple700});
-    border-radius: 5px;
-    padding: 1rem;
+    
+    
      
     a {
         color: ${({ theme }) => theme.colors.primary};
