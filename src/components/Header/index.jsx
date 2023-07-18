@@ -1,11 +1,12 @@
 import React from 'react'
 import { HeaderContainer } from './style'
 import { FacebookLogo, InstagramLogo, TwitterLogo } from '@phosphor-icons/react'
+import { Logo } from '../Logo'
 
 export function Header() {
   return (
     <HeaderContainer>
-      <h1>&#60;techconnect/&#62;</h1>
+      <Logo/>
       <nav>
         <ul>
           <li><a href="#">Blog</a></li>

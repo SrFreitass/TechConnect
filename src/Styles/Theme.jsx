@@ -11,6 +11,7 @@ export const Theme = {
 
         black800: '#0A0A0A',
 
-        gray200: '#ADADAD'
+        gray200: '#ADADAD',
+        gray600: '#1e1e1e',
     }
 }

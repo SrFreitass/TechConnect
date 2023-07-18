@@ -82,7 +82,12 @@ export const CreateForm = styled.div`
         width: 50%;
     }
 
-    div:first-child(2) {
-        width: 50%; 
-    }
+`
+
+export const StyledEditor = styled.div`
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        width: 50%;
 `

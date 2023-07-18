@@ -3,6 +3,7 @@ import { SectionMain } from "../components/SectionMain/index"
 import bgvideo from '../assets/videos/background.mp4'
 import { Background } from '../Styles/Background'
 import { Wrapper } from "../Styles/Wrapper";
+import { Footer } from "../components/Footer";
 
 export function Introduction() {
     return (
@@ -11,6 +12,7 @@ export function Introduction() {
         <Wrapper>
           <Header/>
           <SectionMain/>
+          <Footer/>
         </Wrapper>
       </>
     )

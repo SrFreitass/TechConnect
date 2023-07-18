@@ -10,12 +10,19 @@ export const MainStyled = styled.main`
 export const ArticleStyled = styled.article`
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 0.5rem;
     color: ${({ theme }) => theme.colors.primary};
     font-size: 1.2rem;
     width: 70%;
 
+    h2 {
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: ${({ theme }) => theme.colors.secundary};
+    }
+    
     img {
+        width: 100%;
         height: 25rem;
         object-fit: cover;
     }

@@ -4,6 +4,7 @@ import { Error404 } from "./Error404"
 import { Home } from './Home'
 import { NewsPage } from './NewsPage';
 import { CreateArticle } from './TestCreate';
+import { db } from "../firebaseconfig"
 
 export const router = createBrowserRouter([
     {
@@ -25,6 +26,10 @@ export const router = createBrowserRouter([
     {
       path: "teste",
       element: <CreateArticle/>
-  },
+    },
+    {
+      path: "home/news/:title",
+      element: <NewsPage/>
+    }
   ]);
     
