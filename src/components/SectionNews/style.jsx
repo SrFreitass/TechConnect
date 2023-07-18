@@ -29,38 +29,20 @@ export const NewsContainer = styled.section`
         color: ${({theme}) => theme.colors.secundary};
         font-weight: 500;
     }
-
-    button {
-        width: 10rem;
-        height: 2rem;
-        margin: 0 auto;
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        cursor: pointer;
-    }
 `
 
-export const NewsStyled = styled.article`
+export const News = styled.article`
     width: 100%;
     height: 17rem;
     display: flex;
     gap: 1rem;
 
-    border-bottom: solid 1px ${({theme}) => theme.colors.secundary};
+    border-bottom: solid 1px;
     padding-bottom: 1.5rem;
-
-    h2 {
-        font-size: 1.5rem;
-        color: ${({theme}) => theme.colors.primary};
-    }
 
     img {
         object-fit: cover;
         border-radius: 10px;
-        width: 50%;
-        max-width: 30rem;
+        width: 30rem;
     }
 `

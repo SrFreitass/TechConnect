@@ -24,12 +24,7 @@ export const HeaderContainer = styled.header`
     }
 
     ul:first-child {
-        border-right: 1px solid ${(props) => props.theme.colors.secundary};
         padding-right: 1rem;
-        gap: 1rem;
-    }
-
-    ul:nth-child(2) {
         gap: 1rem;
     }
 
