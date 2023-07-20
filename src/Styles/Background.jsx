@@ -1,3 +1,5 @@
+// Estilização do video de fundo da página.
+
 import { styled } from "styled-components";
 
 export const Background = styled.video`

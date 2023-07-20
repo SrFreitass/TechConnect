@@ -1,3 +1,6 @@
+// "Embrulho" para o conteúdo da página, para que não fique muito largo e despadronizado.
+
+
 import { styled } from "styled-components";
 
 export const Wrapper = styled.div`

@@ -1,3 +1,5 @@
+// Estilização global da página.
+
 import { createGlobalStyle, styled } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`

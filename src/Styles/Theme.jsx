@@ -1,9 +1,12 @@
+// Temas de cores do projeto (Usado para padronizar as cores do projeto)
+
 export const Theme = {
+    // Dark Theme
     colors: {
         primary: '#ffffff',
         secundary: '#757575',
         background: '#191919',
-
+        
         purple400: '#C291F4',
         purple700: '#4d4db5',
         purple800: '#514869',
@@ -13,4 +16,5 @@ export const Theme = {
 
         gray200: '#ADADAD'
     }
+    // Light Theme
 }

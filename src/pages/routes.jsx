@@ -5,6 +5,8 @@ import { Home } from './Home'
 import { NewsPage } from './NewsPage';
 import { CreateArticle } from './TestCreate';
 
+// Rotas de aplicações em forma de objetos, que contem o path e o elemento que será renderizado na tela.
+
 export const router = createBrowserRouter([
     {
       path: "*",
@@ -25,6 +27,10 @@ export const router = createBrowserRouter([
     {
       path: "teste",
       element: <CreateArticle/>
-  },
+    },
+    {
+      path: "home/news/:title",
+      element: <NewsPage/>
+    },
   ]);
     
