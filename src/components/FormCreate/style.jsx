@@ -72,6 +72,7 @@ export const PasswordStyled = styled.div`
 
 export const CreateForm = styled.div`
     display: flex;
+    flex-direction: column;
     gap: 2rem;
     color: ${({ theme }) => theme.colors.primary};
     width: 100%;
@@ -85,4 +86,13 @@ export const CreateForm = styled.div`
     div:first-child(2) {
         width: 50%; 
     }
+`
+
+export const Teste = styled.form`
+    display: flex;
+    color: ${({ theme }) => theme.colors.primary};
+    flex-direction: column;
+    
+
+
 `

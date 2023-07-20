@@ -2,6 +2,11 @@ import { styled } from "styled-components";
 
 export const CarouselStyled = styled.section`
     
+    img {
+        position: absolute;
+        object-fit: cover;
+    }
+
     .swiper-button-prev, .swiper-button-next {
         color: ${(({ theme }) => theme.colors.purple700)};
     }
