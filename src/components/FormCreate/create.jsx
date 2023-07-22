@@ -3,7 +3,9 @@ import { useRef, useState, useEffect } from 'react'
 import { db, storage } from '../../firebaseconfig'
 import { addDoc, collection } from '@firebase/firestore'
 import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
-import { CreateForm } from './style'
+import { CreateForm, UploadContainer } from './style'
+import { CloudArrowDown, TrashSimple } from "@phosphor-icons/react";
+import uploadIcon from '../../assets/images/upload.svg'
 
 export function CreateTeste() {
 
@@ -16,17 +18,7 @@ export function CreateTeste() {
     const [ imageURL, setImageURL] = useState('')
 
 
-    const initialValueEditor = `
-      <header>
-      <h1>Titulo</h1>
-      <h2>Subtitulo</h2>
-      <p>Feitor por (Autor), para TechConnect</p>
-      <p>00/00/0000</p>
-      </header>
-      <hr>
-      <p>Imagem...</p>
-      <p>Conteúdo do artigo</p>
-    `
+ 
     const editorRef = useRef();
     const articleCollectionRef = collection(db, 'articles');
     
@@ -93,21 +85,37 @@ export function CreateTeste() {
 
     return (
       <>
-      <CreateForm >
+      <h1 style={{color: "white"}}>Criação de Artigo</h1>
+      <CreateForm>
           <form onSubmit={onClickHandler} >
-          <label htmlFor="">É um artigo de destaque?</label>
-          <input type="checkbox"  checked={emphasis} name="" id="" onChange={() => setEmphasis(!emphasis) }/>
+          <div>
+            <div>
+              <label htmlFor="">É um artigo de destaque?</label>
+              <input type="checkbox" checked={emphasis} name="" onChange={() => setEmphasis(!emphasis)} />
+              </div>
+              
+            <UploadContainer>
+              <CloudArrowDown size={50} /> <input type="file" name="" onChange={(e) => { setImageUpload(e.target.files[0]) }} />
+              <span>Select Files</span>
+              </UploadContainer>  
+              <TrashSimple size={24} color="#7b9be1" />
+              <h4>STATUS DO ARTIGO</h4>
+              <p>Rascunho</p>
+            </div>    
+            
+            <div>
+              <Editor 
+              init={{
+                  skin: 'oxide-dark',
+                  content_css: 'dark'
+                }}
+                
+              onInit={(evt, editor) => (editorRef.current = editor)} 
+              apiKey="ielf67vff1t8b2j119x947k095i3mlsybvf1clcnrzdja5ws"  
+              /> 
 
-          { emphasis ? <input type="file" name="" id="Banner" onChange={(e) => {setImageUpload(e.target.files[0])}}/> : ''}
-          { imageUpload && <p>Enviado</p>}
-
-            <Editor 
-            onInit={(evt, editor) => (editorRef.current = editor)} 
-            initialValue={initialValueEditor}
-            apiKey="ielf67vff1t8b2j119x947k095i3mlsybvf1clcnrzdja5ws"  
-            />
-
-            <button type="submit">Enviar</button>
+              <button type="submit">Enviar</button>
+            </div>
           </form>
 
 

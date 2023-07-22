@@ -28,6 +28,12 @@ export const HeaderContainer = styled.header`
         gap: 1rem;
     }
 
+    ul:nth-child(2) {
+        display: flex;
+        gap: 1rem;
+        border-left: 1px solid ${({theme}) => theme.colors.secundary};
+    }
+
     li {
         list-style: none;
         color: ${(props) => props.theme.colors.secundary};

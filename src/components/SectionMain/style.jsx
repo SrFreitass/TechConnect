@@ -38,6 +38,7 @@ export const SectionContainer = styled.section`
         opacity: 1;
     }
     }
+    
     @keyframes tracking-in-expand {
     0% {
         letter-spacing: -0.5em;
@@ -58,6 +59,11 @@ export const ButtonStyled = styled.button`
     align-items: center;
     justify-content: center;
 
+    &:hover {
+        transition: all 0.1s;
+        filter: drop-shadow(0px 0px 20px ${({ theme }) => theme.colors.purple700});
+    }
+
     height: 2.5rem;
     font-size: 1.2rem;
     padding: 1rem;  
@@ -69,7 +75,7 @@ export const ButtonStyled = styled.button`
     background-color: ${({ theme }) => theme.colors.purple700};
     color: ${({ theme }) => theme.colors.primary};
     font-weight: bold;
-    filter: drop-shadow(0px 0px 20px ${({ theme }) => theme.colors.purple700});
+   
     
     
      
