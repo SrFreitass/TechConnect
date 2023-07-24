@@ -3,8 +3,8 @@ import { useRef, useState, useEffect } from 'react'
 import { db, storage } from '../../firebaseconfig'
 import { addDoc, collection } from '@firebase/firestore'
 import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
-import { CreateForm, UploadContainer } from './style'
-import { CloudArrowDown, TrashSimple } from "@phosphor-icons/react";
+import { CreateForm, UploadContainer, IconsContainer, Btoaolegal, Oie } from './style'
+import { CloudArrowDown, TrashSimple, NotePencil, Bookmarks } from "@phosphor-icons/react";
 import uploadIcon from '../../assets/images/upload.svg'
 
 export function CreateTeste() {
@@ -14,8 +14,8 @@ export function CreateTeste() {
     const [ summary, setSummary ] = useState('')
     const [ author, setAuthor ] = useState('')
     const [ emphasis, setEmphasis ] = useState(false)
-    const [ imageUpload, setImageUpload] = useState('')
-    const [ imageURL, setImageURL] = useState('')
+    const [ imageUpload, setImageUpload] = useState(' ')
+    const [imageURL, setImageURL] = useState('')
 
 
  
@@ -64,61 +64,68 @@ export function CreateTeste() {
 
       uploadBytes(imageRef, imageUpload)
       .then(() => {
-        // Após o upload, pegar a URL da imagem
         getDownloadURL(imageRef)
           .then((url) => {
-            // Agora você tem a URL da imagem
             console.log("Image URL:", url);
             setImageURL(url)
-            // Aqui você pode fazer o que quiser com a URL da imagem, como salvá-la no Firestore junto com outros dados do artigo
           })
           .catch((error) => {
-            // Tratar erros ao obter a URL da imagem
             console.error("Error getting download URL:", error);
           });
       })
       .catch((error) => {
-        // Tratar erros no upload da imagem
         console.error("Error uploading image:", error);
       });
   };
+
+  const onClickHandlerDel = () => {
+    setImageURL('')
+    setImageUpload('')
+  }
 
     return (
       <>
       <h1 style={{color: "white"}}>Criação de Artigo</h1>
       <CreateForm>
           <form onSubmit={onClickHandler} >
-          <div>
+
             <div>
-              <label htmlFor="">É um artigo de destaque?</label>
-              <input type="checkbox" checked={emphasis} name="" onChange={() => setEmphasis(!emphasis)} />
-              </div>
               
-            <UploadContainer>
-              <CloudArrowDown size={50} /> <input type="file" name="" onChange={(e) => { setImageUpload(e.target.files[0]) }} />
-              <span>Select Files</span>
+              <UploadContainer>
+                <CloudArrowDown size={50} /> <input type="file" accept=".png, .jpeg, .jpg" onChange={(e) => { setImageUpload(e.target.files[0]) }} />
+                <span>Select Files</span>
               </UploadContainer>  
-              <TrashSimple size={24} color="#7b9be1" />
-              <h4>STATUS DO ARTIGO</h4>
-              <p>Rascunho</p>
-            </div>    
+              
+              <IconsContainer>
+                <button onClick={onClickHandlerDel}> <TrashSimple size={24}  color="#4D4DB5"/> </button>
+                <p>{ imageUpload && imageUpload.name }</p>
+              </IconsContainer>
+
+              <IconsContainer>
+                <NotePencil size={24}  color="#4D4DB5"/>
+                <p>Draft</p>
+              </IconsContainer>
+
+              
+              <IconsContainer>
+                <Bookmarks size={24}  color="#4D4DB5"/>
+                <label htmlFor="">É um artigo de destaque?</label>
+                <input type="checkbox" checked={emphasis} name="" onChange={() => setEmphasis(true)} />
+              </IconsContainer>
+              
+              <Oie>
+                <Btoaolegal>Voltar</Btoaolegal>
+                <Btoaolegal type="submit">Enviar</Btoaolegal>
+              </Oie>
+
+            </div>
             
-            <div>
               <Editor 
-              init={{
-                  skin: 'oxide-dark',
-                  content_css: 'dark'
-                }}
-                
               onInit={(evt, editor) => (editorRef.current = editor)} 
               apiKey="ielf67vff1t8b2j119x947k095i3mlsybvf1clcnrzdja5ws"  
-              /> 
-
-              <button type="submit">Enviar</button>
-            </div>
+                /> 
+              
           </form>
-
-
       </CreateForm>
       </>
     );

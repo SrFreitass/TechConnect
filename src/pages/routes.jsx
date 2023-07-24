@@ -4,6 +4,8 @@ import { Error404 } from "./Error404"
 import { Home } from './Home'
 import { NewsPage } from './NewsPage';
 import { CreateArticle } from './TestCreate';
+import { ArticleEdit } from './ArticleEdit'
+import { EditArticle } from '../components/EditArticle';
 
 // Rotas de aplicações em forma de objetos, que contem o path e o elemento que será renderizado na tela.
 
@@ -31,6 +33,14 @@ export const router = createBrowserRouter([
     {
       path: "home/news/:title",
       element: <NewsPage/>
+    },
+    {
+      path: "edit",
+      element: <ArticleEdit/>
+    },
+    {
+      path: "edit/:title",
+      element: <EditArticle/>
     },
   ]);
     

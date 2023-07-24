@@ -84,9 +84,13 @@ export const CreateForm = styled.div`
         width: 100%;
     }
 
-    div {
+    form > div {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
         text-align: center;
     }
+    
 
     div.tox  {
         width: 79rem;
@@ -139,4 +143,42 @@ export const UploadContainer = styled.div`
         font-size: 0rem;
     }
 
+`
+
+export const IconsContainer = styled.div`
+    display: flex;
+    align-items: center;
+    text-align: start;
+    font-weight: 500;
+    
+
+
+    p {
+        color: #22223E
+    }
+
+    button {
+        background: none;
+        border: none;
+        cursor: pointer;
+    }
+`
+
+export const Btoaolegal = styled.button`
+    border-radius: 5px;
+    width: 7rem;
+    height: 2.5rem;
+    background-color: ${({ theme }) => theme.colors.purple700};
+    border: none;
+    color: ${({ theme }) => theme.colors.primary};
+    font-weight: 600;
+    font-family: 'Montserrat';
+    cursor: pointer;
+
+`
+
+export const Oie = styled.div`
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
 `

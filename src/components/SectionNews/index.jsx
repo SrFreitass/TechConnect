@@ -3,7 +3,7 @@ import { Aside } from '../Aside';
 import { Link, useParams } from "react-router-dom";
 import { db } from "../../firebaseconfig";
 import { useEffect, useState } from "react";
-import { getDocs, collection, addDoc } from "firebase/firestore";
+import { getDocs, collection } from "firebase/firestore";
 import { ArticleStyled } from "../BodyNews/style";
 import { ButtonStyled } from "../SectionMain/style";
 
