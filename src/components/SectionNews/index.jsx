@@ -3,7 +3,7 @@ import { Aside } from '../Aside';
 import { Link, useParams } from "react-router-dom";
 import { db } from "../../firebaseconfig";
 import { useEffect, useState } from "react";
-import { getDocs, collection } from "firebase/firestore";
+import { getDocs, collection, where, query } from "firebase/firestore";
 import { ArticleStyled } from "../BodyNews/style";
 import { ButtonStyled } from "../SectionMain/style";
 
@@ -14,8 +14,13 @@ export function News() {
 
   useEffect(() => {
     const getData = async () => {
-      const data = await getDocs(userCollectionRef);
-      setNews(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+        const q = query(collection(db, "articles"), where("emphasis", "==", false));
+        const querySnapshot = await getDocs(q);
+
+        // Transforma o resultado em um array de objetos
+        const data = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+        setNews(data);
+        console.log(data)
     };
     getData();
   }, []);
@@ -34,7 +39,7 @@ export function News() {
 
         return (
           <NewsStyled key={index}>
-            <img src={article.image} alt="" />
+            <img src={article.imageURL} alt="" />
             <div>
               <Link to={`./news/${article.title}`}>
                 <h2>{article.title}</h2> 

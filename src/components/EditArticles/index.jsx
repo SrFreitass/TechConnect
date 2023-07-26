@@ -1,5 +1,6 @@
 import { db } from "../../firebaseconfig";
 import { collection, getDocs, deleteDoc, query, where, doc } from "firebase/firestore";
+import { CloudArrowDown, TrashSimple, NotePencil, Bookmarks } from "@phosphor-icons/react";
 import { useEffect, useState } from 'react'
 import { NewsStyled } from "../SectionNews/style";
 import { ButtonStyled } from "../SectionMain/style";
