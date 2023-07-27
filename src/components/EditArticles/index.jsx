@@ -1,5 +1,6 @@
 import { db } from "../../firebaseconfig";
 import { collection, getDocs, deleteDoc, query, where, doc } from "firebase/firestore";
+import { CloudArrowDown, TrashSimple, NotePencil, Bookmarks } from "@phosphor-icons/react";
 import { useEffect, useState } from 'react'
 import { NewsStyled } from "../SectionNews/style";
 import { ButtonStyled } from "../SectionMain/style";
@@ -26,10 +27,9 @@ export function EditArticles() {
     return (
         <>
             {newsEdit.map((news, index) => {
-                return (
-                    <NewsStyled> 
+                return ( 
                         <NewsStyled key={index}>
-                            <img src={news.bannerURL}></img>
+                            <img src={news.imageURL}></img>
                             <div>
                                 <h1>{news.title}</h1>
                                 <h2>{news.summary}</h2>
@@ -39,7 +39,6 @@ export function EditArticles() {
                                 <ButtonStyled onClick={() => {handleDeleteArticle(news.id)}}>Excluir</ButtonStyled>
                             </div>
                         </NewsStyled>    
-                    </NewsStyled>
                 )
             })}
         </>

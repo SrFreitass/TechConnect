@@ -42,7 +42,7 @@ export function Carousel() {
         return (
           <SwiperSlide key={index}>
             <CarouselStyled>
-              <img src={items.bannerURL}></img>
+              <img src={items.imageURL}></img>
               <div>
                 <a href="#">{items.tag}</a>
                 <Link to={`./news/${items.title}`}><h2>{items.title}</h2></Link>
