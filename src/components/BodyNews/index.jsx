@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { db } from "../../firebaseconfig";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { ArticleStyled, MainStyled } from "./style";
+import DOMPurify from "dompurify";
 
 export function BodyNews() {
   const [content, setContent] = useState(null);
@@ -28,6 +29,9 @@ export function BodyNews() {
     return null;
   }
 
-  console.log(content)
-
+  return (
+    <main>
+      <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content) }} />
+    </main>
+  )
 }

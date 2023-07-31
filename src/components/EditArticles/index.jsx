@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import { NewsStyled } from "../SectionNews/style";
 import { ButtonStyled } from "../SectionMain/style";
 import { Link } from "react-router-dom";
+import toast, { Toaster } from 'react-hot-toast';
 
 export function EditArticles() {
     const [newsEdit, setNewsEdit] = useState([])
@@ -18,27 +19,30 @@ export function EditArticles() {
         getData();
     }, [newsEdit]);
 
-    const handleDeleteArticle = async (id) => {
+    const handleDeleteArticle = (id) => {
         const articleDoc = doc(db, "articles", id)
-        await deleteDoc(articleDoc)
-        console.log(postDoc)
+        deleteDoc(articleDoc)
+        toast.success('Artigo excluído com sucesso')
     }
 
     return (
         <>
+            <Toaster
+                position="bottom-left"
+            />
             {newsEdit.map((news, index) => {
-                return ( 
-                        <NewsStyled key={index}>
-                            <img src={news.imageURL}></img>
-                            <div>
-                                <h1>{news.title}</h1>
-                                <h2>{news.summary}</h2>
-                                <p>{news.author}</p>
-                                <p>{news.emphasis.toString()}</p>
-                                <ButtonStyled><Link to={`./${news.title}`}>Editar</Link></ButtonStyled>
-                                <ButtonStyled onClick={() => {handleDeleteArticle(news.id)}}>Excluir</ButtonStyled>
-                            </div>
-                        </NewsStyled>    
+                return (
+                    <NewsStyled key={index}>
+                        <img src={news.imageURL}></img>
+                        <div>
+                            <h1>{news.title}</h1>
+                            <h2>{news.summary}</h2>
+                            <p>{news.author}</p>
+                            <p>{news.emphasis.toString()}</p>
+                            <ButtonStyled><Link to={`./${news.title}`}>Editar</Link></ButtonStyled>
+                            <ButtonStyled onClick={() => { handleDeleteArticle(news.id) }}>Excluir</ButtonStyled>
+                        </div>
+                    </NewsStyled>
                 )
             })}
         </>
