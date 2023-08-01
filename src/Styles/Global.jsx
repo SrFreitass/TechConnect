@@ -7,22 +7,23 @@ export const GlobalStyle = createGlobalStyle`
         padding: 0;
         margin: 0;
         box-sizing: border-box;
-        
-        
+        font-family: 'Montserrat', 'Arial', 'sans-serif';
     }
 
     body {
         background-color: ${({ theme }) => theme.colors.background};
-        font-family: 'Montserrat', 'Arial', 'sans-serif';
     }
 
+    button {
+        cursor: pointer;
+    }
 
     ::-webkit-scrollbar {
         width: 5px;
     }
 
     ::-webkit-scrollbar-track {
-        background: ${({theme}) => theme.colors.black800}; 
+        background: ${({ theme }) => theme.colors.black800}; 
     }
 
     ::-webkit-scrollbar-thumb {

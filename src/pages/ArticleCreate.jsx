@@ -1,14 +1,13 @@
 import { Wrapper } from "../Styles/Wrapper";
 import { Header } from "../components/Header";
-import { ArticleEditForm } from '../components/ArticleEditForm'
+import { ArticleCreationForm } from '../components/ArticleCreationForm'
 import { useEffect, useState } from "react";
 import { collection, getDocs, query, where } from "firebase/firestore";
+import { Loader } from "../components/Loader";
 import { db } from "../firebaseconfig";
 import { Navigate } from "react-router-dom";
-import { Loader } from "../components/Loader";
 
-
-export function ArticleEdit() {
+export function ArticleCreate() {
 
     const [token, setToken] = useState('')
 
@@ -31,7 +30,7 @@ export function ArticleEdit() {
         return (
             <Wrapper>
                 <Header />
-                <ArticleEditForm />
+                <ArticleCreationForm />
             </Wrapper>
         )
     } else if (token === 'error') {
