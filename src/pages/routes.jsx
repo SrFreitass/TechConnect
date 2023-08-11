@@ -6,6 +6,8 @@ import { NewsPage } from './NewsPage';
 import { AdminPanel } from './AdminPanel';
 import { ArticleEdit } from './ArticleEdit';
 import { ArticleCreate } from './ArticleCreate';
+import { ArticlesFinder } from './ArticlesFinder';
+import { FastPage } from './FastPage';
 // Rotas de aplicações em forma de objetos, que contem o path e o elemento que será renderizado na tela.
 
 export const router = createBrowserRouter([
@@ -40,5 +42,13 @@ export const router = createBrowserRouter([
   {
     path: "admin/edit/:articleTitle",
     element: <ArticleEdit />,
+  },
+  {
+    path: "results/:searchTitle",
+    element: <ArticlesFinder />,
+  },
+  {
+    path: "home/fast/:title",
+    element: <FastPage />,
   },
 ]);

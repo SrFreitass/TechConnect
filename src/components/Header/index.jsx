@@ -1,6 +1,7 @@
 import React from 'react'
 import { HeaderContainer } from './style'
 import { FacebookLogo, InstagramLogo, TwitterLogo } from '@phosphor-icons/react'
+import { Search } from '../Search'
 
 export function Header() {
   return (
@@ -11,12 +12,13 @@ export function Header() {
           <li><a href="#">Blog</a></li>
           <li><a href="#">Newslatter</a></li>
           <li><a href="#">About</a></li>
+          <Search />
         </ul>
 
         <ul>
-          <li><FacebookLogo size={32}/></li>
-          <li><InstagramLogo size={32}/></li>
-          <li><TwitterLogo size={32}/></li>
+          <li><FacebookLogo size={32} /></li>
+          <li><InstagramLogo size={32} /></li>
+          <li><TwitterLogo size={32} /></li>
         </ul>
       </nav>
     </HeaderContainer>

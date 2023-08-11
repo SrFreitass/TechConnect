@@ -5,25 +5,25 @@ import { auth } from '../../firebaseconfig'
 import imageTypewriter from '../../assets/images/map-icon.svg'
 import { ButtonStyled } from '../SectionMain/style';
 import { Eye, EyeSlash } from '@phosphor-icons/react';
-import { addDoc, doc, collection, query, where, getDocs } from 'firebase/firestore';
-import { db } from '../../firebaseconfig'
-import { Loader } from '../Loader';
-import { ArticleCreationForm } from '../ArticleCreationForm';
+import { useNavigate } from 'react-router-dom';
 
 export function Login() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [showPassword, setShowPassword] = useState(false)
 
-
+    const navigate = useNavigate()
     const onLogin = (e) => {
+        console.log(e)
         e.preventDefault()
 
-        signInWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                const user = userCredential.user.uid;
-                localStorage.setItem("token", user)
-            })
+        signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
+            const user = userCredential.user.uid;
+            localStorage.setItem("token", user)
+        }).catch((error) => {
+            console.log('erro')
+        })
+
     }
 
 
@@ -36,7 +36,7 @@ export function Login() {
     return (
         <FormStyled>
             <img src={imageTypewriter} />
-            <form>
+            <form onSubmit={onLogin}>
                 <h1>LOGIN</h1>
 
                 <div>
@@ -52,7 +52,7 @@ export function Login() {
                     </PasswordStyled>
                 </div>
 
-                <ButtonStyled type="submit" onClick={onLogin}>ENTRAR</ButtonStyled>
+                <ButtonStyled type="submit">ENTRAR</ButtonStyled>
             </form>
         </FormStyled>
     )

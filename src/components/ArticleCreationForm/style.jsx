@@ -108,6 +108,12 @@ export const ButtonDefault = styled.button`
     font-weight: 600;
     font-family: 'Montserrat';
     cursor: pointer;
+
+    a {
+        text-decoration: none;
+        color: ${({ theme }) => theme.colors.primary};
+        width: 100%;
+    }
     
 `
 

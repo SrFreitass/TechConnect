@@ -4,7 +4,7 @@ export const AsideStyled = styled.aside`
     display: flex;
     flex-direction: column;
     padding-right: 1rem;
-    gap: 1rem;
+    gap: 1.5rem;
     border-right: 1px solid ${({ theme }) => theme.colors.secundary};
 
     button:first-child {
