@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from 'react'
-import { db, storage } from '../../firebaseconfig'
+import { db, storage } from '../../../../firebaseconfig'
 import { addDoc, collection } from '@firebase/firestore'
 import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
 import toast, { Toaster } from 'react-hot-toast';

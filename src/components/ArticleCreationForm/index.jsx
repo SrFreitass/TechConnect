@@ -2,7 +2,7 @@ import { Editor } from "@tinymce/tinymce-react";
 import { StyleArticleCreationForm, UploadContainer, IconsContainer, ButtonDefault, ButtonsContainer } from './style'
 import { CloudArrowDown, TrashSimple, NotePencil, Bookmarks } from "@phosphor-icons/react";
 import toast, { Toaster } from 'react-hot-toast';
-import { useArticleCreate } from "../../hooks/useArticleCreate";
+import { useArticleCreate } from "./hook/UseArticleCreate";
 import { Link } from "react-router-dom";
 
 

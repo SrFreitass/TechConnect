@@ -4,7 +4,7 @@ import { CloudArrowDown, TrashSimple, NotePencil, Bookmarks } from "@phosphor-ic
 import { StyleArticleCreationForm, UploadContainer, IconsContainer, ButtonsContainer, ButtonDefault } from '../ArticleCreationForm/style'
 import { Editor } from "@tinymce/tinymce-react";
 import toast, { Toaster } from 'react-hot-toast';
-import { useArticleEdit } from "../../hooks/useArticleEdit";
+import { useArticleEdit } from "./hook/useArticleEdit";
 
 export function ArticleEditForm() {
 
