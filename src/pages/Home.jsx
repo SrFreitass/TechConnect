@@ -10,7 +10,6 @@ export function Home() {
       <Header />
       <Carousel />
       <News />
-      <SectionFast />
     </Wrapper>
   )
 }

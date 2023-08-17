@@ -13,9 +13,11 @@ export function useArticleCreate() {
     const [imageUpload, setImageUpload] = useState('')
     const [imageURL, setImageURL] = useState('')
     const [url, setURL] = useState('')
-
+    
 
     const editorRef = useRef();
+    
+
     const articleCollectionRef = collection(db, 'articles');
 
     const standardStructure = `<h1>Tit&uacute;lo.</h1>
@@ -23,7 +25,7 @@ export function useArticleCreate() {
     <p>Autor.</p>
     <hr>
     <p><img>Imagem principal ficar&aacute; aqui.</p>
-    <p>Conte&uacute;do...</p>`
+    <p>Conte&uacute;do...</p>`.replace(/ /g, '')
 
     useEffect(() => {
         if (content === '' || imageURL == '') {
@@ -73,23 +75,28 @@ export function useArticleCreate() {
 
     const handleFormSubmit = async (e) => {
         e.preventDefault();
+        
         const valueEditor = editorRef.current.getContent()
+
         console.log(valueEditor)
         console.log(standardStructure)
         if (valueEditor != standardStructure) {
 
             try {
                 setContent(valueEditor);
-                setTitle(/<h1>(.*?)<\/h1>/.exec(valueEditor)[1]);
-                setSummary(/<h2>(.*?)<\/h2>/.exec(valueEditor)[1]);
-                setAuthor(/<p>(.*?)<\/p>/.exec(valueEditor)[1]);
+                setTitle((/<h1>(.*?)<\/h1>/.exec(valueEditor)[0]).replace(/(<([^>]+)>)/ig, ''))
+                setSummary((/<h2>(.*?)<\/h2>/.exec(valueEditor)[0]).replace(/(<([^>]+)>)/ig, ''));
+                setAuthor((/<p>(.*?)<\/p>/.exec(valueEditor)[0]).replace(/(<([^>]+)>)/ig, ''));
                 setImageURL(url)
             } catch (error) {
                 toast.error('Revise o conteúdo do artigo')
+                console.log(error)
             }
-        } else {
-            toast.error('Revise o conteúdo do artigo')
+        
+            return
         }
+
+        toast.error('Revise o conteúdo do artigo')
 
     }
 

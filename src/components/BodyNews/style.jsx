@@ -49,3 +49,76 @@ export const Info = styled.section`
     }
 
 `
+
+export const ArticleContainerStyled = styled.main`
+
+    
+    div {
+    display: flex;  
+    flex-direction: column;
+    gap: 1.25rem
+    }
+
+    textarea {
+        width: 100%;
+
+        padding: 0.5rem;
+
+        border: none;
+        border-radius: 5px;
+
+        background: none;
+
+        color: ${({theme}) => theme.colors.primary };
+        font-size: 1rem;
+    }
+
+    textarea:focus {
+        transition: ease-in-out 0.1s;
+        outline: none;
+        border: 1px solid #8A8AE0;
+    }
+
+    section {
+        background-color: #212124;
+    }
+
+    img {
+        width: 100%;
+        height: 30rem;
+        object-fit: cover;
+    }
+
+    h3 {
+       color: #8A8AE0;
+    }
+
+    h1 {
+        color: ${({theme}) => theme.colors.primary };
+        font-weight: 600;
+    }
+
+    h2 {
+        color: ${({theme}) => theme.colors.secundary };
+        font-weight: 500;
+    }
+
+    p {
+        color: #f7f7f7;
+        font-weight: 500;
+    }
+
+    strong {
+        font-size: 1.3rem
+    }
+
+    ul {
+        display: flex;
+        flex-direction: column;
+        gap: .8rem;
+    }
+
+    li {
+        color: ${({theme}) => theme.colors.primary}
+    }
+`

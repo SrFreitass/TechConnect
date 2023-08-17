@@ -41,7 +41,7 @@ export function News() {
           <NewsStyled key={index}>
             <img src={article.imageURL} alt="" />
             <div>
-              <Link to={`./news/${article.title}`}>
+              <Link to={`./news/${article.id}`}>
                 <h2 dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(article.title) }} />
               </Link>
               <h3 dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(article.summary) }} />

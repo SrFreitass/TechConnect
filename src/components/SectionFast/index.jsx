@@ -1,42 +1,41 @@
 import untitled from './untitled.mp4'
 import { MobileVideo, SectionFastStyled } from './style'
-import { Pause, Play } from '@phosphor-icons/react'
-import { useRef, useState, useEffect } from 'react'
+import { Pause, Play, SpeakerSimpleHigh, SpeakerSimpleSlash } from '@phosphor-icons/react'
+import { useRef, useState, useEffect, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { Links } from '../Links'
 
 export function SectionFast() {
 
     const videoRef = useRef(null)
-    const [playing, setPlaying] = useState(false)
+    const myRef = useRef(null)
+    const [playing, setPlaying] = useState(true)
+    const [sound, setSound] = useState(true)
 
-    useEffect(() => {
-        if (playing) {
-            videoRef.current.play()
-        } else {
-            videoRef.current.pause()
+    console.log(myRef.current)
+
+
+    const handleSound = () => {
+        setSound(!sound)
+
+        if (sound) {
+
         }
+    }
 
-    }, [playing])
-
-    const endVideo = () => {
-        setPlaying(false)
+    const videoState = () => {
+        setPlaying(!playing)
     }
 
     return (
         <SectionFastStyled>
-            <MobileVideo status={playing}>
-                <Links />
-                <div>
-                    <video src={untitled} ref={videoRef} onEnded={endVideo} />
-                    <button>   <Link to="./fast/1"> <Play size="32" /> </Link> </button>
-                    <div>
-                        <h3>Lorem ipsum</h3>
-                        <p>Guilherme Freitas</p>
-                    </div>
-                </div>
-            </MobileVideo >
-
+            <video src={untitled} ref={videoRef}></video>
+            <video src={untitled} ref={videoRef}></video>
+            <video src={untitled} ref={videoRef}></video>
+            <video src={untitled} ref={videoRef}></video>
+            <video src={untitled} ref={videoRef}></video>
+            <video src={untitled} ref={videoRef}></video>
+            <video src={untitled} ref={videoRef}></video>
         </SectionFastStyled>
     )
 }
