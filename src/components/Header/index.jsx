@@ -9,9 +9,9 @@ export function Header() {
       <h1>&#60;techconnect/&#62;</h1>
       <nav>
         <ul>
-          <li><a href="#">Blog</a></li>
-          <li><a href="#">Newslatter</a></li>
-          <li><a href="#">About</a></li>
+          <li><a href="#">Artigos</a></li>
+          <li><a href="#">Sobre nós</a></li>
+          <li><a href="#">Fast</a></li>
           <Search />
         </ul>
 

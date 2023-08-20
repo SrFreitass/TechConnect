@@ -53,7 +53,7 @@ export const Info = styled.section`
 export const ArticleContainerStyled = styled.main`
 
     
-    div {
+    section {
     display: flex;  
     flex-direction: column;
     gap: 1.25rem
@@ -120,5 +120,40 @@ export const ArticleContainerStyled = styled.main`
 
     li {
         color: ${({theme}) => theme.colors.primary}
+    }
+
+
+`
+
+export const CommentContainer = styled.div`
+    display: flex;
+    justify-content: space-between;
+
+    padding: 1rem;
+
+    border: solid 1px ${({theme}) => theme.colors.secundary};
+    border-radius: 5px;
+
+
+    h4 {
+        color: ${({theme}) => theme.colors.primary}
+    }
+
+    p {
+        color: ${({theme}) => theme.colors.secundary}
+    }
+
+    button {
+        display: flex;
+        background: none;
+        border: none;
+    }
+
+    button:hover {
+        svg {
+            filter: drop-shadow(0 0 0.75rem crimson);
+            transition: linear 0.2s;
+            fill: red;
+        }
     }
 `

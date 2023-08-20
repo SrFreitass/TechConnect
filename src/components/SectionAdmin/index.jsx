@@ -20,7 +20,7 @@ export function SectionAdmin() {
             setNewsEdit(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
         };
         getData();
-    }, [newsEdit]);
+    }, []);
 
 
     const handleDeleteArticle = (id) => {

@@ -9,6 +9,7 @@ import { ArticleCreate } from './ArticleCreate';
 import { ArticlesFinder } from './ArticlesFinder';
 import { FastPage } from './FastPage';
 import { FastCreation } from '../components/FastCreation';
+import { AuthPage } from './AuthPage';
 // Rotas de aplicações em forma de objetos, que contem o path e o elemento que será renderizado na tela.
 
 export const router = createBrowserRouter([
@@ -56,4 +57,8 @@ export const router = createBrowserRouter([
     path: "admin/fast/create",
     element: <FastCreation/>
   },
+  {
+    path: "auth",
+    element: <AuthPage/>
+  }
 ]);
