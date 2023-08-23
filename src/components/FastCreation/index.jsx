@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
-import { ButtonDefault, UploadContainer } from "../ArticleCreationForm/style";
+import { ButtonDefault, UploadContainer } from "../ArticleComposer/style";
 import { getDownloadURL, uploadBytes } from "firebase/storage";
-import { storage } from "../../firebaseconfig";
+import { storage } from "../../services/firebaseconfig";
 import { CloudArrowDown } from '@phosphor-icons/react'
 
 export function FastCreation() {
-    const [ videoUpload, setVideoUpload ] = useState('')
-    const [ title, setTitle ] = useState('')
-    const [ description, setDescription ] = useState('')
-    
+    const [videoUpload, setVideoUpload] = useState('')
+    const [title, setTitle] = useState('')
+    const [description, setDescription] = useState('')
+
     const storageRef = (storage, `videos/${videoUpload.name}`)
 
 
@@ -24,12 +24,12 @@ export function FastCreation() {
 
     }, [videoUpload])
 
-    const handlePostFast = (e) =>  {
+    const handlePostFast = (e) => {
         e.preventDefault()
         console.log(title, description)
     }
 
-    return(
+    return (
         <>
             <h3>Crie seu <span>#fast</span></h3>
             <UploadContainer>
@@ -37,8 +37,8 @@ export function FastCreation() {
                 <span>Selecione arquivos</span>
             </UploadContainer>
             <form>
-                <input type="" onChange={(e) => setTitle(e.target.value)}/>
-                <input type="" onChange={(e) => setDescription(e.target.value)}/>
+                <input type="" onChange={(e) => setTitle(e.target.value)} />
+                <input type="" onChange={(e) => setDescription(e.target.value)} />
                 <ButtonDefault>Voltar</ButtonDefault>
                 <ButtonDefault onClick={handlePostFast}>Postar</ButtonDefault>
             </form>

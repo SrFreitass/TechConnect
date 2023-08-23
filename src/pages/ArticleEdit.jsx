@@ -1,6 +1,6 @@
 import { Wrapper } from "../Styles/Wrapper";
 import { Header } from "../components/Header";
-import { ArticleEditForm } from '../components/ArticleEditForm'
+import { ArticleEditForm } from '../components/ArticleEditor'
 import { Navigate } from "react-router-dom";
 import { Loader } from "../components/Loader";
 import { useAdminVerify } from "../hooks/useAdminVerify";

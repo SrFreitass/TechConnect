@@ -1,4 +1,4 @@
-import { db } from "../../firebaseconfig";
+import { db } from "../../services/firebaseconfig";
 import { useEffect, useState } from "react";
 import { getDocs, collection } from "firebase/firestore";
 import { CarouselStyled } from "./style";
@@ -9,11 +9,7 @@ import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import { Link } from "react-router-dom";
 import { query, where } from "@firebase/firestore";
-
-
-
-
-
+import DOMPurify from "dompurify";
 
 export function Carousel() {
 
@@ -38,39 +34,39 @@ export function Carousel() {
     fetchEmphasizedArticles();
   }, []);
 
-    const oie = news.map((items, index) => {
-        return (
-          <SwiperSlide key={index}>
-            <CarouselStyled>
-              <img src={items.imageURL}></img>
-              <div>
-                <a href="#">{items.tag}</a>
-                <Link to={`./news/${items.title}`}><h2>{items.title}</h2></Link>
-                <p>{items.summary}</p>
-              </div>
-            </CarouselStyled>
-          </SwiperSlide>
-        )
-    })
-
+  const oie = news.map((items, index) => {
     return (
-      <CarouselStyled>
-          <Swiper
-          slidesPerView={1}
-          navigation={true}
-          loop
-          pagination={{
-            dynamicBullets: true,
-          }}
-          autoplay={{
-            delay: 3000,
-          }}
-          modules={[Pagination, Autoplay, Navigation]}
-
-          >
-            {oie}
-        </Swiper>
-      </CarouselStyled>
+      <SwiperSlide key={index}>
+        <CarouselStyled>
+          <img src={items.imageURL}></img>
+          <div>
+            <Link to={`../category/${items.category}`} dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(`#${items.category}`) }} />
+            <Link to={`./news/${items.id}`}><h2 dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(items.title) }} /></Link>
+            <p dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(items.summary) }} />
+          </div>
+        </CarouselStyled>
+      </SwiperSlide>
     )
+  })
+
+  return (
+    <CarouselStyled>
+      <Swiper
+        slidesPerView={1}
+        navigation={true}
+        loop
+        pagination={{
+          dynamicBullets: true,
+        }}
+        autoplay={{
+          delay: 3000,
+        }}
+        modules={[Pagination, Autoplay, Navigation]}
+
+      >
+        {oie}
+      </Swiper>
+    </CarouselStyled>
+  )
 }
 

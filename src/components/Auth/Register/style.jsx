@@ -42,10 +42,10 @@ export const FormStyled = styled.form`
         font-size: 1rem;
         padding: 1rem;
 
-        color: ${({theme}) => theme.colors.primary};
+        color: ${({ theme }) => theme.colors.primary};
         
         &::placeholder {
-            color: ${({theme}) => theme.colors.secundary};
+            color: ${({ theme }) => theme.colors.secundary};
         }
 
         &:focus {
@@ -53,23 +53,24 @@ export const FormStyled = styled.form`
         }
 
         background: none;
-        border: 2px solid ${({theme}) => theme.colors.purple400};
+        border: 2px solid ${({ theme }) => theme.colors.purple400};
         border-radius: 8px;
     }
 
 
 
     label {
-        color: ${({theme}) => theme.colors.primary};
+        color: ${({ theme }) => theme.colors.primary};
         font-weight: 500;
     }
 
     h1 {
-        color: ${({theme}) => theme.colors.primary}
+        color: ${({ theme }) => theme.colors.primary};
     }
 
     p {
-        color: ${({theme}) => theme.colors.secundary}
+        text-align: center;
+        color: ${({ theme }) => theme.colors.secundary};
     }
 
     span {
@@ -79,7 +80,7 @@ export const FormStyled = styled.form`
     button {
         width: 100%;
         height: 3rem;
-        filter: drop-shadow(0 0 8px ${({theme}) => theme.colors.purple700})
+        filter: drop-shadow(0 0 8px ${({ theme }) => theme.colors.purple700});
     }
 
 `
@@ -106,5 +107,5 @@ export const ProgressForm = styled.progress`
     position: fixed;
     top: -.4rem;
 
-    accent-color: ${({theme}) => theme.colors.purple700};
+    accent-color: ${({ theme }) => theme.colors.purple700};
 `

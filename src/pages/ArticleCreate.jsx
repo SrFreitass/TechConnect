@@ -1,6 +1,6 @@
 import { Wrapper } from "../Styles/Wrapper";
 import { Header } from "../components/Header";
-import { ArticleCreationForm } from '../components/ArticleCreationForm'
+import { ArticleCreationForm } from '../components/ArticleComposer'
 import { useEffect, useState } from "react";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { Loader } from "../components/Loader";

@@ -1,7 +1,7 @@
 import { FormStyled, PasswordStyled } from './style';
 import { useState, useEffect, useLayoutEffect, } from 'react';
 import { signInWithEmailAndPassword } from '@firebase/auth'
-import { auth } from '../../firebaseconfig'
+import { auth } from '../../services/firebaseconfig'
 import imageTypewriter from '../../assets/images/map-icon.svg'
 import { ButtonStyled } from '../SectionMain/style';
 import { Eye, EyeSlash } from '@phosphor-icons/react';

@@ -1,10 +1,10 @@
 import { Wrapper } from "../Styles/Wrapper";
 import { Header } from "../components/Header";
-import { SectionAdmin } from "../components/SectionAdmin"
+import { SectionAdmin } from "../components/ArticlesManagement"
 import { Loader } from "../components/Loader";
 import { Login } from "../components/Login";
-import { ControlsAdmin } from "../components/ControlsAdmin";
-import { SectionGrid } from "../components/SectionGrid/style";
+import { ControlsAdmin } from "../components/AdminDashboard";
+import { SectionGrid } from "../containers/SectionGrid/style";
 import { useAdminVerify } from "../hooks/useAdminVerify";
 
 export function AdminPanel() {

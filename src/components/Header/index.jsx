@@ -1,7 +1,7 @@
 import React from 'react'
 import { HeaderContainer } from './style'
 import { FacebookLogo, InstagramLogo, TwitterLogo } from '@phosphor-icons/react'
-import { Search } from '../Search'
+import { Search } from './Search'
 
 export function Header() {
   return (
