@@ -4,13 +4,14 @@ import { ArticleEditForm } from '../components/ArticleEditor'
 import { Navigate } from "react-router-dom";
 import { Loader } from "../components/Loader";
 import { useAdminVerify } from "../hooks/useAdminVerify";
+import { auth } from "../services/firebaseconfig";
 
 
 export function ArticleEdit() {
 
     const token = useAdminVerify()
 
-    if (localStorage.getItem("token") === token) {
+    if (token == 'admin') {
         return (
             <Wrapper>
                 <Header />

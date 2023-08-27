@@ -33,7 +33,7 @@ export function News() {
   };
 
   return (
-    <SectionGrid>
+    <SectionGrid oneGrid='1fr' twoGrid='23.75rem'>
       <div>
         {news.slice(0, visibleItems).map((article, index) => {
           return (
@@ -52,7 +52,16 @@ export function News() {
         })}
       </div>
       <AsidePanel>
-        <strong>Olá!</strong>
+        <div>
+          <h3>Categorias</h3>
+          <ul>
+            <li><Link to="../category/fast">#fast</Link></li>
+            <li><Link to="../category/inovacao">#inovação</Link></li>
+            <li><Link to="../category/tecnologia">#tecnologia</Link></li>
+            <li><Link to="../category/empreendendorismo">#empreendendorismo</Link></li>
+            <li><Link to="../category/computacao">#computação</Link></li>
+          </ul>
+        </div>
       </AsidePanel>
     </SectionGrid>
   );

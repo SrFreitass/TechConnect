@@ -40,15 +40,30 @@ export const NewsStyled = styled.article`
 
 export const ButtonsContainer = styled.div`
     display: flex;
+    flex-direction: row !important;
     margin-top: 1rem;
-    gap: 1rem;
+    gap: 1.5rem;
 
 `
 
 export const AsidePanel = styled.aside`
     border: solid 1px ${({ theme }) => theme.colors.secundary};
     border-radius: 5px;
-
     margin-top: 1rem;
+
+    h3 {
+        padding: 0rem 1rem;
+    }
+
+    div {
+        ul {
+            display: flex;
+            gap: .5rem;
+            flex-wrap: wrap;
+            padding: 0rem 1rem;
+
+            list-style: none;
+        }
+    }
 
 `

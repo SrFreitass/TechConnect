@@ -18,6 +18,10 @@ export const GlobalStyle = createGlobalStyle`
         cursor: pointer;
     }
 
+    a {
+        color: ${({ theme }) => theme.colors.purple400};
+    }
+
     ::-webkit-scrollbar {
         width: 5px;
     }

@@ -4,6 +4,8 @@ import { Pause, Play, SpeakerSimpleHigh, SpeakerSimpleSlash } from '@phosphor-ic
 import { useRef, useState, useEffect, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { Links } from '../Links'
+import { getDocs, query } from 'firebase/firestore'
+import { db } from '../../services/firebaseconfig'
 
 export function SectionFast() {
 
@@ -11,8 +13,20 @@ export function SectionFast() {
     const myRef = useRef(null)
     const [playing, setPlaying] = useState(true)
     const [sound, setSound] = useState(true)
+    const [fast, setFast] = useState([])
 
     console.log(myRef.current)
+
+    useEffect(() => {
+        const FetchFast = async () => {
+            const q = await query(collection(db, "fast"))
+            const querySnapshot = await getDocs(q)
+            const data = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+            setFast(data)
+
+        }
+
+    }, [])
 
 
     const handleSound = () => {

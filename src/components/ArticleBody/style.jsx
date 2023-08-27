@@ -26,7 +26,7 @@ export const Info = styled.section`
     width: 70%;
     display: flex;
     flex-direction: column;
-    border-bottom: 1px solid ${({theme}) => theme.colors.secundary};
+    border-bottom: 1px solid ${({ theme }) => theme.colors.secundary};
     gap: 0.5rem;
 
 
@@ -56,7 +56,7 @@ export const ArticleContainerStyled = styled.main`
     section {
     display: flex;  
     flex-direction: column;
-    gap: 1.25rem
+    gap: .3rem
     }
 
     textarea {
@@ -67,9 +67,9 @@ export const ArticleContainerStyled = styled.main`
         border: none;
         border-radius: 5px;
 
-        background: none;
+        background-color: #212124;
 
-        color: ${({theme}) => theme.colors.primary };
+        color: ${({ theme }) => theme.colors.primary};
         font-size: 1rem;
     }
 
@@ -79,9 +79,6 @@ export const ArticleContainerStyled = styled.main`
         border: 1px solid #8A8AE0;
     }
 
-    section {
-        background-color: #212124;
-    }
 
     img {
         width: 100%;
@@ -94,12 +91,12 @@ export const ArticleContainerStyled = styled.main`
     }
 
     h1 {
-        color: ${({theme}) => theme.colors.primary };
+        color: ${({ theme }) => theme.colors.primary};
         font-weight: 600;
     }
 
     h2 {
-        color: ${({theme}) => theme.colors.secundary };
+        color: ${({ theme }) => theme.colors.secundary};
         font-weight: 500;
     }
 
@@ -119,7 +116,7 @@ export const ArticleContainerStyled = styled.main`
     }
 
     li {
-        color: ${({theme}) => theme.colors.primary}
+        color: ${({ theme }) => theme.colors.primary}
     }
 
 
@@ -131,16 +128,16 @@ export const CommentContainer = styled.div`
 
     padding: 1rem;
 
-    border: solid 1px ${({theme}) => theme.colors.secundary};
+    border: solid 1px ${({ theme }) => theme.colors.secundary};
     border-radius: 5px;
 
 
     h4 {
-        color: ${({theme}) => theme.colors.primary}
+        color: ${({ theme }) => theme.colors.primary}
     }
 
     p {
-        color: ${({theme}) => theme.colors.secundary}
+        color: ${({ theme }) => theme.colors.secundary}
     }
 
     button {
@@ -149,11 +146,10 @@ export const CommentContainer = styled.div`
         border: none;
     }
 
-    button:hover {
-        svg {
+        svg:hover {
             filter: drop-shadow(0 0 0.75rem crimson);
             transition: linear 0.2s;
             fill: red;
+            cursor: pointer;
         }
-    }
 `

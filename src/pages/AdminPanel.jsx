@@ -6,28 +6,26 @@ import { Login } from "../components/Login";
 import { ControlsAdmin } from "../components/AdminDashboard";
 import { SectionGrid } from "../containers/SectionGrid/style";
 import { useAdminVerify } from "../hooks/useAdminVerify";
-
+import { auth } from "../services/firebaseconfig";
+import { Navigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom'
 export function AdminPanel() {
 
   const token = useAdminVerify()
+  const navigate = useNavigate()
 
-  if (localStorage.getItem("token") === token) {
+  if (token == 'admin') {
     return (
       <Wrapper>
         <Header />
-        <SectionGrid >
+        <SectionGrid oneGrid='18.75rem' twoGrid='1fr' >
           <ControlsAdmin />
           <SectionAdmin />
         </SectionGrid>
       </Wrapper>
     )
-  } else if (token === 'error') {
-    return (
-      <Wrapper>
-        <Header />
-        <Login />
-      </Wrapper>
-    )
+  } else if (token == 'error') {
+    return navigate('./404')
   } else {
     return (
       <Wrapper>

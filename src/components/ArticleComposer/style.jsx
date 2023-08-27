@@ -9,6 +9,7 @@ export const StyleArticleCreationForm = styled.div`
     width: 100%;
 
 
+
     form {
         display: flex;
         width: 100%;
@@ -49,7 +50,7 @@ export const UploadContainer = styled.div`
     background-color: #ffffff;
     border-radius: 10px;
     padding: 0.5rem;
-    width: 18rem;
+    width: 100%;
     height: 12rem;
 
     svg {
@@ -115,9 +116,9 @@ export const ButtonsContainer = styled.div`
 `
 
 export const ButtonDefault = styled.button`
-    border-radius: 5px;
-    width: 7rem;
+    width: 8rem; 
     height: 3rem;
+    border-radius: 5px;
     background-color: ${({ theme }) => theme.colors.purple700};
     border: none;
     color: ${({ theme }) => theme.colors.primary};
