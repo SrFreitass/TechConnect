@@ -33,7 +33,7 @@ export function useArticleCreate() {
             return
         }
 
-        const category = (categoryRef.current.value).toLowerCase()
+        const category = (categoryRef.current.value)
 
         addDoc(articleCollectionRef, {
             title,

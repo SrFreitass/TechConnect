@@ -20,11 +20,12 @@ export const StyleArticleCreationForm = styled.div`
         flex-direction: column;
         gap: 1rem;
         text-align: center;
+        padding: .6rem;
     }
     
 
     div.tox  {
-        width: 79rem;
+        width: 100%;
     }
 
 

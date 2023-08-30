@@ -61,11 +61,11 @@ export function ArticleCreationForm() {
                         <IconsContainer>
                             <Tag size={24} color="#4D4DB5" />
                             <select for="category" id="tags" ref={categoryRef} >
-                                <option value="Tecnologia">Tecnologia</option>
-                                <option value="Empreendedorismo">Empreendedorismo</option>
-                                <option value="Inovação">Inovação</option>
-                                <option value="Computação">Computação</option>
-                                <option value="Jogos">Jogos</option>
+                                <option value="tecnologia">Tecnologia</option>
+                                <option value="empreendedorismo">Empreendedorismo</option>
+                                <option value="inovação">Inovação</option>
+                                <option value="computação">Computação</option>
+                                <option value="jogos">Jogos</option>
                             </select>
                         </IconsContainer>
 

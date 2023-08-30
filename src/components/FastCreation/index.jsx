@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { ButtonDefault, ButtonsContainer, UploadContainer } from "../ArticleComposer/style";
-import { getDownloadURL, uploadBytes } from "firebase/storage";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { storage, db } from "../../services/firebaseconfig";
 import { CloudArrowDown } from '@phosphor-icons/react'
 import { addDoc, collection } from "firebase/firestore";
@@ -11,32 +11,41 @@ import { Header } from "../Header";
 
 export function FastCreation() {
     const [videoUpload, setVideoUpload] = useState('')
+    const [videoURL, setVideoURL] = useState('')
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
-
-    const storageRef = (storage, `videos/${videoUpload.name}`)
+    const storageRef = ref(storage, `videos/${videoUpload.name}`)
     const fastCollectionRef = collection(db, 'fast');
+
+
 
     useEffect(() => {
 
         const uploadVideo = async () => {
+            console.log('enviando')
             await uploadBytes(storageRef, videoUpload)
             const url = await getDownloadURL(storageRef)
-            setVideoUpload(url)
+            setVideoURL(url)
+            console.log('enviado' + ' ' + url)
         }
 
         uploadVideo()
 
     }, [videoUpload])
 
-    const handlePostFast = (e) => {
+    const handlePostFast = async (e) => {
         e.preventDefault()
         console.log(title, description)
-        if (videoUpload) {
-            addDoc(fastCollectionRef, {
+        if (videoUpload && title) {
+            await addDoc(fastCollectionRef, {
                 title,
-                description
+                description,
+                videoURL
             })
+            setTitle('')
+            setDescription('')
+            setVideoURL('')
+            setVideoUpload('')
         }
     }
 
@@ -50,15 +59,15 @@ export function FastCreation() {
                         <CloudArrowDown size={50} /> <input type="file" accept=".mp4" onChange={(e) => setVideoUpload(e.target.files[0])} />
                         <span>Selecione arquivos</span>
                     </UploadContainer>
-                    <input type="text" onChange={(e) => setTitle(e.target.value)} placeholder="Insira um título" />
-                    <input type="text" onChange={(e) => setDescription(e.target.value)} placeholder="Insira uma breve descrição do vídeo" />
+                    <input type="text" onChange={(e) => setTitle(e.target.value)} placeholder="Insira um título" value={title} />
+                    <input type="text" onChange={(e) => setDescription(e.target.value)} placeholder="Insira uma breve descrição do vídeo" value={description} />
                     <ButtonsContainer>
                         <ButtonDefault>Voltar</ButtonDefault>
                         <ButtonDefault onClick={handlePostFast}>Postar</ButtonDefault>
                     </ButtonsContainer>
                 </form>
                 <div>
-                    <video src={videoUpload ? videoUpload : 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4'} controls poster="https://esquerdaonline.com.br/wp-content/uploads/2023/03/mayhem.jpg" />
+                    <video src={videoUpload ? videoURL : 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4'} controls />
                 </div>
             </MainStyled>
         </Wrapper>

@@ -10,6 +10,7 @@ import { SectionAdminStyled } from './style'
 import DOMPurify from "dompurify";
 import { ButtonDefault } from "../ArticleComposer/style";
 import { OperationType } from "firebase/auth";
+import { Search } from "../Header/Search";
 
 export function SectionAdmin() {
     const [newsEdit, setNewsEdit] = useState([])
@@ -49,14 +50,17 @@ export function SectionAdmin() {
                 position="bottom-left"
             />
             <h2>Artigos</h2>
-            <select onChange={handleFilterArticle}>
-                <option value="false">Filtre por categoria</option>
-                <option value="tecnologia">tecnologia</option>
-                <option value="inovação">inovação</option>
-                <option value="computação">computação</option>
-                <option value="empreendendorismo">empreendendorismo</option>
-                <option value="jogos">jogos</option>
-            </select>
+            <div>
+                <Search />
+                <select onChange={handleFilterArticle}>
+                    <option value="false">Filtre por categoria</option>
+                    <option value="tecnologia">tecnologia</option>
+                    <option value="inovação">inovação</option>
+                    <option value="computação">computação</option>
+                    <option value="empreendendorismo">empreendendorismo</option>
+                    <option value="jogos">jogos</option>
+                </select>
+            </div>
             {newsEdit.map((news, index) => {
                 return (
                     <NewsStyled key={index}>
