@@ -6,6 +6,8 @@ export const AsideStyled = styled.aside`
     padding-right: 1rem;
     gap: 1.5rem;
     border-right: 1px solid ${({ theme }) => theme.colors.secundary};
+    min-width: 15rem;
+    max-width: 15rem;
 
     button:first-child {
         border-radius: 8px;

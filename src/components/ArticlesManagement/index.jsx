@@ -25,10 +25,12 @@ export function SectionAdmin() {
     }, []);
 
 
-    const handleDeleteArticle = (id) => {
+    const handleDeleteArticle = async (id) => {
         const articleDoc = doc(db, "articles", id)
         deleteDoc(articleDoc)
         toast.success('Artigo excluído com sucesso')
+        const data = await getDocs(userCollectionRef);
+        setNewsEdit(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     }
 
     const handleFilterArticle = async (e) => {

@@ -32,7 +32,7 @@ export function CategoryPage() {
     return (
         <Wrapper>
             <Header />
-            <h1>{`#${tag}`}</h1>
+            <h2 style={{ color: '#8A8AE0' }}>{`#${tag}`}</h2>
             {
                 articles.map((article, index) => {
                     return (

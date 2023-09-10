@@ -2,10 +2,11 @@ import untitled from './untitled.mp4'
 import { MobileVideo, SectionFastStyled, ShareButtons } from './style'
 import { InstagramLogo, TelegramLogo, FacebookLogo, TwitterLogo, Pause, Play, SoundcloudLogo, SpeakerSimpleHigh, SpeakerSimpleSlash, WhatsappLogo, Share, X } from '@phosphor-icons/react'
 import { useRef, useState, useEffect, useContext } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { Links } from '../Links'
 import { getDocs, query, collection, where } from 'firebase/firestore'
 import { db } from '../../services/firebaseconfig'
+import he from 'he'
 
 export function SectionFast() {
 
@@ -15,6 +16,7 @@ export function SectionFast() {
     const [sound, setSound] = useState(true)
     const [fast, setFast] = useState([])
     const [share, setShare] = useState(false)
+
     console.log('RENDERIZO')
 
     useEffect(() => {
@@ -75,10 +77,13 @@ export function SectionFast() {
                     return (
                         <>
                             <MobileVideo key={index}>
-                                <video src={fast.videoURL} autoplay loop controls controlsList="nodownload nofullscreen noremoteplayback" onClick={videoState}>
-                                </video>
+                                <div>
+                                    <video src={fast.videoURL} loop controls controlsList="nodownload nofullscreen noremoteplayback" onClick={videoState}>
+                                    </video>
+                                    <h3>{fast.title} <span>#fast🎬</span> </h3>
+                                    <p>De: {fast.author}</p>
+                                </div>
                                 <ShareButtons>
-
                                     {
                                         share ? <ShareAside setShare={setShare} share={share} /> : <> <button onClick={handleShareButtons}><Share size="32" color="#C291F4" /></button> <button title='Sair'><Link to="/home"><X size="32" color="#C291F4" /></Link></button></>
                                     }
@@ -92,20 +97,21 @@ export function SectionFast() {
     )
 }
 
-const ShareAside = ({ setShare, share }) => {
-
+export const ShareAside = ({ setShare, share, title }) => {
+    const { titleID } = useParams()
+    console.log(title, titleID)
     const handleShareButtons = () => {
         setShare(!share)
     }
 
     return (
         <ShareButtons>
-            <button onClick={handleShareButtons}><X size="32" color="#C291F4" /></button>
-            <button><a href="#"><FacebookLogo size={32} /></a></button>
-            <button><a href="#"><InstagramLogo size={32} /></a></button>
-            <button><a href="#"><TwitterLogo size={32} /></a></button>
-            <button><a href="#"><WhatsappLogo size={32} /></a></button>
-            <button><a href="#"><TelegramLogo size={32} /></a></button>
-        </ShareButtons>
+            {/* <button onClick={handleShareButtons}><X size="32" color="#C291F4" /></button> */}
+            <button><a href="#"><FacebookLogo size={24} /></a></button>
+            <button><a href="#"><InstagramLogo size={24} /></a></button>
+            <button><a href="#"><TwitterLogo size={24} /></a></button>
+            <button><a href={`whatsapp://send?text=${title}+https://techconnectdev.vercel.app/home/news/${titleID}`}> <WhatsappLogo size={24} /> </a> </button>
+            <button><a href="#"><TelegramLogo size={24} /></a></button>
+        </ShareButtons >
     )
 }

@@ -5,13 +5,15 @@ export const ContainerInputForm = styled.div`
     flex-direction: column;
     gap: .5rem;
 
+    
     div {
         display: flex;
         align-items: center;
         gap: .4rem;
-
+        
         color: #ab2c2c;
     }
+
 
 `
 
@@ -24,21 +26,20 @@ export const FormStyled = styled.form`
     margin: 0 auto;
 
     display: flex;
-    align-items: center;
     justify-content: center;
     flex-direction: column;
 
     gap: 1rem;
 
 
+
     div:first-child {
         text-align: center;
     }
 
-    input {
+    input[type="text"], input[type="password"], input[type="email"]{
         height: 3rem;
         width: 25rem;
-
         font-size: 1rem;
         padding: 1rem;
 
@@ -55,6 +56,7 @@ export const FormStyled = styled.form`
         background: none;
         border: 2px solid ${({ theme }) => theme.colors.purple400};
         border-radius: 8px;
+
     }
 
 
@@ -83,6 +85,7 @@ export const FormStyled = styled.form`
         filter: drop-shadow(0 0 8px ${({ theme }) => theme.colors.purple700});
     }
 
+    
 `
 
 export const ContainerCheckForm = styled.div`
@@ -108,4 +111,41 @@ export const ProgressForm = styled.progress`
     top: -.4rem;
 
     accent-color: ${({ theme }) => theme.colors.purple700};
+`
+
+export const InputPassword = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: .4rem;
+
+    div:nth-child(2) {
+        height: 3rem;
+        display: flex;
+        align-items: center;
+        border: 2px solid ${({ theme }) => theme.colors.purple400};
+        border-radius: 8px;
+        color: ${({ theme }) => theme.colors.primary};
+
+        svg {
+            margin-right: .5rem;
+            color: ${({ theme }) => theme.colors.primary};
+        }
+    }
+
+    div {
+        display: flex;
+        align-items: center;
+        gap: .4rem;
+    }
+
+    svg {
+        color: #ab2c2c;
+        min-width: 24px;
+        min-height: 24px;
+    }
+
+
+     input[type="password"], input[type="text"] {
+        border: none;
+     }
 `

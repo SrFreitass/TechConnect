@@ -2,7 +2,6 @@ import { styled } from "styled-components";
 
 export const NewsStyled = styled.article`
     width: 100%;
-    height: 17rem;
     display: flex;
     gap: 1.5rem;
 
@@ -13,6 +12,8 @@ export const NewsStyled = styled.article`
     img {
         object-fit: cover;
         border-radius: 5px;
+        min-width: 30rem;
+        height: 17rem;
         width: 30rem;
     }
 
@@ -35,6 +36,37 @@ export const NewsStyled = styled.article`
     }
 
 
+
+    @media (max-width: 1050px) (min-width: 651px) {
+
+        h3 {
+            display: none;
+        }
+
+        img {
+            object-fit: cover;
+            border-radius: 5px;
+            height: 10rem;
+            min-width: 20rem;
+            width: 18rem;
+        }
+     }
+
+     @media (max-width: 650px) {
+        flex-direction: column;
+
+        h3 {
+            display: none;
+        }
+
+        img {
+            border-radius: 6px;
+            width: 100%;
+            min-width: 100%;
+            height: 15rem;
+        } 
+     }
+
 `
 
 
@@ -47,15 +79,21 @@ export const ButtonsContainer = styled.div`
 `
 
 export const AsidePanel = styled.aside`
-    border: solid 1px ${({ theme }) => theme.colors.secundary};
     border-radius: 5px;
     margin-top: 1rem;
 
+    
     h3 {
         padding: 0rem 1rem;
     }
-
+    
     div {
+        padding: .6rem;
+        border: solid 1px ${({ theme }) => theme.colors.secundary};
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        gap: .4rem;
         ul {
             display: flex;
             gap: .5rem;
@@ -65,5 +103,9 @@ export const AsidePanel = styled.aside`
             list-style: none;
         }
     }
+
+    @media (max-width: 1050px) {
+        display: none;
+     }
 
 `

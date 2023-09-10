@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useAsyncError, useParams } from "react-router-dom";
 import { auth, db } from "../../services/firebaseconfig";
-import { collection, query, where, getDoc, getDocs, addDoc, deleteDoc, doc } from "firebase/firestore";
+import { collection, query, where, getDoc, getDocs, addDoc, deleteDoc, doc, Timestamp, serverTimestamp } from "firebase/firestore";
 import { ArticleStyled, MainStyled, ArticleContainerStyled, CommentContainer } from "./../ArticleBody/style";
 import DOMPurify from "dompurify";
 import { ButtonDefault } from "../ArticleComposer/style";
@@ -9,6 +9,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import { onAuthStateChanged } from "firebase/auth";
 import { Pen, TrashSimple, PaperPlaneRight } from "@phosphor-icons/react";
 import { ContainerComments } from './style'
+import { Link } from 'react-router-dom'
 
 
 export function Comments() {
@@ -64,7 +65,7 @@ export function Comments() {
                 valueComment,
                 displayName,
                 userID,
-                date,
+                date: serverTimestamp(),
             })
             toast.success('Comentário publicado')
             setEventHandlerComment(!eventHandlerComment)
@@ -96,31 +97,38 @@ export function Comments() {
     }
 
 
+    if (auth.currentUser) {
+        return (
+            <ContainerComments>
+                <h1>Comentários</h1>
+                <section>
+                    <textarea cols="20" rows="15" placeholder="O que deseja comentar?" ref={inputRef} />
+                    <ButtonDefault onClick={handleComment}>Comentar</ButtonDefault>
+                </section>
+                {
+                    comments.map((comment, index) => {
+                        return (
+                            <CommentContainer key={index}>
+                                <div>
+                                    <h4>{comment.displayName}</h4>
+                                    <p>{comment.valueComment}</p>
+                                </div>
+                                {
+                                    comment.userID == userID &&
+                                    <TrashSimple onClick={() => handleDelComment(comment.id)} color="#4D4DB5" size={24} />
+                                }
+                            </CommentContainer>
+                        )
+                    })
+                }
+            </ContainerComments>
 
-    return (
-        <ContainerComments>
-            <h1>Comentários</h1>
-            <section>
-                <textarea cols="20" rows="15" placeholder="O que deseja comentar?" ref={inputRef} />
-                <ButtonDefault onClick={handleComment}>Comentar</ButtonDefault>
-            </section>
-            {
-                comments.map((comment, index) => {
-                    return (
-                        <CommentContainer key={index}>
-                            <div>
-                                <h4>{comment.displayName}</h4>
-                                <p>{comment.valueComment}</p>
-                            </div>
-                            {
-                                comment.userID == userID &&
-                                <TrashSimple onClick={() => handleDelComment(comment.id)} color="#4D4DB5" size={24} />
-                            }
-                        </CommentContainer>
-                    )
-                })
-            }
-        </ContainerComments>
-
-    )
+        )
+    } else {
+        return (
+            <ContainerComments>
+                <h3>Faça login para ter acesso aos comentários <Link to="../auth/register">Cadastre-se</Link> </h3>
+            </ContainerComments>
+        )
+    }
 }

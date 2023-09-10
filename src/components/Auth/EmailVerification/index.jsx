@@ -6,6 +6,9 @@ import { onAuthStateChanged } from "firebase/auth"
 import { auth } from "../../../services/firebaseconfig"
 
 export function EmailVerification({ status, setStatus }) {
+
+
+
     return (
         <VerificationContainer>
             <ProgressForm value="90" max="100" />

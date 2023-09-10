@@ -6,10 +6,12 @@ export const SectionGrid = styled.section`
 
     display: grid;      
     grid-template-columns: ${({ oneGrid }) => oneGrid}  ${({ twoGrid }) => twoGrid};
-    gap: 1.5rem;
+    gap: 4rem;
 
     margin-top: .8rem;
 
-
+    @media (max-width: 1050px) {
+        grid-template-columns: none;
+     }
     
 `

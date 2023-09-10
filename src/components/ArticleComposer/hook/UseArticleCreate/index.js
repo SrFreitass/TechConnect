@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from 'react'
 import { db, storage } from '../../../../services/firebaseconfig'
 import { addDoc, collection } from '@firebase/firestore'
 import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
+import { serverTimestamp } from 'firebase/firestore'
 import toast, { Toaster } from 'react-hot-toast';
 
 export function useArticleCreate() {
@@ -19,6 +20,7 @@ export function useArticleCreate() {
     const categoryRef = useRef()
 
     const articleCollectionRef = collection(db, 'articles');
+
 
     const standardStructure = `<h1>Tit&uacute;lo.</h1>
     <h2>Subtit&uacute;lo.</h2>
@@ -43,6 +45,7 @@ export function useArticleCreate() {
             imageURL,
             emphasis,
             category,
+            date: serverTimestamp()
         })
         toast.success('Artigo enviado com sucesso')
         setEmphasis(false)

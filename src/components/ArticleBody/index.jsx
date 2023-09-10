@@ -3,91 +3,50 @@ import { useParams } from "react-router-dom";
 import { auth, db } from "../../services/firebaseconfig";
 import { collection, query, where, getDoc, getDocs, addDoc, deleteDoc, doc } from "firebase/firestore";
 import { ArticleStyled, MainStyled, ArticleContainerStyled, CommentContainer } from "./style";
+import { ShareAside } from "../SectionFast";
 import DOMPurify from "dompurify";
-
+import he from 'he'
 import toast, { Toaster } from 'react-hot-toast';
 import { Comments } from "../Comments";
+import { Recomend } from "../Recomend";
 
 export function BodyNews() {
-  const [content, setContent] = useState(null)
+  const [content, setContent] = useState({})
+  const [title, setTitle] = useState('')
   const [image, setImage] = useState('')
   const [comments, setComments] = useState([])
   const [eventHandlerComment, setEventHandlerComment] = useState(false)
   const inputRef = useRef()
   const imageRef = useRef()
   const contentRef = useRef()
-  const { title } = useParams()
-  const userID = auth.currentUser?.uid
-  const displayName = auth.currentUser?.displayName
+  const { titleID } = useParams()
+
+  console.log('renderizou')
+
 
   useEffect(() => {
     const fetchData = async () => {
-      const q = doc(db, "articles", title)
+      const q = doc(db, "articles", titleID)
       const querySnapshot = await getDoc(q)
 
       if (querySnapshot.exists()) {
-        setContent((querySnapshot.data()).content)
-        setImage((querySnapshot.data()).imageURL)
+        setContent((querySnapshot.data()))
+        setImage(querySnapshot.data().imageURL)
+        setTitle(he.decode(querySnapshot.data().title))
+        document.title = he.decode(querySnapshot.data().title)
+
       }
 
     }
 
     fetchData();
-  }, [title]);
+  }, [titleID]);
 
   useEffect(() => {
-
-    const q = query(collection(db, `/articles/${title}/comments`))
-    const querySnapshot = getDocs(q).then((r) => {
-      const doc = r.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-      doc.sort((a, b) => {
-        return a.date < b.date
-      })
-
-      setComments(doc)
+    if (contentRef.current.querySelector('img')) {
+      contentRef.current.querySelector('img').src = image
     }
-    )
-
-  }, [eventHandlerComment])
-
-  const commentsCollectionRef = collection(db, `/articles/${title}/comments`);
-
-  const handleComment = async () => {
-    const date = new Date()
-    const valueComment = inputRef.current.value
-
-    toast.loading('Publicando comentário...')
-    await addDoc(commentsCollectionRef, {
-      valueComment,
-      displayName,
-      userID,
-      date,
-    })
-
-
-    toast.success('Comentário publicado')
-    setEventHandlerComment(!eventHandlerComment)
-
-  }
-
-  const handleDelComment = async (id) => {
-    const commentDoc = doc(db, `/articles/${title}/comments`, id)
-
-    try {
-      toast.loading('Excluindo comentario')
-      await deleteDoc(commentDoc)
-      setEventHandlerComment(!eventHandlerComment)
-      toast.success('Comentario excluido')
-    }
-
-    catch (err) {
-      console.log(err.message)
-      toast.error('Ocorreu algum problema')
-    }
-
-
-  }
-
+  }, [image])
 
   return (
     <>
@@ -101,14 +60,14 @@ export function BodyNews() {
       />
 
       <ArticleContainerStyled>
-        <h3>#tecnologia</h3>
-        <div ref={contentRef} dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content) }} />
-
-        <hr />
-
-        <Comments />
-
+        <ShareAside title={title} />
+        <div>
+          <span>#{content.category}</span>
+          <div ref={contentRef} dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content.content) }} />
+          <Comments />
+        </div>
       </ArticleContainerStyled>
+      <Recomend category={content.category} title={content.title} />
 
     </>
   )

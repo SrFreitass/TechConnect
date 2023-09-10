@@ -4,21 +4,35 @@ export const MainStyled = styled.main`
     display: flex;
     flex-direction: column;
     gap: 1rem;
-`
+    `
 
 
-export const ArticleStyled = styled.article`
+export const ArticleStyled = styled.div`
     display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    color: ${({ theme }) => theme.colors.primary};
+    gap: .6rem;
+    min-width: 40rem;
+
+    div {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+     @media (max-width: 1050px) (min-width: 651px) {
+     }
+
+     @media (max-width: 650px) {
+
+     }
+
+    /* flex-direction: column; */
+    /* color: ${({ theme }) => theme.colors.primary};
     font-size: 1.2rem;
     width: 70%;
 
     img {
         height: 25rem;
         object-fit: cover;
-    }
+    } */
 
 `
 
@@ -51,12 +65,16 @@ export const Info = styled.section`
 `
 
 export const ArticleContainerStyled = styled.main`
+    display: flex;
+    gap: 1rem;
 
-    
-    section {
-    display: flex;  
-    flex-direction: column;
-    gap: .3rem
+    div {
+        width: 100%;
+        div {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
     }
 
     textarea {
@@ -82,27 +100,31 @@ export const ArticleContainerStyled = styled.main`
 
     img {
         width: 100%;
-        height: 30rem;
+        height: 25rem;
         object-fit: cover;
     }
 
-    h3 {
-       color: #8A8AE0;
+    h2, h3, h4, h5, h6 {
+        color: #eeeeee;
     }
-
+    
     h1 {
         color: ${({ theme }) => theme.colors.primary};
         font-weight: 600;
+        font-size: 2rem;
+        
     }
 
     h2 {
         color: ${({ theme }) => theme.colors.secundary};
         font-weight: 500;
+        font-size: 1.2rem;
     }
 
     p {
-        color: #f7f7f7;
-        font-weight: 500;
+        
+        color: #cdcccc;
+        font-weight: 400;
     }
 
     strong {
@@ -116,15 +138,21 @@ export const ArticleContainerStyled = styled.main`
     }
 
     li {
-        color: ${({ theme }) => theme.colors.primary}
+        color: ${({ theme }) => theme.colors.primary};  
     }
 
+    span {
+        color: ${({ theme }) => theme.colors.purple400};
+        font-weight: 500;
+        font-size: 1.2rem;
+    }
 
 `
 
 export const CommentContainer = styled.div`
     display: flex;
     justify-content: space-between;
+    flex-direction: row !important;
 
     padding: 1rem;
 

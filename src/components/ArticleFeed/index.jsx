@@ -1,41 +1,60 @@
 import { NewsStyled } from "./style";
 import { Link, useParams } from "react-router-dom";
 import { db } from "../../services/firebaseconfig";
-import { useEffect, useState } from "react";
-import { getDocs, collection, where, query } from "firebase/firestore";
+import { useEffect, useState, useRef } from "react";
+import { getDocs, collection, where, query, orderBy, limit, startAfter, startAt } from "firebase/firestore";
 import { ArticleStyled } from "../ArticleBody/style";
 import { ButtonStyled } from "../SectionMain/style";
 import { SectionGrid } from '../../containers/SectionGrid/style'
 import { AsidePanel } from './style'
 import DOMPurify from "dompurify";
+import { styled } from "styled-components";
 
 export function News() {
   const [news, setNews] = useState([]);
-  const userCollectionRef = collection(db, "articles");
-  const [visibleItems, setVisibleItems] = useState(4);
+  const userCollectionRef = collection(db, "articles")
+  const [lastVisible, setLastVisible] = useState(0)
+  const [showButton, setShowButton] = useState(true)
+
+
+
 
   useEffect(() => {
     const getData = async () => {
-      const q = query(collection(db, "articles"), where("emphasis", "==", false));
-      const querySnapshot = await getDocs(q);
+      const q = query(userCollectionRef, where("emphasis", "==", false), orderBy('date', 'desc'), limit(5))
+      const querySnapshot = await getDocs(q)
+      setLastVisible(querySnapshot.docs[querySnapshot.docs.length - 1])
 
-      // Transforma o resultado em um array de objetos
-      const data = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-      setNews(data);
+      const data = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
+      setNews(data)
       console.log(data)
     };
-    getData();
+    getData()
   }, []);
 
 
-  const HandleClickNews = () => {
-    setVisibleItems(visibleItems + 5);
+
+
+  const HandleClickNews = async () => {
+    try {
+      const next = await query(userCollectionRef, where("emphasis", "==", false), orderBy('date', 'desc'), startAfter(lastVisible), limit(5))
+      const querySnapshot = await getDocs(next)
+      const nextData = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
+      if (querySnapshot.docs.length == 0) {
+        setShowButton(false)
+        return
+      }
+      setLastVisible(querySnapshot.docs[querySnapshot.docs.length - 1])
+      setNews((state) => [...state, ...nextData])
+    } catch (error) {
+      console.log(error)
+    }
   };
 
   return (
-    <SectionGrid oneGrid='1fr' twoGrid='23.75rem'>
+    <SectionGrid oneGrid='1fr' twoGrid='20rem'>
       <div>
-        {news.slice(0, visibleItems).map((article, index) => {
+        {news.map((article, index) => {
           return (
             <NewsStyled key={index}>
               <img src={article.imageURL} alt="" />
@@ -50,6 +69,7 @@ export function News() {
             </NewsStyled>
           );
         })}
+        {showButton ? <ButtonStyled onClick={HandleClickNews}>Ler mais</ButtonStyled> : ''}
       </div>
       <AsidePanel>
         <div>
@@ -66,3 +86,4 @@ export function News() {
     </SectionGrid>
   );
 }
+

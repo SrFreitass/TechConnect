@@ -10,4 +10,8 @@ export const ContainerComments = styled.div`
         width: 10rem;
         align-self: flex-end;
     }
+
+    h3 {
+        text-align: center;
+    }
 `

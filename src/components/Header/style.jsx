@@ -1,4 +1,4 @@
-import { styled } from "styled-components"
+import { styled, css } from "styled-components"
 
 export const HeaderContainer = styled.header`
     display: flex;
@@ -6,13 +6,24 @@ export const HeaderContainer = styled.header`
     justify-content: space-between;
     height: 2rem;
     padding: 4rem 0rem;
+    
 
-    h1 {
-        color: ${(props) => props.theme.colors.primary };
+    span {
+        font-size: 2rem;
+        font-weight: 700;
+        color: ${(props) => props.theme.colors.primary};
+    }
+
+    span:nth-child(2) {
+        display: none;
     }
 
     nav {
         display: flex;
+    }
+
+    svg:nth-child(4) {
+        display: none;
     }
 
     ul {
@@ -26,12 +37,16 @@ export const HeaderContainer = styled.header`
     ul:first-child {
         padding-right: 1rem;
         gap: 1rem;
-    }
+    } 
 
     ul:nth-child(2) {
+        display: none;
+    }
+
+    ul:nth-child(3) {
         display: flex;
         gap: 1rem;
-        border-left: 1px solid ${({theme}) => theme.colors.secundary};
+        border-left: 1px solid ${({ theme }) => theme.colors.secundary};
     }
 
     li {
@@ -47,5 +62,95 @@ export const HeaderContainer = styled.header`
     a:hover {
         color: ${(props) => props.theme.colors.primary};
         transition: .2s;
+    }
+
+    div {
+        display: none;
+    }
+
+
+
+    @media (max-width: 850px) {
+
+        span {
+            display: none;
+        }
+
+        span:nth-child(2) {
+            display: block;
+        }
+
+         svg:nth-child(4) {
+            display: flex;
+         }
+
+        ul:nth-child(3) {
+            display: none;
+        }
+
+        ul {
+            display: none;
+        }
+
+        div {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        
+        @keyframes Animation {
+        0% {
+            transform: translateX(100%);
+        } 100% {
+            transform: translateX(0);
+        }
+    }
+
+        ${({ menu }) => menu && css`
+            ul {
+                width:  20rem;
+                height: 100%;
+                background-color: #292929;
+            }
+
+
+
+            ul:nth-child(2) {
+                animation: Animation 0.3s forwards;
+                padding: 1rem;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+                margin-top: 4rem;
+                margin-right: -1.5rem;
+                position: fixed;
+                
+                li {
+                    font-weight: 500;
+                }
+
+                strong {
+                    font-weight: 600;
+                    color: ${({ theme }) => theme.colors.primary}
+                }
+
+                input {
+                    width: 100%;
+                    background: none;
+                    border: none;
+                    border-bottom: .1px solid ${({ theme }) => theme.colors.secundary};
+                    padding: .5rem;
+                    color: ${({ theme }) => theme.colors.primary};
+                
+                    &:focus {
+                        outline: none;
+                    }
+                }
+               
+                
+            }
+        `}
+         
+
     }
 `

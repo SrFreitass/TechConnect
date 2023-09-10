@@ -14,7 +14,6 @@ import { RegisterPage } from '../pages/Auth/Register';
 import { LoginPage } from '../pages/Auth/Login';
 import { CategoryPage } from '../pages/CategoryPage'
 import { Metaverso } from '../pages/Metaverso';
-// Rotas de aplicações em forma de objetos, que contem o path e o elemento que será renderizado na tela.
 
 export const router = createBrowserRouter([
   {
@@ -34,7 +33,7 @@ export const router = createBrowserRouter([
     element: <NewsPage />
   },
   {
-    path: "home/news/:title",
+    path: "home/news/:titleID",
     element: <NewsPage />
   },
   {

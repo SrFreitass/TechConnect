@@ -18,7 +18,7 @@ export function AdminPanel() {
     return (
       <Wrapper>
         <Header />
-        <SectionGrid oneGrid='18.75rem' twoGrid='1fr' >
+        <SectionGrid oneGrid='0.5fr' twoGrid='3fr' >
           <ControlsAdmin />
           <SectionAdmin />
         </SectionGrid>

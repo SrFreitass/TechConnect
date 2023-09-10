@@ -15,6 +15,8 @@ export const CarouselStyled = styled.section`
         height: 100%;
         align-items: center;
         justify-content: center;
+        position: relative;
+        z-index: -1;
         
         a:first-child {
             align-self: start;
@@ -65,4 +67,8 @@ export const CarouselStyled = styled.section`
             color: ${({ theme }) => theme.colors.primary}
         }
     } 
+
+    @media (max-width: 800px) {
+        display: none;
+    }
 `

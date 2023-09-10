@@ -18,8 +18,13 @@ export const GlobalStyle = createGlobalStyle`
         cursor: pointer;
     }
 
+    hr {
+        border: 1px solid ${({ theme }) => theme.colors.secundary};
+    }
+
     a {
         color: ${({ theme }) => theme.colors.purple400};
+        text-decoration: none;
     }
 
     ::-webkit-scrollbar {
@@ -37,5 +42,11 @@ export const GlobalStyle = createGlobalStyle`
 
     ::-webkit-scrollbar-thumb:hover {
         background: #555; 
+    }
+
+    @media (max-width: 1200px) {
+        html {
+            font-size: 90%;
+        }
     }
 `
