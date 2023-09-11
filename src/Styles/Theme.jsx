@@ -1,7 +1,7 @@
 // Temas de cores do projeto (Usado para padronizar as cores do projeto)
 
 export const Theme = {
-    // Dark Theme
+
     colors: {
         primary: '#ffffff',
         secundary: '#757575',
@@ -14,7 +14,7 @@ export const Theme = {
 
         black800: '#0A0A0A',
 
-        gray200: '#ADADAD'
-    }
-    // Light Theme
+        gray200: '#ADADAD',
+    } 
+
 }

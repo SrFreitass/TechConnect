@@ -6,7 +6,6 @@ import { auth } from "../services/firebaseconfig";
 import { Wrapper } from "../Styles/Wrapper";
 
 export function Home() {
-
   return (
     <Wrapper>
       <Header />

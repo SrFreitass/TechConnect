@@ -110,9 +110,11 @@ export const HeaderContainer = styled.header`
             ul {
                 width:  20rem;
                 height: 100%;
-                background-color: #292929;
-            }
+                background-color: #292929eb;
+                backdrop-filter: blur(5px);
 
+            
+            }
 
 
             ul:nth-child(2) {
@@ -121,10 +123,14 @@ export const HeaderContainer = styled.header`
                 display: flex;
                 flex-direction: column;
                 align-items: flex-end;
-                margin-top: 4rem;
+                margin-top: -3rem;
                 margin-right: -1.5rem;
                 position: fixed;
                 
+                svg {
+                    margin-top: 2rem;
+                }
+
                 li {
                     font-weight: 500;
                 }

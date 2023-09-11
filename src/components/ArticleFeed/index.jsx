@@ -16,9 +16,6 @@ export function News() {
   const [lastVisible, setLastVisible] = useState(0)
   const [showButton, setShowButton] = useState(true)
 
-
-
-
   useEffect(() => {
     const getData = async () => {
       const q = query(userCollectionRef, where("emphasis", "==", false), orderBy('date', 'desc'), limit(5))

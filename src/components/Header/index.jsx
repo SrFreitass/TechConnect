@@ -33,6 +33,7 @@ export function Header() {
           <div>
             {menu ? <X size='32' color='#757575' onClick={handleMenu} /> : <List size='32' color='#757575' onClick={handleMenu} />}
             <ul>
+              <X size='32' color='#757575' onClick={handleMenu} />
               <input placeholder='O que deseja procurar?' />
               <br />
               <li><strong>Categorias</strong></li>
