@@ -52,7 +52,7 @@ export const NewsStyled = styled.article`
         }
      }
 
-     @media (max-width: 650px) {
+     @media (max-width: 690px){
         flex-direction: column;
 
         h3 {
@@ -60,13 +60,22 @@ export const NewsStyled = styled.article`
         }
 
         img {
-            border-radius: 6px;
             width: 100%;
-            min-width: 100%;
-            height: 15rem;
+            height: 100%;
+            min-height: 18rem;
+            max-height: 18rem;
+            min-width: 0%;
+            border-radius: 5px;
+            object-fit: cover;
         } 
-     }
 
+      @media (max-width: 500px) {
+        img {
+            min-height: 15rem;
+            max-height: 15rem;
+        }
+      }  
+     }
 `
 
 

@@ -8,7 +8,7 @@ import { ButtonDefault } from "../ArticleComposer/style";
 import toast, { Toaster } from 'react-hot-toast';
 import { onAuthStateChanged } from "firebase/auth";
 import { Pen, TrashSimple, PaperPlaneRight } from "@phosphor-icons/react";
-import { ContainerComments } from './style'
+import { ContainerComments, Nocomments } from './style'
 import { Link } from 'react-router-dom'
 
 
@@ -56,6 +56,11 @@ export function Comments() {
 
     const handleComment = async () => {
 
+        if(inputRef.current.value == false) {
+            toast.error('Preencha os espaços em brancos')
+            return
+        }
+
         if (clicksPersMin < 3) {
             const date = new Date()
             const valueComment = inputRef.current.value
@@ -71,9 +76,11 @@ export function Comments() {
             setEventHandlerComment(!eventHandlerComment)
             return
         }
+
         setTimeout(() => {
             setClicksPersMin(0)
         }, 60000)
+        
         toast.error('Sua ações estão sendo limitadas.')
     }
 
@@ -100,10 +107,12 @@ export function Comments() {
     if (auth.currentUser) {
         return (
             <ContainerComments>
-                <h1>Comentários</h1>
+                <span/>
+                <br/>
+                <h3>Comentários</h3>
                 <section>
                     <textarea cols="20" rows="15" placeholder="O que deseja comentar?" ref={inputRef} />
-                    <ButtonDefault onClick={handleComment}>Comentar</ButtonDefault>
+                    <ButtonDefault onClick={handleComment}><PaperPlaneRight size="28"/></ButtonDefault>
                 </section>
                 {
                     comments.map((comment, index) => {
@@ -115,7 +124,7 @@ export function Comments() {
                                 </div>
                                 {
                                     comment.userID == userID &&
-                                    <TrashSimple onClick={() => handleDelComment(comment.id)} color="#4D4DB5" size={24} />
+                                    <TrashSimple onClick={() => handleDelComment(comment.id)} size={24} />
                                 }
                             </CommentContainer>
                         )
@@ -126,9 +135,12 @@ export function Comments() {
         )
     } else {
         return (
-            <ContainerComments>
+            <Nocomments>
+                <span/>
+                <br />
                 <h3>Faça login para ter acesso aos comentários <Link to="../auth/register">Cadastre-se</Link> </h3>
-            </ContainerComments>
+                <br />
+            </Nocomments>
         )
     }
 }

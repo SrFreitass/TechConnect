@@ -6,7 +6,6 @@ export const HeaderContainer = styled.header`
     justify-content: space-between;
     height: 2rem;
     padding: 4rem 0rem;
-    
 
     span {
         font-size: 2rem;
@@ -64,10 +63,9 @@ export const HeaderContainer = styled.header`
         transition: .2s;
     }
 
-    div {
+    div:nth-child(2) {
         display: none;
     }
-
 
 
     @media (max-width: 850px) {
@@ -92,9 +90,10 @@ export const HeaderContainer = styled.header`
             display: none;
         }
 
-        div {
+        div:nth-child(2) {
             display: flex;
             justify-content: flex-end;
+
         }
 
         
@@ -108,9 +107,9 @@ export const HeaderContainer = styled.header`
 
         ${({ menu }) => menu && css`
             ul {
-                width:  20rem;
-                height: 100%;
-                background-color: #292929eb;
+                width:  22rem;
+                height: 101%;
+                background-color: #1d1d1d;
                 backdrop-filter: blur(5px);
 
             
@@ -131,6 +130,15 @@ export const HeaderContainer = styled.header`
                     margin-top: 2rem;
                 }
 
+                li:last-child {
+                    display: flex;
+                    align-items: center;
+
+                    svg {
+                        margin-top: 0;
+                    }
+                }
+
                 li {
                     font-weight: 500;
                 }
@@ -139,21 +147,6 @@ export const HeaderContainer = styled.header`
                     font-weight: 600;
                     color: ${({ theme }) => theme.colors.primary}
                 }
-
-                input {
-                    width: 100%;
-                    background: none;
-                    border: none;
-                    border-bottom: .1px solid ${({ theme }) => theme.colors.secundary};
-                    padding: .5rem;
-                    color: ${({ theme }) => theme.colors.primary};
-                
-                    &:focus {
-                        outline: none;
-                    }
-                }
-               
-                
             }
         `}
          

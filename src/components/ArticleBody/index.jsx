@@ -19,7 +19,9 @@ export function BodyNews() {
   const inputRef = useRef()
   const imageRef = useRef()
   const contentRef = useRef()
+  const modalRef = useRef()
   const { titleID } = useParams()
+
 
   console.log('renderizou')
 
@@ -59,10 +61,11 @@ export function BodyNews() {
         }}
       />
 
+
       <ArticleContainerStyled>
         <ShareAside title={title} />
         <div>
-          <span>#{content.category}</span>
+          <h6>#{content.category}</h6>
           <div ref={contentRef} dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content.content) }} />
           <Comments />
         </div>

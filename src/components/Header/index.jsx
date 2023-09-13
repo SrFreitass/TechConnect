@@ -1,10 +1,14 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { HeaderContainer } from './style'
-import { FacebookLogo, InstagramLogo, List, TwitterLogo, X } from '@phosphor-icons/react'
+import { FacebookLogo, InstagramLogo, List, TwitterLogo, UserCircle, X } from '@phosphor-icons/react'
 import { Search } from './Search'
+import { auth } from '../../services/firebaseconfig'
+import { onAuthStateChanged } from 'firebase/auth'
+import { Link } from 'react-router-dom'
 
 export function Header() {
   const [menu, setMenu] = useState(false)
+  const [user, setUser] = useState('')
 
 
   const handleMenu = () => {
@@ -12,8 +16,13 @@ export function Header() {
     menu ? document.documentElement.style.overflow = 'auto' : document.documentElement.style.overflow = 'hidden'
     console.log(document.documentElement)
   }
-
-  console.log(menu)
+  
+  useEffect(() => {
+    onAuthStateChanged(auth, () => {
+      setUser(auth.currentUser.displayName ? auth.currentUser.displayName : 'Faça login')
+    })
+  }, [])
+  
 
   return (
     <>
@@ -34,17 +43,19 @@ export function Header() {
             {menu ? <X size='32' color='#757575' onClick={handleMenu} /> : <List size='32' color='#757575' onClick={handleMenu} />}
             <ul>
               <X size='32' color='#757575' onClick={handleMenu} />
-              <input placeholder='O que deseja procurar?' />
               <br />
+              <Search />
               <li><strong>Categorias</strong></li>
-              <li>Fast</li>
-              <li>Jogos</li>
-              <li>Computação</li>
-              <li>Tecnologia</li>
-              <li>Empreendendorismo</li>
+              <li><Link to="home/fast/home"  onClick={handleMenu}>Fast</Link></li>
+              <li><Link to="../category/jogos" onClick={handleMenu}>Jogos</Link></li>
+              <li><Link to="../category/computacao" onClick={handleMenu}>Computação</Link></li>
+              <li><Link to="../category/tecnologia" onClick={handleMenu}>Tecnologia</Link></li>
+              <li><Link to="../category/empreendendorismo" onClick={handleMenu}>Empreendendorismo</Link></li>
               <li><strong>Outros</strong></li>
-              <li>Artigos</li>
+              <li><Link to="../home">Artigos</Link></li>
               <li>Sobre nós</li>
+              <br />
+              <li><UserCircle size={32}/><Link to={user == "Faça login" && "../auth/login" || user != "Faça login" && "./account" }>{user}</Link></li>
             </ul>
           </div>
 
@@ -52,6 +63,9 @@ export function Header() {
             <li><FacebookLogo size={32} /></li>
             <li><InstagramLogo size={32} /></li>
             <li><TwitterLogo size={32} /></li>
+            <div>
+            <li><UserCircle size={32}/></li>
+            </div>  
           </ul>
 
 

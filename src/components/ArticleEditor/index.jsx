@@ -30,7 +30,6 @@ export function ArticleEditForm() {
             />
             <form>
                 <div>
-
                     <UploadContainer>
                         <CloudArrowDown size={50} />
                         <input type="file" accept=".png, .jpeg, .jpg" onChange={(e) => setImageUpload(e.target.files[0])} />

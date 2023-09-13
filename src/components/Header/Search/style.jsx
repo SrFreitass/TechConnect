@@ -7,17 +7,26 @@ export const SearchContainer = styled.div`
     padding: 0.2rem;
     border-radius: 5px;
 
+    svg {
+        margin-top: 0 !important;
+    }
+
     form {
-    display: flex;
-    background-color: none;
-    width: 0;
-    transition: all ease-in-out 0.3s;
+        display: flex;
+        background-color: none;
+        width: 0;
+        transition: all ease-in-out 0.3s;
     }
 
     input {
         border: none;
         background: none;
         width: 0.1rem;
+        
+    
+        &:focus {
+            outline: none;
+        }
     }
 
     button {

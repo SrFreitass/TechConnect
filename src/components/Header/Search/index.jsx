@@ -35,7 +35,7 @@ export function Search() {
                 <input type="text" placeHolder="Buscar..." onChange={contentInput} />
                 <button type="submit"></button>
             </form>
-            {search ? <X color="#666" onClick={handleActiveSearch} /> : < MagnifyingGlass color="#666" onClick={handleActiveSearch} />}
+            {search ? <X color="#666" size={20}  onClick={handleActiveSearch} /> : < MagnifyingGlass color="#666" size={20} onClick={handleActiveSearch} />}
 
         </SearchContainer>
     )

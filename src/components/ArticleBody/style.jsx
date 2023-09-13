@@ -68,13 +68,10 @@ export const ArticleContainerStyled = styled.main`
     display: flex;
     gap: 1rem;
 
-    div {
-        width: 100%;
-        div {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
+    div:nth-child(2) {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
     }
 
     textarea {
@@ -102,6 +99,7 @@ export const ArticleContainerStyled = styled.main`
         width: 100%;
         height: 25rem;
         object-fit: cover;
+        border-radius: 5px;
     }
 
     h2, h3, h4, h5, h6 {
@@ -127,13 +125,11 @@ export const ArticleContainerStyled = styled.main`
         font-weight: 400;
     }
 
-    strong {
-        font-size: 1.3rem
-    }
 
     ul {
         display: flex;
         flex-direction: column;
+        margin-left:1.5rem;
         gap: .8rem;
     }
 
@@ -141,16 +137,24 @@ export const ArticleContainerStyled = styled.main`
         color: ${({ theme }) => theme.colors.primary};  
     }
 
-    span {
+    h6 {
         color: ${({ theme }) => theme.colors.purple400};
         font-weight: 500;
         font-size: 1.2rem;
     }
 
+
+    @media (max-width: 650px) {
+        img {
+            height: 100%;
+            object-fit: contain;
+        }
+    } 
 `
 
 export const CommentContainer = styled.div`
     display: flex;
+    align-items: center;
     justify-content: space-between;
     flex-direction: row !important;
 
@@ -159,6 +163,11 @@ export const CommentContainer = styled.div`
     border: solid 1px ${({ theme }) => theme.colors.secundary};
     border-radius: 5px;
 
+    div {
+        display: flex;
+            flex-direction: column;
+            gap: .3rem;
+    }
 
     h4 {
         color: ${({ theme }) => theme.colors.primary}
@@ -174,10 +183,16 @@ export const CommentContainer = styled.div`
         border: none;
     }
 
+        svg {
+            color: ${({theme}) => theme.colors.purple400}
+        }
+
         svg:hover {
             filter: drop-shadow(0 0 0.75rem crimson);
             transition: linear 0.2s;
             fill: red;
             cursor: pointer;
         }
+
+    
 `

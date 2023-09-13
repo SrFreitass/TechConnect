@@ -15,7 +15,7 @@ export function SearchContainer() {
     const { searchTitle } = useParams();
     const [componentReady, setComponentReady] = useState(false)
 
-
+ 
     useEffect(() => {
         const getData = async () => {
             const q = query(userCollectionRef, where("title", ">=", searchTitle));

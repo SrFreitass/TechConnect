@@ -26,7 +26,7 @@ export function useArticleCreate() {
     <h2>Subtit&uacute;lo.</h2>
     <p>Autor.</p>
     <hr>
-    <p><img>Imagem principal ficar&aacute; aqui.</p>
+    <img alt="Imagem principal ficar&aacute; aqui."/>
     <p>Conte&uacute;do...</p>`.replace(/ /g, '')
 
     useEffect(() => {
