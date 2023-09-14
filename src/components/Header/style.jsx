@@ -10,7 +10,7 @@ export const HeaderContainer = styled.header`
     span {
         font-size: 2rem;
         font-weight: 700;
-        color: ${(props) => props.theme.colors.primary};
+        color: ${({theme}) => theme.colors.primary};
     }
 
     span:nth-child(2) {

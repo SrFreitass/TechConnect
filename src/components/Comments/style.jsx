@@ -21,7 +21,6 @@ export const ContainerComments = styled.div`
 
     span {
         width: 100%;
-        border-top: 1px solid #757575;
     }
 
     button {
@@ -47,7 +46,6 @@ export const Nocomments = styled.div`
 
     
     width: 100%;
-    border: 1px solid #757575;
     padding: 1rem;
     border-radius: 5px;
    

@@ -23,9 +23,6 @@ export function BodyNews() {
   const { titleID } = useParams()
 
 
-  console.log('renderizou')
-
-
   useEffect(() => {
     const fetchData = async () => {
       const q = doc(db, "articles", titleID)
@@ -72,6 +69,7 @@ export function BodyNews() {
         <div>
           <h6>#{content.category}</h6>
           <div ref={contentRef} dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content.content) }} />
+          <br />
           <ShareAside title={title} />
           <Comments />
         </div>

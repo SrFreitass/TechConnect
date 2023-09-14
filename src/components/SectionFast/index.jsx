@@ -107,11 +107,11 @@ export const ShareAside = ({ setShare, share, title }) => {
     return (
         <ShareButtons>
             {/* <button onClick={handleShareButtons}><X size="32" color="#C291F4" /></button> */}
-            <button><a href="#"><FacebookLogo size={24} /></a></button>
-            <button><a href="#"><InstagramLogo size={24} /></a></button>
-            <button><a href="#"><TwitterLogo size={24} /></a></button>
-            <button><a href={`whatsapp://send?text=${title}+https://techconnectdev.vercel.app/home/news/${titleID}`}> <WhatsappLogo size={24} /> </a> </button>
-            <button><a href="#"><TelegramLogo size={24} /></a></button>
+            <button><a href="#"><FacebookLogo size={28} /></a></button>
+            <button><a href="#"><InstagramLogo size={28} /></a></button>
+            <button><a href="#"><TwitterLogo size={28} /></a></button>
+            <button><a href={`whatsapp://send?text=${title}+https://techconnectdev.vercel.app/home/news/${titleID}`}> <WhatsappLogo size={28} /> </a> </button>
+            <button><a href="#"><TelegramLogo size={28} /></a></button>
         </ShareButtons >
     )
 }
