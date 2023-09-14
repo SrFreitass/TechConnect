@@ -135,12 +135,14 @@ export function Comments() {
         )
     } else {
         return (
+            <>
             <Nocomments>
-                <span/>
+                <h3>Comentários</h3>
                 <br />
-                <h3>Faça login para ter acesso aos comentários <Link to="../auth/register">Cadastre-se</Link> </h3>
+                <span>Faça <Link to="../auth/login">login</Link> para ter acesso aos comentários</span>
                 <br />
             </Nocomments>
+        </>
         )
     }
 }

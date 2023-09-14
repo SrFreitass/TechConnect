@@ -16,11 +16,18 @@ export const RecomentDiv = styled.div`
         font-weight: 600;
         color: ${({ theme }) => theme.colors.purple400};
         font-size: 1.2rem;
-        border-bottom: 1px solid ${({ theme }) => theme.colors.secundary};
     }
 
      @media (max-width: 1050px) {
-        display: none;
+        width: 60%;
+        display: flex;
+        margin-left: 3.5rem;
+
+     }
+
+     @media (max-width: 850px) {
+        width: 100%;
+        margin-left: 0;
      }
 
 `

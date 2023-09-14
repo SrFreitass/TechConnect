@@ -12,6 +12,7 @@ export const ArticleStyled = styled.div`
     gap: .6rem;
     min-width: 40rem;
 
+
     div {
         display: flex;
         flex-direction: column;
@@ -67,11 +68,13 @@ export const Info = styled.section`
 export const ArticleContainerStyled = styled.main`
     display: flex;
     gap: 1rem;
+    
 
     div:nth-child(2) {
         display: flex;
         flex-direction: column;
         gap: 1rem;
+        width: 100%;
     }
 
     textarea {
@@ -143,6 +146,22 @@ export const ArticleContainerStyled = styled.main`
         font-size: 1.2rem;
     }
 
+    div {
+        aside {
+            display: none;
+        }
+    }
+
+    @media (max-width: 850px) {
+        aside:first-child {
+            display: none;
+        }
+
+        aside {
+            flex-direction: row;
+            justify-content: space-evenly;
+        }
+    }
 
     @media (max-width: 650px) {
         img {

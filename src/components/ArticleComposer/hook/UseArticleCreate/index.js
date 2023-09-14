@@ -25,9 +25,8 @@ export function useArticleCreate() {
     const standardStructure = `<h1>Tit&uacute;lo.</h1>
     <h2>Subtit&uacute;lo.</h2>
     <p>Autor.</p>
-    <hr>
-    <img alt="Imagem principal ficar&aacute; aqui."/>
-    <p>Conte&uacute;do...</p>`.replace(/ /g, '')
+    <img/>
+    <p>Começe aqui...</p>`.replace(/ /g, '')
 
     useEffect(() => {
         if (content === '' || imageURL == '') {

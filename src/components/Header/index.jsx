@@ -52,12 +52,14 @@ export function Header() {
               <li><Link to="../category/tecnologia" onClick={handleMenu}>Tecnologia</Link></li>
               <li><Link to="../category/empreendendorismo" onClick={handleMenu}>Empreendendorismo</Link></li>
               <li><strong>Outros</strong></li>
-              <li><Link to="../home">Artigos</Link></li>
+              <li><Link to="../home"  onClick={handleMenu} >Artigos</Link></li>
               <li>Sobre nós</li>
               <br />
               <li><UserCircle size={32}/><Link to={user == "Faça login" && "../auth/login" || user != "Faça login" && "./account" }>{user}</Link></li>
             </ul>
           </div>
+
+          
 
           <ul>
             <li><FacebookLogo size={32} /></li>

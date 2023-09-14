@@ -25,10 +25,7 @@ export function SearchContainer() {
                 return;
             }
             const data = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-            const dataFilter = data.filter((r) => {
-                return r.title.includes(searchTitle)
-            })
-            setNewsResults(dataFilter);
+            setNewsResults(data);
             setComponentReady(true)
             console.log(newsResults)
         };

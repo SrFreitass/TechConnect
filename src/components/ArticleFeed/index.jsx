@@ -54,13 +54,13 @@ export function News() {
         {news.map((article, index) => {
           return (
             <NewsStyled key={index}>
-              <img src={article.imageURL} alt="" />
+              <Link to={`./news/${article.id}`}><img src={article.imageURL} alt="" /></Link>
               <div>
                 <Link to={`./news/${article.id}`}>
                   <h2 dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(article.title) }} />
                 </Link>
                 <h3 dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(article.summary) }} />
-                <h4 dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(article.author) }} />
+                <h4 dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(`${article.author} ${new Date(article.date.seconds * 1000).toLocaleString('pt-BR')}`) }} />
                 <Link to={`../category/${article.category}`}>#{article.category}</Link >
               </div>
             </NewsStyled>

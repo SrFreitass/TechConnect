@@ -114,7 +114,4 @@ export const ShareButtons = styled.aside`
         border: none;
     }
     
-    @media (max-width: 850px) {
-        display: none;
-    }
     `

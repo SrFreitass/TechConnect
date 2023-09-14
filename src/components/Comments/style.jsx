@@ -47,10 +47,13 @@ export const Nocomments = styled.div`
 
     
     width: 100%;
-    border-top: 1px solid #757575;
-
-    text-align: center;
-    h3 {
+    border: 1px solid #757575;
+    padding: 1rem;
+    border-radius: 5px;
+   
+    span {
+        color: ${({theme}) => theme.colors.primary};
+        text-align: center;
         font-weight: 600;
     }
 `

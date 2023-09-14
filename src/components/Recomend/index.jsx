@@ -25,7 +25,7 @@ export function Recomend({ category, title }) {
 
     return (
         <RecomentDiv>
-            <span>#recomendados</span>
+            <span>Relacionados</span>
             {articleRecommends.map((article, index) => {
                 return (
                     <>

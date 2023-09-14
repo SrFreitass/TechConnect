@@ -45,8 +45,13 @@ export function BodyNews() {
   }, [titleID]);
 
   useEffect(() => {
-    if (contentRef.current.querySelector('img')) {
+    if (contentRef.current.querySelector('img') || contentRef.current.querySelector('p')) {
       contentRef.current.querySelector('img').src = image
+      const author = contentRef.current.querySelector('p')
+      author.after(``)
+      author.innerText = `${author.innerText} ${new Date(content.date.seconds * 1000).toLocaleString('pt-BR')}`
+      author.style.borderBottom = '1px solid #757575'
+      console.log(window.innerWidth)
     }
   }, [image])
 
@@ -67,6 +72,7 @@ export function BodyNews() {
         <div>
           <h6>#{content.category}</h6>
           <div ref={contentRef} dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content.content) }} />
+          <ShareAside title={title} />
           <Comments />
         </div>
       </ArticleContainerStyled>

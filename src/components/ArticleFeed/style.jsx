@@ -93,6 +93,8 @@ export const AsidePanel = styled.aside`
 
     
     h3 {
+        color: ${({theme}) => theme.colors.primary};
+        font-weight: 600;
         padding: 0rem 1rem;
     }
     
@@ -108,8 +110,11 @@ export const AsidePanel = styled.aside`
             gap: .5rem;
             flex-wrap: wrap;
             padding: 0rem 1rem;
-
             list-style: none;
+
+            li {
+                font-weight: 500;
+            }
         }
     }
 
