@@ -157,7 +157,8 @@ export const ArticleContainerStyled = styled.main`
             display: none;
         }
 
-        aside {
+        div > aside {
+            display: flex;
             flex-direction: row;
             justify-content: space-evenly;
         }

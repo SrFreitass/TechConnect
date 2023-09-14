@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom'
 export function Header() {
   const [menu, setMenu] = useState(false)
   const [user, setUser] = useState('')
+  const { currentUser } = auth
 
 
   const handleMenu = () => {
@@ -17,11 +18,6 @@ export function Header() {
     console.log(document.documentElement)
   }
   
-  useEffect(() => {
-    onAuthStateChanged(auth, () => {
-      setUser(auth.currentUser.displayName ? auth.currentUser.displayName : 'Faça login')
-    })
-  }, [])
   
 
   return (
@@ -55,7 +51,7 @@ export function Header() {
               <li><Link to="../home"  onClick={handleMenu} >Artigos</Link></li>
               <li>Sobre nós</li>
               <br />
-              <li><UserCircle size={32}/><Link to={user == "Faça login" && "../auth/login" || user != "Faça login" && "./account" }>{user}</Link></li>
+              <li><Link to={ currentUser ? '../account' : '../auth/login'}><UserCircle size={32}/>{currentUser ? currentUser.displayName : 'Faça login' }</Link></li>
             </ul>
           </div>
 
