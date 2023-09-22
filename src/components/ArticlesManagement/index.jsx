@@ -11,9 +11,11 @@ import DOMPurify from "dompurify";
 import { ButtonDefault } from "../ArticleComposer/style";
 import { OperationType } from "firebase/auth";
 import { Search } from "../Header/Search";
+import { Articles } from "../common/Articles";
 
 export function SectionAdmin() {
     const [newsEdit, setNewsEdit] = useState([])
+    const [searchFilter, setSearchFilter] = useState('')
     const userCollectionRef = collection(db, "articles");
 
     useEffect(() => {
@@ -24,6 +26,25 @@ export function SectionAdmin() {
         getData();
     }, []);
 
+
+    useEffect(() => {
+        const getDataFilter = async () => {
+            if(searchFilter) {
+                const q = query(userCollectionRef, where("title", ">=", searchFilter))
+                const data = await getDocs(q);
+                if(data.docs.length == 0) {
+                    toast.error('Nenhum artigo encontrado')
+                    const data = await getDocs(userCollectionRef);
+                    setNewsEdit(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+                    return
+                }
+                const dataFilterd = (data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+                toast.success('Artigos encontrados')
+                setNewsEdit(dataFilterd)
+            }
+        }
+        getDataFilter()
+    }, [searchFilter])
 
     const handleDeleteArticle = async (id) => {
         const articleDoc = doc(db, "articles", id)
@@ -51,11 +72,13 @@ export function SectionAdmin() {
             <Toaster
                 position="bottom-left"
             />
-            <h2>Artigos</h2>
+            <h2>Gerenciamento de artigos</h2>
+            <br/>
             <div>
-                <Search />
+                <Search adminFilter={{setSearchFilter, searchFilter}}/>
+
                 <select onChange={handleFilterArticle}>
-                    <option value="false">Filtre por categoria</option>
+                    <option value="false">Categoria</option>
                     <option value="tecnologia">tecnologia</option>
                     <option value="inovação">inovação</option>
                     <option value="computação">computação</option>
@@ -63,26 +86,7 @@ export function SectionAdmin() {
                     <option value="jogos">jogos</option>
                 </select>
             </div>
-            {newsEdit.map((news, index) => {
-                return (
-                    <NewsStyled key={index}>
-                        <img src={news.imageURL}></img>
-                        <div>
-                            <div>
-                                <h2 dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(news.title) }} />
-                                <h3 dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(news.summary) }} />
-                                <h4 dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(news.author) }} />
-                                <Link to={`../category/${news.category}`}>#{news.category}</Link >
-                                <p>Destaque: {news.emphasis.toString()}</p>
-                            </div>
-                            <ButtonsContainer>
-                                <ButtonDefault><Link to={`./edit/${news.id}`}>Editar</Link></ButtonDefault>
-                                <ButtonDefault onClick={() => { handleDeleteArticle(news.id) }}>Excluir</ButtonDefault>
-                            </ButtonsContainer>
-                        </div>
-                    </NewsStyled>
-                )
-            })}
+            <Articles articlesList={newsEdit} asidePanel={false} management={{isPageAdmin: true, handleFilterArticle, handleDeleteArticle}}/>
         </SectionAdminStyled>
     )
 }

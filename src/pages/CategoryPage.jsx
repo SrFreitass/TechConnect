@@ -1,4 +1,4 @@
-import { query, collection, where, getDocs } from "firebase/firestore"
+import { query, collection, where, getDocs, orderBy } from "firebase/firestore"
 import { useEffect } from "react"
 import { useParams } from "react-router-dom"
 import { db } from "../services/firebaseconfig"
@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import { ArticleStyled } from "../components/ArticleBody/style";
 import { ButtonStyled } from "../components/SectionMain/style";
 import DOMPurify from "dompurify";
+import { Articles } from "../components/common/Articles"
 
 export function CategoryPage() {
 
@@ -18,7 +19,7 @@ export function CategoryPage() {
 
     useEffect(() => {
         const fetchArticleData = async () => {
-            const q = query(collection(db, "articles"), where("category", "==", tag));
+            const q = query(collection(db, "articles"), where("category", "==", tag), orderBy('date', 'desc'));
             const querySnapshot = await getDocs(q)
             setArticles(querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
 
@@ -27,30 +28,17 @@ export function CategoryPage() {
 
     }, [tag])
 
+    const HandleClickNews = async () => {  
+
+    }
+
     console.log(articles)
 
     return (
         <Wrapper>
             <Header />
             <h2 style={{ color: '#8A8AE0' }}>{`#${tag}`}</h2>
-            {
-                articles.map((article, index) => {
-                    return (
-                        <>
-                            <NewsStyled key={index}>
-                                <img src={article.imageURL} alt="" />
-                                <div>
-                                    <Link to={`../home/news/${article.id}`}>
-                                        <h2 dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(article.title) }} />
-                                    </Link>
-                                    <h3 dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(article.summary) }} />
-                                    <h4 dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(article.author) }} />
-                                </div>
-                            </NewsStyled>
-                        </>
-                    )
-                })
-            }
+            <Articles articlesList={articles} />
         </Wrapper>
     )
 }

@@ -35,7 +35,8 @@ export function ArticleCreationForm() {
             <StyleArticleCreationForm>
                 <form>
                     <div>
-
+                        
+                        <div>
                         <UploadContainer>
                             <CloudArrowDown size={50} /> <input type="file" accept=".png, .jpeg, .jpg" onChange={(e) => setImageUpload(e.target.files[0])} />
                             <span>Selecione arquivos</span>
@@ -68,6 +69,7 @@ export function ArticleCreationForm() {
                                 <option value="jogos">Jogos</option>
                             </select>
                         </IconsContainer>
+                        </div>
 
                         <ButtonsContainer>
                             <ButtonDefault onClick={(e) => e.preventDefault()}><Link to="../admin">Voltar</Link></ButtonDefault>
@@ -80,6 +82,7 @@ export function ArticleCreationForm() {
                         initialValue={standardStructure}
                         onInit={(evt, editor) => (editorRef.current = editor)}
                         apiKey="ielf67vff1t8b2j119x947k095i3mlsybvf1clcnrzdja5ws"
+                        
                     />
                 </form>
             </StyleArticleCreationForm>

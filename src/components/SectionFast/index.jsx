@@ -6,6 +6,7 @@ import { Link, useParams } from 'react-router-dom'
 import { Links } from '../Links'
 import { getDocs, query, collection, where } from 'firebase/firestore'
 import { db } from '../../services/firebaseconfig'
+import toast, { Toaster } from 'react-hot-toast'
 import he from 'he'
 
 export function SectionFast() {
@@ -16,16 +17,29 @@ export function SectionFast() {
     const [sound, setSound] = useState(true)
     const [fast, setFast] = useState([])
     const [share, setShare] = useState(false)
+    const { title } = useParams()
 
+    console.log(title)
     console.log('RENDERIZO')
 
     useEffect(() => {
+
+
         const FetchFast = async () => {
-            const q = await query(collection(db, "fast"), where("title", "!=", "teste"))
-            const querySnapshot = await getDocs(q)
-            const data = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-            console.log(data)
-            setFast(data)
+            const q = await query(collection(db, "fast"), where("title", "==", title))
+            const outherQ = await query(collection(db, "fast"), where("title", "!=", title))
+            const querySnapshot = {
+                maindoc: await getDocs(q),
+                docs: await getDocs(outherQ)
+            }
+
+            console.log(querySnapshot)
+            const data = {
+                maindoc: querySnapshot.maindoc.docs.map((doc) => ({ ...doc.data(), id: doc.id })),
+                docs: querySnapshot.docs.docs.map((doc) => ({ ...doc.data(), id: doc.id })),
+            };
+            
+            setFast([...data.maindoc, ...data.docs])
         }
         FetchFast()
 
@@ -78,16 +92,11 @@ export function SectionFast() {
                         <>
                             <MobileVideo key={index}>
                                 <div>
-                                    <video src={fast.videoURL} loop controls controlsList="nodownload nofullscreen noremoteplayback" onClick={videoState}>
+                                    <video ref={videoRef} src={fast.videoURL} loop controls controlsList="nodownload nofullscreen noremoteplayback" onClick={videoState} onTouchStart={videoState}>
                                     </video>
                                     <h3>{fast.title} <span>#fast🎬</span> </h3>
                                     <p>De: {fast.author}</p>
                                 </div>
-                                <ShareButtons>
-                                    {
-                                        share ? <ShareAside setShare={setShare} share={share} /> : <> <button onClick={handleShareButtons}><Share size="32" color="#C291F4" /></button> <button title='Sair'><Link to="/home"><X size="32" color="#C291F4" /></Link></button></>
-                                    }
-                                </ShareButtons>
                             </MobileVideo>
                         </>
                     )
@@ -104,14 +113,20 @@ export const ShareAside = ({ setShare, share, title }) => {
         setShare(!share)
     }
 
+    const copyLink = async (e) => {
+        e.preventDefault()
+        await navigator.clipboard.writeText(`https://techconnectdev.vercel.app/home/news/${titleID}`)
+        toast.success('Link copiado com sucesso')
+    }
+
     return (
         <ShareButtons>
             {/* <button onClick={handleShareButtons}><X size="32" color="#C291F4" /></button> */}
-            <button><a href="#"><FacebookLogo size={28} /></a></button>
-            <button><a href="#"><InstagramLogo size={28} /></a></button>
-            <button><a href="#"><TwitterLogo size={28} /></a></button>
-            <button><a href={`whatsapp://send?text=${title}+https://techconnectdev.vercel.app/home/news/${titleID}`}> <WhatsappLogo size={28} /> </a> </button>
-            <button><a href="#"><TelegramLogo size={28} /></a></button>
+            <button><a href={`https://www.facebook.com/sharer.php?u=https://techconnectdev.vercel.app/home/news/${titleID}`} target='__blank' ><FacebookLogo size={28} /></a></button>
+            <button><a href="" onClick={copyLink}><InstagramLogo size={28} /></a></button>
+            <button><a href={`https://twitter.com/intent/tweet?url=https://techconnectdev.vercel.app/home/news/${titleID}&text=${title}`} target='__blank' ><TwitterLogo size={28} /></a></button>
+            <button><a href={`https://whatsapp://send?text=${title}+https://techconnectdev.vercel.app/home/news/${titleID}`} target='__blank'> <WhatsappLogo size={28} /> </a> </button>
+            <button><a href={`https://telegram.me/share/url?url=https://techconnectdev.vercel.app/home/news/${titleID}&text=${title}`} target='__blank'><TelegramLogo size={28} /></a></button>
         </ShareButtons >
     )
 }

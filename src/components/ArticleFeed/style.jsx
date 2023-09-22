@@ -9,6 +9,7 @@ export const NewsStyled = styled.article`
 
     border-bottom: solid 1px ${({ theme }) => theme.colors.secundary};
     
+
     img {
         object-fit: cover;
         border-radius: 5px;

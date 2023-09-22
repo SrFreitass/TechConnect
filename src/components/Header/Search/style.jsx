@@ -34,7 +34,10 @@ export const SearchContainer = styled.div`
     }
 
     ${({ search }) => search && css`
-        background-color: #dbdbdb;  
+        background-color: #fff;  
+        border-radius: 8px;
+        border: solid 1.5px ${({theme}) => theme.colors.purple400};
+        filter: drop-shadow(0px 0px 5px ${({theme}) => theme.colors.purple400});
 
         form {
         width: 10rem; 
@@ -44,7 +47,11 @@ export const SearchContainer = styled.div`
         input {
         transition: all ease-in-out 0.3s;
         width: 100%;    
+            
         }
+
+ 
+    
     `} 
 
 

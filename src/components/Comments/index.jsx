@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useAsyncError, useParams } from "react-router-dom";
 import { auth, db } from "../../services/firebaseconfig";
-import { collection, query, where, getDoc, getDocs, addDoc, deleteDoc, doc, Timestamp, serverTimestamp } from "firebase/firestore";
+import { collection, query, where, getDoc, getDocs, addDoc, deleteDoc, doc, Timestamp, serverTimestamp, limit, orderBy, startAfter } from "firebase/firestore";
 import { ArticleStyled, MainStyled, ArticleContainerStyled, CommentContainer } from "./../ArticleBody/style";
 import DOMPurify from "dompurify";
 import { ButtonDefault } from "../ArticleComposer/style";
@@ -16,6 +16,7 @@ export function Comments() {
 
     const [comments, setComments] = useState([])
     const [eventHandlerComment, setEventHandlerComment] = useState(false)
+    const [lastVisible, setLastVisible] = useState('')
     const [userID, setUserID] = useState('')
     const [displayName, setDisplayName] = useState('')
     const inputRef = useRef()
@@ -38,18 +39,16 @@ export function Comments() {
     }, [])
 
     useEffect(() => {
-
-        const q = query(collection(db, `/articles/${title}/comments`))
-        const querySnapshot = getDocs(q).then((r) => {
-            const doc = r.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-            doc.sort((a, b) => {
-                return b.date - a.date
-            })
-
-            setComments(doc)
-        }
-        )
-
+        const FetchComments = async () => {
+            const q = query(collection(db, `/articles/${title}/comments`), orderBy("date", "desc"), limit(10))
+            const querySnapshot = await getDocs(q)  
+                if(querySnapshot.docs.length > 0) {
+                    const doc = querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+                    setLastVisible(querySnapshot.docs[querySnapshot.docs.length - 1])
+                    setComments(doc)
+                }
+            }
+            FetchComments()
     }, [eventHandlerComment])
 
     const commentsCollectionRef = collection(db, `/articles/${title}/comments`);
@@ -103,11 +102,22 @@ export function Comments() {
 
     }
 
+    const handleNextComments = async () => { 
+        const q = query(collection(db, `/articles/${title}/comments`), orderBy("date", "desc"), startAfter(lastVisible), limit(10))
+        const querySnapshot = await getDocs(q)  
+            if(querySnapshot.docs.length > 0) {
+                const doc = querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+                setLastVisible(querySnapshot.docs[querySnapshot.docs.length - 1])
+                setComments((state) => [...state, ...doc])
+            }
+        }
+
 
     if (auth.currentUser) {
         return (
+            <>
             <ContainerComments>
-                <span/>
+                <span />
                 <br/>
                 <h3>Comentários</h3>
                 <section>
@@ -131,7 +141,8 @@ export function Comments() {
                     })
                 }
             </ContainerComments>
-
+            <p onClick={handleNextComments}>Ler mais</p>
+            </>
         )
     } else {
         return (

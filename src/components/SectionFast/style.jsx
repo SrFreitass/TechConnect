@@ -6,7 +6,8 @@ export const SectionFastStyled = styled.section`
     display: flex;
     align-items: center;
     flex-direction: column;
-    gap: 1rem;
+    gap: 2rem;
+    width: 100%;
     height: 80vh;
 
     overflow-y: auto;
@@ -21,27 +22,27 @@ export const SectionFastStyled = styled.section`
 
 export const MobileVideo = styled.div`
     display: flex;
-    gap: 1rem;
+    gap: 5rem;
     align-items: start;
     position: relative;
+
 
     video {
         object-fit: cover;
         object-position: center;
-        z-index: 1;
-
-        width: 25vw;
-        min-width: 25rem;
+        margin: 0 auto;
+        width: 100%;
+        max-width: 30rem;
         height: 80vh;
+        min-height: 30rem;
+        max-height: 55rem;
         border-radius: .5rem;
 
         -webkit-overflow-scrolling: touch;
         scroll-snap-align: start;
     
         &::-webkit-media-controls-timeline {
-            padding: 0rem;
-            width: 100%;
-            background-color: ${({ theme }) => theme.colors.purple400};
+            display: none;
         }
 
         &::-webkit-media-controls-fullscreen-button {
@@ -53,8 +54,7 @@ export const MobileVideo = styled.div`
         color: ${({ theme }) => theme.colors.primary};
         padding: 1rem;
         position: absolute;
-        bottom: 7%;
-        z-index: 1;
+        bottom: 8%;
         font-weight: 600;
 
         span {
@@ -70,8 +70,7 @@ export const MobileVideo = styled.div`
     div:nth-child(1) {
     display: flex;
     flex-direction: column;
-    width: 25vw;
-    min-width: 25rem;
+        height: 100%;
 
     button  {
         padding: 0.6rem;
@@ -80,6 +79,10 @@ export const MobileVideo = styled.div`
         border: none;
     }
 
+
+    @media (max-width: 500px) {
+
+    }
 }
 
 

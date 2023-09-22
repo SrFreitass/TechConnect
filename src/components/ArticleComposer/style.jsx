@@ -22,7 +22,6 @@ export const StyleArticleCreationForm = styled.div`
         text-align: center;
         padding: .6rem;
     }
-    
 
     div.tox  {
         width: 100%;
@@ -43,6 +42,21 @@ export const StyleArticleCreationForm = styled.div`
             outline: none;
         }
     }
+
+    @media (max-width: 850px) {
+        
+
+        
+        form {
+            border-radius: 10px;
+            flex-direction: column-reverse;
+
+            div.tox {
+                border-radius: 10px;
+                height: 90vh !important;
+            }
+        }
+    }
 `
 export const UploadContainer = styled.div`
     display: flex;
@@ -52,7 +66,6 @@ export const UploadContainer = styled.div`
     border-radius: 10px;
     padding: 0.5rem;
     width: 100%;
-    height: 12rem;
 
     svg {
         margin-bottom: 5rem;
@@ -78,8 +91,7 @@ export const UploadContainer = styled.div`
 
     input[type=file]::-webkit-file-upload-button {
         width: 100%;
-        height: 100%;
-        height: 10rem;
+        height: 12rem;
         font-size: 0rem;
         background: none;
         border: 2px dashed #7b9be1;
@@ -89,6 +101,13 @@ export const UploadContainer = styled.div`
     input[type=file] {
         font-size: 0rem;
     }
+
+    @media (max-width: 850px) {
+        input[type=file]::-webkit-file-upload-button {
+            height: 15rem;
+        }
+    }
+
 
 `
 
@@ -113,7 +132,8 @@ export const IconsContainer = styled.div`
 export const ButtonsContainer = styled.div`
     display: flex;
     gap: 1rem;
-    justify-content: center;
+    justify-content: start;
+    padding: 1rem;
 `
 
 export const ButtonDefault = styled.button`

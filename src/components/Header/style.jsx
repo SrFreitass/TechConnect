@@ -54,7 +54,8 @@ export const HeaderContainer = styled.header`
     }
 
     a {
-        text-decoration: none;
+        display: flex;
+        align-items: center;
         color: ${(props) => props.theme.colors.secundary}
     }
 
@@ -107,6 +108,7 @@ export const HeaderContainer = styled.header`
 
         ${({ menu }) => menu && css`
             ul {
+                z-index: 99;
                 width:  22rem;
                 height: 101%;
                 background-color: #1d1d1d;
@@ -117,7 +119,6 @@ export const HeaderContainer = styled.header`
 
 
             ul:nth-child(2) {
-                z-index: 1;
                 animation: Animation 0.3s forwards;
                 padding: 1rem;
                 display: flex;
@@ -127,6 +128,7 @@ export const HeaderContainer = styled.header`
                 margin-right: -1.5rem;
                 position: fixed;
                 
+
                 svg {
                     margin-top: 2rem;
                 }

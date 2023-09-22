@@ -1,11 +1,12 @@
 import { styled } from "styled-components";
 
 export const CarouselStyled = styled.section`
-    
+
+
     div:first-child {
         margin: 0 auto;
         width: 100%;
-        height: 15rem;
+        height: 16rem;
         background-color: ${({ theme }) => theme.colors.black800};
     }
     
@@ -16,7 +17,6 @@ export const CarouselStyled = styled.section`
         align-items: center;
         justify-content: center;
         position: relative;
-        z-index: -1;
         
         a:first-child {
             align-self: start;
@@ -33,7 +33,7 @@ export const CarouselStyled = styled.section`
         position: absolute;
         object-fit: cover;
         z-index: 1;
-        filter: brightness(40%);
+        filter: brightness(55%);
     }
 
     .swiper-button-prev, .swiper-button-next {

@@ -42,7 +42,6 @@ export function Carousel() {
           <div>
             <Link to={`../category/${items.category}`} dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(`#${items.category}`) }} />
             <Link to={`./news/${items.id}`}><h2 dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(items.title) }} /></Link>
-            <p dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(items.summary) }} />
           </div>
         </CarouselStyled>
       </SwiperSlide>

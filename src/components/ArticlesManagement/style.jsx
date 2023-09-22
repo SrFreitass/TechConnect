@@ -5,8 +5,9 @@ export const SectionAdminStyled = styled.section`
     flex-direction: column;
 
     div {
-        display: flex; 
+        display: flex;
     }
+
 
     h2 {
         color: ${({ theme }) => theme.colors.primary}

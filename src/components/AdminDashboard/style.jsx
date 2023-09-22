@@ -40,4 +40,9 @@ export const AsideStyled = styled.aside`
         font-weight: 600;
         color: ${({ theme }) => theme.colors.secundary}
     }
+
+    @media (max-width: 1050px) {
+        display: none;
+    }
+
 `
