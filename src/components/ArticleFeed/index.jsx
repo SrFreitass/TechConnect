@@ -1,14 +1,6 @@
-import { NewsStyled } from "./style";
-import { Link, useParams } from "react-router-dom";
 import { db } from "../../services/firebaseconfig";
 import { useEffect, useState, useRef } from "react";
 import { getDocs, collection, where, query, orderBy, limit, startAfter, startAt } from "firebase/firestore";
-import { ArticleStyled } from "../ArticleBody/style";
-import { ButtonStyled } from "../SectionMain/style";
-import { SectionGrid } from '../../containers/SectionGrid/style'
-import { AsidePanel } from './style'
-import DOMPurify from "dompurify";
-import { styled } from "styled-components";
 import { Articles } from "../common/Articles";
 
 export function News() {

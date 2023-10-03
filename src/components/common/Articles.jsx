@@ -23,11 +23,10 @@ export function Articles({articlesList, ShowButton, HandleClickNews, asidePanel,
                     <h3 dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(article.summary) }} />
                     <h4 dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(`${article.author}`) }} />
                     <p>{new Date(article.date?.seconds * 1000).toLocaleString('pt-BR')}</p>
-                    
+                    <Link to={`../category/${article.category}`}>#{article.category}</Link >
                     {management?.isPageAdmin ?
                         <>
-                            <p>Destaque {(article.emphasis).toString()}</p>
-                            <Link to={`../category/${article.category}`}>#{article.category}</Link >
+                            <p>Destaque: {article.emphasis ? 'sim' : 'não'}</p>
                             <ButtonsContainer>
                                 <ButtonDefault><Link to={`./edit/${article.id}`}>Editar</Link></ButtonDefault>
                                 <ButtonDefault onClick={() => { management.handleDeleteArticle(article.id) }}>Excluir</ButtonDefault>

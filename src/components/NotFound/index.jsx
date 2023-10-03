@@ -12,7 +12,7 @@ export function NotFound() {
           <h1>404</h1>
           <p>Bem, acho que tentou entrar numa página que não existe!</p>
         </div>
-        <ButtonStyled><Link to="..">Volte para casa...</Link></ButtonStyled>
+        <Link to="./home">Volte para o início.</Link>
       </Section404>
     </>
   )

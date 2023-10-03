@@ -1,6 +1,6 @@
 import { MagnifyingGlass, X } from "@phosphor-icons/react";
 import { SearchContainer } from "./style";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { collection, query, where, onSnapshot, getDocs } from "firebase/firestore";
 import { db } from "../../../services/firebaseconfig";
 import { Navigate } from "react-router-dom";
@@ -11,22 +11,29 @@ import he from 'he'
 export function Search({ adminFilter }) {
 
     const [search, setSearch] = useState(false)
-    const [input, setInput] = useState('')
+    const inputRef = useRef()
     const navigate = useNavigate()
+    console.log('renderizou')
 
     const handleActiveSearch = () => {
         setSearch(!search)
     }
 
     const searchResults = (e) => {
-            if(adminFilter.searchFilter == '' || adminFilter.searchFilter) {
-                e.preventDefault()
+        e.preventDefault()
+
+        const input = he.encode(inputRef.current.value, {
+            'useNamedReferences': true
+        })
+
+            if(adminFilter) {
                 adminFilter.setSearchFilter(input)
                 return
             }
 
-            e.preventDefault()
-            navigate(`/results/${input}`)
+
+
+            navigate(`../results/${input}`)
         }
 
     const contentInput = (e) => {
@@ -39,7 +46,7 @@ export function Search({ adminFilter }) {
         <>
         <SearchContainer search={search} >
             <form onSubmit={searchResults}>
-                <input type="text" placeholder="Buscar..." onChange={contentInput} />
+                <input type="text" placeholder="Buscar..." ref={inputRef} />
                 <button type="submit"></button>
             </form>
             {search ? <X color="#666" size={18}  onClick={handleActiveSearch} /> : < MagnifyingGlass color="#666" size={20} onClick={handleActiveSearch} />}

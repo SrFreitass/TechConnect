@@ -37,7 +37,7 @@ export const CarouselStyled = styled.section`
     }
 
     .swiper-button-prev, .swiper-button-next {
-        color: ${(({ theme }) => theme.colors.purple700)};
+        display: none;
     }
 
     .swiper-pagination-bullet {

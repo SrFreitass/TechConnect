@@ -14,6 +14,7 @@ export const VerificationContainer = styled.div`
     }
 
     p {
+        text-align: center;
         color: ${({ theme }) => theme.colors.secundary};
     }
     

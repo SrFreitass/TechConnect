@@ -13,9 +13,8 @@ export function EmailVerification({ status, setStatus }) {
         <VerificationContainer>
             <ProgressForm value="90" max="100" />
             <h1>Quase lá...</h1>
-            <img src="https://stories.cnnbrasil.com.br/wp-content/uploads/sites/9/2021/08/giphy-19-5.gif" />
-            <p>Confirme seu e-mail para ser um membro verificado da comunidade TechConnect</p>
-            <p>Se você pular essa etapa sua conta irar ter várias restrições em nossa comunidade!</p>
+            <p>Confirme seu e-mail para ser um membro verificado da comunidade TechConnect</p>  
+            <ButtonDefault onClick={() => location.reload()}>Já verifiquei</ButtonDefault>
             <p>Inseriu o e-mail incorretamente? <span onClick={() => setStatus(!status)}>Volte aqui</span></p>
         </VerificationContainer>
     )

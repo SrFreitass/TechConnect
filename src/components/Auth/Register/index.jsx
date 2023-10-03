@@ -1,13 +1,13 @@
 import { Wrapper } from '../../../Styles/Wrapper'
 import { Header } from '../../Header'
 import { useForm } from 'react-hook-form'
-import { Link } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 import { FormStyled, ContainerInputForm, ContainerCheckForm, ProgressForm, InputPassword } from './style'
 import { ButtonDefault } from '../../ArticleComposer/style'
 import { Eye, EyeClosed, Warning } from '@phosphor-icons/react'
-import { createUserWithEmailAndPassword, sendEmailVerification, updateProfile } from 'firebase/auth'
+import { createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, signOut, updateProfile } from 'firebase/auth'
 import { auth } from '../../../services/firebaseconfig'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { EmailVerification } from '../EmailVerification'
 import { FirebaseError } from 'firebase/app'
 
@@ -15,9 +15,25 @@ import { FirebaseError } from 'firebase/app'
 export function Register() {
 
     const { register, handleSubmit, formState: { errors } } = useForm()
-    const [status, setStatus] = useState(false)
+    const [status, setStatus] = useState('')
+    const [ username, setUsername ] = useState('')
     const [showPassword, setShowPassword] = useState(false)
     const [error, setError] = useState('')
+
+
+
+
+    useEffect(() => {
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                setUsername(user)
+                user.emailVerified == false && setStatus('verifyEmail')
+                return
+            }
+            setStatus('loggedOut')
+        })
+    }, [])
+
 
     const handleSubmitRegister = async (data) => {
         if (data.password === data.passwordConfirmed) {
@@ -28,7 +44,7 @@ export function Register() {
                 updateProfile(auth.currentUser, {
                     displayName: data.username
                 })
-                setStatus(true)
+                setStatus('verifyEmail')
                 setError('no')
             } catch (error) {
                 setError('errorEmail')
@@ -48,8 +64,18 @@ export function Register() {
         setShowPassword((state) => !state)
     }
 
+    const HandleSignOut = async (e) => {
+        e.preventDefault()
+        try {
+            const loggout = await signOut(auth)
+            setStatus('loggedOut')
+        } catch {
+            console.log('Algo deu errado')
+        }
+    }
 
-    if (status == false) {
+
+    if (status == 'loggedOut') {
         return (
             <>
                 <ProgressForm value="20" max="100" />
@@ -104,9 +130,31 @@ export function Register() {
                 </FormStyled>
             </>
         )
+    } else if(status == 'verifyEmail') {
+        return (
+            username.emailVerified ? 
+                <Navigate to="../home"/>
+                : 
+                <EmailVerification status={status} setStatus={setStatus} />
+
+        )
     } else {
         return (
-            <EmailVerification status={status} setStatus={setStatus} />
+            <>
+                <ProgressForm value="100" max="100" />
+                <FormStyled isLogged={true}>
+                    <div>
+                        <h1>&#60;techconnect/&#62;</h1>
+                        <br/>
+                        <div>
+                            <p>Olá, {username.displayName} você já está logado</p>
+                            <p>Como vim parar aqui? <Link to="../home">voltar para o início</Link></p>
+                        </div>
+                        <br />
+                        <ButtonDefault onClick={HandleSignOut}>SAIR DA CONTA</ButtonDefault>
+                    </div>
+                </FormStyled>
+            </>
         )
     }
 }

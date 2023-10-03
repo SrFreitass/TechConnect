@@ -2,6 +2,19 @@ import { styled } from "styled-components"
 import { css } from "styled-components"
 
 
+export const SectionFastStyle = styled.div`
+    display: flex;
+    flex-direction: column;
+
+    h2 {
+        color: ${({theme}) => theme.colors.primary}
+    }
+
+    span {
+        color: ${({theme}) => theme.colors.purple400}
+    }
+`
+
 export const SectionFastStyled = styled.section`
     display: flex;
     align-items: center;
@@ -22,8 +35,8 @@ export const SectionFastStyled = styled.section`
 
 export const MobileVideo = styled.div`
     display: flex;
-    gap: 5rem;
-    align-items: start;
+    gap: 1rem;
+    align-items: end;
     position: relative;
 
 
@@ -67,10 +80,12 @@ export const MobileVideo = styled.div`
     }
 
 
-    div:nth-child(1) {
-    display: flex;
-    flex-direction: column;
-        height: 100%;
+    div {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
 
     button  {
         padding: 0.6rem;

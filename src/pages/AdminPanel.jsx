@@ -9,18 +9,22 @@ import { useAdminVerify } from "../hooks/useAdminVerify";
 import { auth } from "../services/firebaseconfig";
 import { Navigate } from "react-router-dom";
 import { useNavigate } from 'react-router-dom'
+import { SectionFast } from "../components/SectionFast";
+import { useState } from "react";
 export function AdminPanel() {
 
   const token = useAdminVerify()
+  const [section, setSection] = useState('article')
   const navigate = useNavigate()
+
 
   if (token == 'admin') {
     return (
       <Wrapper>
         <Header />
         <SectionGrid oneGrid='0.5fr' twoGrid='3fr' >
-          <ControlsAdmin />
-          <SectionAdmin />
+          <ControlsAdmin sectionState={{section, setSection}} />
+          {section == "fast" ? <SectionFast isAdmin={true}/> : <SectionAdmin />  }
         </SectionGrid>
       </Wrapper>
     )

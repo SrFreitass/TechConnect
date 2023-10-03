@@ -75,5 +75,6 @@ export const router = createBrowserRouter([
   {
     path: "metaverso",
     element: <Metaverso />
-  }
+  }, 
+
 ]);

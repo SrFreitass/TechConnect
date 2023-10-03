@@ -31,15 +31,28 @@ export const FormStyled = styled.form`
 
     gap: 1rem;
 
-
-
     div:first-child {
         text-align: center;
     }
 
+    ${({isLogged}) => isLogged && css`
+        div {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+
+            button {
+                max-width: 20rem;
+                margin: 0 auto;
+            }
+        }
+
+    `}
+
     input[type="text"], input[type="password"], input[type="email"]{
         height: 3rem;
-        width: 25rem;
+        width: 100%;
+        max-width: 25rem;
         font-size: 1rem;
         padding: 1rem;
 
@@ -95,8 +108,6 @@ export const ContainerCheckForm = styled.div`
     align-items: center;
     justify-content: start;
     gap: .4rem;
-
-    
 
     input[type="checkbox"] {
         width: 1rem;

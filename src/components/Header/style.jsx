@@ -46,7 +46,35 @@ export const HeaderContainer = styled.header`
         display: flex;
         gap: 1rem;
         border-left: 1px solid ${({ theme }) => theme.colors.secundary};
+
+        li:nth-child(2) {
+            display: none;
+        }
+        
+        div:hover {
+
+            li:nth-child(2) {
+                display: flex;
+                position: absolute;
+
+                button {
+                    background: none;
+                    border: none;
+                    color: ${({theme}) => theme.colors.purple400};
+                    font-size: 1.2rem;
+                    font-weight: 500;
+                    
+                    a {
+                        color: ${({theme}) => theme.colors.purple400};
+                        margin-left: -1rem;
+                    }
+                }
+            }
+            
+        }
     }
+    
+
 
     li {
         list-style: none;

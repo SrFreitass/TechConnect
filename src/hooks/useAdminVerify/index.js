@@ -9,6 +9,7 @@ export const useAdminVerify = () => {
 
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
+            console.log(user)
             if (user) {
                 const q = query(collection(db, "admin"), where("userID", "==", user.uid))
                 getDocs(q).then((r) => {
@@ -19,6 +20,8 @@ export const useAdminVerify = () => {
                     }
                     setToken('error')
                 })
+            } else {
+                setToken('error')
             }
         }
         )

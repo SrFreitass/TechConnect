@@ -1,14 +1,15 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { HeaderContainer } from './style'
-import { FacebookLogo, InstagramLogo, List, TwitterLogo, UserCircle, X } from '@phosphor-icons/react'
+import { FacebookLogo, InstagramLogo, List, Popcorn, TwitterLogo, UserCircle, X } from '@phosphor-icons/react'
 import { Search } from './Search'
 import { auth } from '../../services/firebaseconfig'
-import { onAuthStateChanged } from 'firebase/auth'
+import { onAuthStateChanged, signOut } from 'firebase/auth'
 import { Link } from 'react-router-dom'
 
 export function Header() {
   const [menu, setMenu] = useState(false)
   const [user, setUser] = useState('')
+  const popup = useRef()
   const { currentUser } = auth
 
 
@@ -16,6 +17,16 @@ export function Header() {
     setMenu(!menu)
     menu ? document.documentElement.style.overflow = 'auto' : document.documentElement.style.overflow = 'hidden'
     console.log(document.documentElement)
+  }
+
+  const handleSignOut = async () => {
+    try {
+      await signOut(auth)
+      location.reload()
+      return
+    } catch {
+      console.log('Algo deu errado.')
+    }
   }
   
   
@@ -63,14 +74,12 @@ export function Header() {
             <li><TwitterLogo size={32} /></li>
             <div>
             <li><UserCircle size={32}/></li>
+            <li>{currentUser ? <button onClick={handleSignOut}>Sair</button> :  <button><Link to="../auth/login">Entrar</Link></button>}</li>
             </div>  
           </ul>
 
 
         </nav>
-
-
-
 
       </HeaderContainer >
     </>

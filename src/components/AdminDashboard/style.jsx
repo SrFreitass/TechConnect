@@ -1,4 +1,4 @@
-import { styled } from "styled-components";
+import { styled, css} from "styled-components";
 
 export const AsideStyled = styled.aside`
     display: flex;
@@ -30,11 +30,26 @@ export const AsideStyled = styled.aside`
         background: none;
     }
 
-    button:nth-child(2) {
-        p {
-            color: #8A8AE0;
+    ${({sectionState}) => sectionState.section == "fast" 
+    ? css`
+        button:nth-child(3) {
+            p {
+                color: ${({theme}) => theme.colors.purple500};
+
+            }
+        }`
+    : css` 
+        button:nth-child(2) {
+
+            p {
+                color: ${({theme}) => theme.colors.purple500};
+
+            }
         }
+    `
     }
+
+
 
     p {
         font-weight: 600;

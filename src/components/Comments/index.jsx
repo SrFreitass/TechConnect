@@ -10,6 +10,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { Pen, TrashSimple, PaperPlaneRight } from "@phosphor-icons/react";
 import { ContainerComments, Nocomments } from './style'
 import { Link } from 'react-router-dom'
+import { useAdminVerify } from "../../hooks/useAdminVerify";
 
 
 export function Comments() {
@@ -21,12 +22,10 @@ export function Comments() {
     const [displayName, setDisplayName] = useState('')
     const inputRef = useRef()
     const commentRef = useRef()
+    const token  = useAdminVerify()
     const { title } = useParams()
     const [clicksPersMin, setClicksPersMin] = useState(0)
     console.log('renderizouX')
-
-
-
 
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
@@ -133,8 +132,11 @@ export function Comments() {
                                     <p>{comment.valueComment}</p>
                                 </div>
                                 {
-                                    comment.userID == userID &&
-                                    <TrashSimple onClick={() => handleDelComment(comment.id)} size={24} />
+                                    comment.userID == userID && (
+                                        <TrashSimple onClick={() => handleDelComment(comment.id)} size={24} /> 
+                                    ) || token == 'admin' && (
+                                        <TrashSimple onClick={() => handleDelComment(comment.id)} size={24} /> 
+                                    )
                                 }
                             </CommentContainer>
                         )

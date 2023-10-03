@@ -1,15 +1,18 @@
 import untitled from './untitled.mp4'
-import { MobileVideo, SectionFastStyled, ShareButtons } from './style'
-import { InstagramLogo, TelegramLogo, FacebookLogo, TwitterLogo, Pause, Play, SoundcloudLogo, SpeakerSimpleHigh, SpeakerSimpleSlash, WhatsappLogo, Share, X } from '@phosphor-icons/react'
+import { MobileVideo, SectionFastStyled, ShareButtons, SectionFastStyle } from './style'
+import { InstagramLogo, TelegramLogo, FacebookLogo, TwitterLogo, Pause, Play, SoundcloudLogo, SpeakerSimpleHigh, SpeakerSimpleSlash, WhatsappLogo, Share, X, TrashSimple, NotePencil, PencilSimpleLine } from '@phosphor-icons/react'
 import { useRef, useState, useEffect, useContext } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { Links } from '../Links'
-import { getDocs, query, collection, where } from 'firebase/firestore'
+import { getDocs, query, collection, where, deleteDoc, updateDoc, doc } from 'firebase/firestore'
 import { db } from '../../services/firebaseconfig'
 import toast, { Toaster } from 'react-hot-toast'
 import he from 'he'
+import { ButtonDefault } from '../ArticleComposer/style'
+import { Search } from '../Header/Search'
 
-export function SectionFast() {
+export function SectionFast(props) {
+    console.log(props)
 
     const videoRef = useRef(null)
     const myRef = useRef(null)
@@ -18,44 +21,35 @@ export function SectionFast() {
     const [fast, setFast] = useState([])
     const [share, setShare] = useState(false)
     const { title } = useParams()
+    const [fastEdit, setFastEdit] = useState(false)
 
     console.log(title)
     console.log('RENDERIZO')
+
 
     useEffect(() => {
 
 
         const FetchFast = async () => {
-            const q = await query(collection(db, "fast"), where("title", "==", title))
-            const outherQ = await query(collection(db, "fast"), where("title", "!=", title))
+            const q = await query(collection(db, "fast"), title ? where("title", "==", title) : '')
+            const outherQ = await query(collection(db, "fast"),  title ? where("title", "!=", title) : '')
             const querySnapshot = {
                 maindoc: await getDocs(q),
                 docs: await getDocs(outherQ)
             }
 
-            console.log(querySnapshot)
             const data = {
                 maindoc: querySnapshot.maindoc.docs.map((doc) => ({ ...doc.data(), id: doc.id })),
                 docs: querySnapshot.docs.docs.map((doc) => ({ ...doc.data(), id: doc.id })),
             };
             
             setFast([...data.maindoc, ...data.docs])
+            console.log(data.maindoc)
         }
+
         FetchFast()
 
     }, [])
-
-
-
-    const handleSound = (e) => {
-        const video = (e.target.parentElement.parentElement.parentElement.querySelector('video'))
-        console.log(e.target.closest('section > div video'))
-        if (video) {
-            setSound(!sound)
-            video.muted = !video.muted
-        }
-        console.log('olha clicou')
-    }
 
     const videoState = (e) => {
         setPlaying(!playing)
@@ -74,35 +68,76 @@ export function SectionFast() {
         setShare(false)
     }
 
-    const teste123 = (e) => {
-        console.log(e.target.parentElement.querySelector('video'))
-        console.log('')
-
-    }
 
     const handleShareButtons = () => {
         setShare(!share)
     }
 
+    const handleDelFast = async (id) => {
+        console.log(id)
+        await deleteDoc(doc(db, "fast", id))
+        toast.success("Conteúdo deletado")
+    }
+
+    const handleEditFast = async () => {
+        console.log('ué')
+        setFastEdit(true)
+    }
+
+    const handleEditTitle = async (e, id) => {
+
+        console.log(e.target.innerText)
+
+        await updateDoc(doc(db, "fast", id), {
+            title: e.target.innerText,
+        })
+        toast.success("Conteúdo alterado")
+        setFastEdit(false)
+
+    }
+
     return (
-        <SectionFastStyled onScroll={nextVideo}>
-            {
-                fast.map((fast, index) => {
-                    return (
-                        <>
-                            <MobileVideo key={index}>
-                                <div>
-                                    <video ref={videoRef} src={fast.videoURL} loop controls controlsList="nodownload nofullscreen noremoteplayback" onClick={videoState} onTouchStart={videoState}>
-                                    </video>
-                                    <h3>{fast.title} <span>#fast🎬</span> </h3>
-                                    <p>De: {fast.author}</p>
-                                </div>
-                            </MobileVideo>
-                        </>
-                    )
-                })
-            }
-        </SectionFastStyled >
+        <SectionFastStyle>
+            <h2>Gerenciamento de <span>#fast</span></h2>
+
+            <SectionFastStyled onScroll={nextVideo}>
+                <Toaster
+                    position="bottom-left"
+                    reverseOrder={false}
+                    toastOptions={{
+                        loading: {
+                            duration: 1000,
+                        },
+                    }}
+                />
+
+                {
+                    fast.map((fast, index) => {
+                        return (
+                            <>
+                                <MobileVideo key={index}>
+                                    <div>
+                                        <video ref={videoRef} src={fast.videoURL} loop controls controlsList="nodownload nofullscreen noremoteplayback" onClick={videoState} onTouchStart={videoState}>
+                                        </video>
+                                        <h3 onBlur={(e) => handleEditTitle(e, fast.id)} contentEditable={fastEdit}>{fast.title} {props.isAdmin ? '' : <span>#fast🎬</span>} </h3>
+                                        <p>De: {fast.author}</p>
+                                    </div>
+                                    <div>
+                                    { props.isAdmin ? (
+                                        <>  
+                                            <TrashSimple  onClick={() => handleDelFast(fast.id)} size={28} color="#4D4DB5" />
+                                            {fastEdit ? <PencilSimpleLine size={24}  color="#4D4DB5"/> : <NotePencil onClick={handleEditFast}size={28} color="#4D4DB5" /> }
+                                        </> 
+                                    )
+                                    : '' }
+                                    </div>
+                                </MobileVideo>
+                            </>
+                        )
+                    })
+                }
+            </SectionFastStyled >
+        </SectionFastStyle> 
     )
 }
 

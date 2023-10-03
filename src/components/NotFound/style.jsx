@@ -29,10 +29,18 @@ export const Section404 = styled.section`
             transition: ease-in-out 1s;
             transform: rotate(360deg);
         }
+        
+        @media (max-width: 850px) {
+            font-size: 10rem;
+        }
 
+        @media (max-width: 450px) {
+            font-size: 7rem;
+        }
     }
 
     p {
+        text-align: center;
         color: ${({ theme }) => theme.colors.secundary};
         font-size: 1.2rem;
     }
