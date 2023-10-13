@@ -1,21 +1,46 @@
 import { ButtonDefault } from "../../ArticleComposer/style"
-import { ProgressForm } from "../Register/style"
+import { FormStyled, ProgressForm } from "../Register/style"
 import { VerificationContainer } from "./style"
-import { Link } from "react-router-dom"
-import { onAuthStateChanged } from "firebase/auth"
+import { Link, useNavigate } from "react-router-dom"
+import { onAuthStateChanged, sendEmailVerification } from "firebase/auth"
 import { auth } from "../../../services/firebaseconfig"
+import { ArrowLeft } from '@phosphor-icons/react'
+import toast, {Toaster} from "react-hot-toast"
 
 export function EmailVerification({ status, setStatus }) {
 
 
+    const navigate = useNavigate()
+
+    const sendConfirmEmail = async () => {
+        try {
+            await sendEmailVerification(auth.currentUser)
+            toast.success('E-mail enviado')
+        } catch (e) {
+            console.log(e)
+            toast.error('Houve algum no problema no envio')
+        }
+    }
 
     return (
+        <>
+            <Toaster
+                position="bottom-left"
+                reverseOrder={false}
+                toastOptions={{
+                    loading: {
+                        duration: 1000,
+                    },
+                }}
+            />
+
         <VerificationContainer>
-            <ProgressForm value="90" max="100" />
-            <h1>Quase lá...</h1>
-            <p>Confirme seu e-mail para ser um membro verificado da comunidade TechConnect</p>  
-            <p>Inseriu o e-mail incorretamente? <span onClick={() => setStatus(!status)}>Volte aqui</span></p>
-            <ButtonDefault onClick={() => location.reload()}>Já verifiquei</ButtonDefault>
+            <h1>Confirme seu e-mail</h1>
+            <p>Finalize seu cadastro através do link que enviamos no seu e-mail 
+                para fazer parte desse incrível portal de notícias sobre tecnologia e muito mais!</p>  
+            <Link onClick={sendConfirmEmail}>E-mail não chegou? Reenviar e-mail</Link>
+            <bold><Link onClick={() => navigate("../auth/login")}><ArrowLeft size="24" color="#8A8AE0"/>Voltar para o login</Link></bold>
         </VerificationContainer>
+        </>
     )
 }

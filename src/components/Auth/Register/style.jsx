@@ -18,7 +18,7 @@ export const ContainerInputForm = styled.div`
 `
 
 export const FormStyled = styled.form`
-
+    
     width: 90%;
     max-width: 25rem;
     height: 100vh;
@@ -31,6 +31,11 @@ export const FormStyled = styled.form`
 
     gap: 1rem;
 
+    h2 {
+        color: ${({theme}) => theme.colors.primary};
+        margin-bottom: 1rem;
+    }
+
     bold > a {
         display: flex;
         align-items: center;
@@ -42,9 +47,10 @@ export const FormStyled = styled.form`
 
 
     div:first-child {
-        display: flex
+        display: flex;
         flex-direction: column;
         text-align: center;
+        gap: 1rem;
     }
 
     ${({isLogged}) => isLogged && css`
@@ -93,12 +99,12 @@ export const FormStyled = styled.form`
             transition: background-color 5000s ease-in-out 0s;
             box-shadow: inset 0 0 20px 20px #121212;
         }
-
-        height: 3rem;
+        transition: .1s ease-in-out;
+        height: 3.125rem;
         width: 100%;
         max-width: 25rem;
         font-size: 1rem;
-        padding: 1.5rem 3rem;
+        padding: 0rem 1rem 0rem 3rem;
 
         color: ${({ theme }) => theme.colors.primary};
         
@@ -142,8 +148,9 @@ export const FormStyled = styled.form`
     }
 
     button {
-        width: 100%;
-        height: 3rem;
+        width: 99%;
+        margin: 0 auto;
+        height: 3.125rem;
     }
 
     

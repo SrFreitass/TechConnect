@@ -14,6 +14,7 @@ import { RegisterPage } from '../pages/Auth/Register';
 import { LoginPage } from '../pages/Auth/Login';
 import { CategoryPage } from '../pages/CategoryPage'
 import { Metaverso } from '../pages/Metaverso';
+import { PasswordRecoveryPage } from '../pages/Auth/PasswordRecovery';
 
 export const router = createBrowserRouter([
   {
@@ -69,12 +70,15 @@ export const router = createBrowserRouter([
     element: <RegisterPage />
   },
   {
+    path: "auth/recovery",
+    element: <PasswordRecoveryPage/>
+  },
+  {
     path: "category/:tag",
     element: <CategoryPage />
   },
   {
     path: "metaverso",
     element: <Metaverso />
-  }, 
-
+  } 
 ]);

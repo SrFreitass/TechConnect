@@ -24,10 +24,11 @@ export function SearchContainer() {
             if (querySnapshot.docs.length === 0) {
                 console.log('Não há resultados')
                 const queryEmphasis = query(userCollectionRef, where("emphasis", "==", true))
-                console.log(queryEmphasis)
+
                 const querySnapshot1 = await getDocs(queryEmphasis)
-                console.log(querySnapshot1)
+
                 const data = querySnapshot1.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+
                 console.log(data)
                 setNewsResults(data);
                 setComponentReady(false)
@@ -78,9 +79,9 @@ export function SearchContainer() {
     } else if(componentReady == false) {
         return (
             <div>
-                <p>Nenhum resultado encontrado para "{searchTitle}"</p>
+                <p style={{color: '#757575'}}>Nenhum resultado encontrado para "{searchTitle}"</p>
                 <div>
-                <h2>Artigos em destaque</h2>
+                <h2 style={{color: 'white'}}>Artigos em destaque</h2>
                 {newsResults.map((article, index) => {
                     return (
                         <NewsStyled key={index}>

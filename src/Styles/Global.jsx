@@ -14,9 +14,6 @@ export const GlobalStyle = createGlobalStyle`
         }
     }
 
-    * {
-        transition: .1s ease-in-out;
-    }
 
     body {
         background-color: ${({ theme }) => theme.colors.background};
@@ -52,9 +49,4 @@ export const GlobalStyle = createGlobalStyle`
         background: #555; 
     }
 
-    @media (max-width: 1366px) {
-        html {
-            font-size: 85%;
-        }
-    }
 `

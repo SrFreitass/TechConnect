@@ -2,7 +2,7 @@ import { Wrapper } from '../../../Styles/Wrapper'
 import { Header } from '../../Header'
 import { useForm } from 'react-hook-form'
 import { Link, Navigate } from 'react-router-dom'
-import { FormStyled, ContainerInputForm, ContainerCheckForm, ProgressForm, InputPassword } from './style'
+import { FormStyled, ContainerInputForm, ContainerCheckForm, ProgressForm} from './style'
 import { ButtonDefault } from '../../ArticleComposer/style'
 import { Eye, Keyhole, Warning, EnvelopeSimple, User, EyeSlash, ArrowLeft } from '@phosphor-icons/react'
 import { createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, signOut, updateProfile } from 'firebase/auth'
@@ -10,29 +10,21 @@ import { auth } from '../../../services/firebaseconfig'
 import { useEffect, useState } from 'react'
 import { EmailVerification } from '../EmailVerification'
 import { FirebaseError } from 'firebase/app'
+import { Loader } from '../../Loader'
+import { useVerifyEmail } from '../hook/useVerifyEmail'
 
 
 export function Register() {
 
     const { register, handleSubmit, formState: { errors } } = useForm()
-    const [status, setStatus] = useState('')
     const [ username, setUsername ] = useState('')
     const [showPassword, setShowPassword] = useState(false)
     const [error, setError] = useState('')
+    const status = useVerifyEmail()
 
 
 
 
-    useEffect(() => {
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                setUsername(user)
-                user.emailVerified == false && setStatus('verifyEmail')
-                return
-            }
-            setStatus('loggedOut')
-        })
-    }, [])
 
 
     const handleSubmitRegister = async (data) => {
@@ -64,25 +56,16 @@ export function Register() {
         setShowPassword((state) => !state)
     }
 
-    const HandleSignOut = async (e) => {
-        e.preventDefault()
-        try {
-            const loggout = await signOut(auth)
-            setStatus('loggedOut')
-        } catch {
-            console.log('Algo deu errado')
-        }
-    }
+
 
 
     if (status == 'loggedOut') {
         return (
             <>
-                <ProgressForm value="20" max="100" />
                 <FormStyled onSubmit={handleSubmit((data) => handleSubmitRegister(data))}>
                     <div>
-                        <h1>REGISTRO</h1>
-                        <p>Registre-se ao melhor portal de notícias tech da internet!</p>
+                        <h1>Crie sua conta</h1>
+                        <p>Crie sua conta nomelhor portal de notícias tech da internet!</p>
                     </div>
 
                     <ContainerInputForm error={errors}>
@@ -127,34 +110,24 @@ export function Register() {
                         <br/>
                         <bold><Link to="../auth/login"><ArrowLeft size="24" color="#8A8AE0"/>Voltar para o login</Link></bold>
                     </div>
-                </FormStyled>
-            </>
-        )
-    } else if(status == 'verifyEmail') {
-        return (
-            username.emailVerified ? 
-                <Navigate to="../home"/>
-                : 
-                <EmailVerification status={status} setStatus={setStatus} />
 
-        )
-    } else {
-        return (
-            <>
-                <ProgressForm value="100" max="100" />
-                <FormStyled isLogged={true}>
-                    <div>
-                        <h1>&#60;techconnect/&#62;</h1>
-                        <br/>
-                        <div>
-                            <p>Olá, {username.displayName} você já está logado</p>
-                            <p>Como vim parar aqui? <Link to="../home">voltar para o início</Link></p>
-                        </div>
-                        <br />
-                        <ButtonDefault onClick={HandleSignOut}>SAIR DA CONTA</ButtonDefault>
-                    </div>
+
                 </FormStyled>
+                </>
+            
+        )
+    }
+    
+    if(status == 'verifyEmail') {
+        return (
+            <EmailVerification status={status} setStatus={setStatus} />
+        )
+    }
+
+    
+    return (
+            <>
+                {status == 'emailVerified' ? <Navigate to="../home"/>  : <Loader/> }
             </>
         )
     }
-}

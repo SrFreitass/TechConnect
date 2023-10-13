@@ -52,6 +52,18 @@ export const HeaderContainer = styled.header`
         display: none;
     }
 
+
+    @keyframes down {
+        to {
+            transform: translateY(0px);
+        }
+
+        from {
+            transform: translateY(-20px);
+        }
+    }
+
+
     ul:nth-child(3) {
         
         display: flex;
@@ -62,25 +74,31 @@ export const HeaderContainer = styled.header`
             display: none;
         }
         
+
+
         div{
 
             
+
+
             div {
+                animation: down 0.2s forwards;
                 margin-left: -7rem;
                 margin-top: 1rem;
                 display: flex;
                 position: absolute;
-                background-color: #121212;
+                background-color: #242424;
                 border-radius: 5px;
                 width: 10rem;
                 padding: 1rem;
+                z-index: 100;
 
 
                 &::after {
                     content: '';
                     width: 1rem;
-                    height: .5  rem;
-                    background-color: #121212;
+                    height: .5rem;
+                    background-color: #242424;
                     position: absolute;
                     left: 75%;
                     bottom: 100%;
@@ -92,7 +110,7 @@ export const HeaderContainer = styled.header`
                     display: flex;
                     align-items: center;
                     justify-content: space-between;
-                    gap: 3rem;
+                    gap: 2rem;
                     background: none;
                     border: none;
                     color: ${({theme}) => theme.colors.purple400};
