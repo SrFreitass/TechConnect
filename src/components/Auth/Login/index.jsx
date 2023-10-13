@@ -4,7 +4,7 @@ import { Header } from '../../Header'
 import { useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
 import { ButtonDefault } from '../../ArticleComposer/style'
-import { Warning } from '@phosphor-icons/react'
+import { EnvelopeSimple, Warning, Keyhole } from '@phosphor-icons/react'
 import { createUserWithEmailAndPassword, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../../../services/firebaseconfig'
 import { useState } from 'react'
@@ -53,18 +53,18 @@ export function Login() {
                 </div>
 
                 <ContainerInputForm error={errors}>
-                    <label>E-mail</label>
-                    <input {...register("email", { required: true })} type="email" placeholder='Insira seu email' />
+                    <input {...register("email", { required: true })} type="email" placeholder='E-mail' />
+                    <EnvelopeSimple size={24} color="#757575" />
                     {signError && <div> <Warning size={24} /> <span>E-mail não registrado.</span> </div>}
                     {errors?.email?.type == 'required' && <div> <Warning size={24} /> <span>Preencha os espaços em branco</span> </div>}
                 </ContainerInputForm>
 
                 <ContainerInputForm error={errors}>
-                    <label>Senha</label>
-                    <input {...register("password", { required: true })} type="password" placeholder='Insira sua senha' />
+                    <input {...register("password", { required: true })} type="password" placeholder='Senha' />
+                    <Keyhole size={24} color="#757575" />
+                    <div><p>Esqueceu sua senha? <Link onClick={() => setResetPassword(true)}>Redefine sua senha</Link></p></div>
                     {signError && ( 
                     <>
-                    <div><p>Esqueceu sua senha? <Link onClick={() => setResetPassword(true)}>Redefine sua senha</Link></p></div>
                     <div> <Warning size={24} /> <span>Senha incorrenta.</span> </div> 
                     </>
                     )}

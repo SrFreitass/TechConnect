@@ -22,13 +22,18 @@ export function useArticleCreate() {
     const articleCollectionRef = collection(db, 'articles');
 
 
-    const standardStructure = `<h1>Tit&uacute;lo.</h1>
+    const standardStructure = 
+    `<h1>Tit&uacute;lo.</h1>
     <h2>Subtit&uacute;lo.</h2>
     <p>Autor.</p>
-    <img/>
-    <p>Começe aqui...</p>`.replace(/ /g, '')
+    <p><img></p>
+    <p>Come&ccedil;aaqui...</p>`.replace(/ /g, '')
+
+    console.log('renderizou')
+    console.log(content)
 
     useEffect(() => {
+
         if (content === '' || imageURL == '') {
             toast.error('Preencha todos os campos')
             return
@@ -83,23 +88,28 @@ export function useArticleCreate() {
 
         const valueEditor = editorRef.current.getContent()
 
-        console.log(valueEditor)
-        console.log(standardStructure)
         if (valueEditor != standardStructure) {
 
             try {
+                
+                if(content == valueEditor && imageURL == url) {
+                    throw 'equal'
+                }
+
                 setContent(valueEditor);
                 setTitle((/<h1>(.*?)<\/h1>/.exec(valueEditor)[0]).replace(/(<([^>]+)>)/ig, ''))
                 setSummary((/<h2>(.*?)<\/h2>/.exec(valueEditor)[0]).replace(/(<([^>]+)>)/ig, ''));
                 setAuthor((/<p>(.*?)<\/p>/.exec(valueEditor)[0]).replace(/(<([^>]+)>)/ig, ''));
                 setImageURL(url)
+                
             } catch (error) {
-                toast.error('Revise o conteúdo do artigo')
+                toast.error(error == 'equal' ? 'Preencha todos os campos' : 'Revise o conteúdo do artigo')
                 console.log(error)
             }
-
+            
             return
         }
+
 
         toast.error('Revise o conteúdo do artigo')
 

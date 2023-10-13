@@ -31,7 +31,19 @@ export const FormStyled = styled.form`
 
     gap: 1rem;
 
+    bold > a {
+        display: flex;
+        align-items: center;
+        gap: .3rem;
+        text-align: start;
+        font-weight: 600;
+        color: ${({theme}) => theme.colors.purple500};
+    }
+
+
     div:first-child {
+        display: flex
+        flex-direction: column;
         text-align: center;
     }
 
@@ -40,6 +52,7 @@ export const FormStyled = styled.form`
             display: flex;
             flex-direction: column;
             gap: 1rem;
+            background-color: #121212;
 
             button {
                 max-width: 20rem;
@@ -49,12 +62,43 @@ export const FormStyled = styled.form`
 
     `}
 
+    input:focus + svg {
+        fill: ${({ theme }) => theme.colors.purple400};
+
+    }
+
+    div > svg:nth-child(2) {
+        position: absolute;
+        margin-top: .8rem;
+        margin-left: 1rem;
+    }
+
+    svg:nth-child(3) {
+            position: absolute;
+            align-self: end;
+            margin-top: 0.8rem;
+            margin-right: 1rem;
+        }
+
+
     input[type="text"], input[type="password"], input[type="email"]{
+       
+
+        &:-webkit-autofill,
+        &:-webkit-autofill:hover, 
+        &:-webkit-autofill:focus, 
+        &:-webkit-autofill:active{
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: #fff;
+            transition: background-color 5000s ease-in-out 0s;
+            box-shadow: inset 0 0 20px 20px #121212;
+        }
+
         height: 3rem;
         width: 100%;
         max-width: 25rem;
         font-size: 1rem;
-        padding: 1rem;
+        padding: 1.5rem 3rem;
 
         color: ${({ theme }) => theme.colors.primary};
         
@@ -62,13 +106,18 @@ export const FormStyled = styled.form`
             color: ${({ theme }) => theme.colors.secundary};
         }
 
+
+        border: 2px solid ${({theme}) => theme.colors.background};
+
         &:focus {
-            outline: none;
+            border: 2px solid ${({ theme }) => theme.colors.purple400};
+
         }
 
-        background: none;
-        border: 2px solid ${({ theme }) => theme.colors.purple400};
-        border-radius: 8px;
+
+        background-color: #121212;
+
+        border-radius: 5px;
 
     }
 
@@ -95,7 +144,6 @@ export const FormStyled = styled.form`
     button {
         width: 100%;
         height: 3rem;
-        filter: drop-shadow(0 0 8px ${({ theme }) => theme.colors.purple700});
     }
 
     
@@ -109,9 +157,13 @@ export const ContainerCheckForm = styled.div`
     justify-content: start;
     gap: .4rem;
 
-    input[type="checkbox"] {
-        width: 1rem;
+    h4 {
+        text-align: center;
+        color: ${({theme}) => theme.colors.secundary};
+        font-weight: 500;
     }
+
+
 `
 
 export const ProgressForm = styled.progress`
@@ -121,42 +173,4 @@ export const ProgressForm = styled.progress`
     position: fixed;
     top: -.4rem;
 
-    accent-color: ${({ theme }) => theme.colors.purple700};
-`
-
-export const InputPassword = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: .4rem;
-
-    div:nth-child(2) {
-        height: 3rem;
-        display: flex;
-        align-items: center;
-        border: 2px solid ${({ theme }) => theme.colors.purple400};
-        border-radius: 8px;
-        color: ${({ theme }) => theme.colors.primary};
-
-        svg {
-            margin-right: .5rem;
-            color: ${({ theme }) => theme.colors.primary};
-        }
-    }
-
-    div {
-        display: flex;
-        align-items: center;
-        gap: .4rem;
-    }
-
-    svg {
-        color: #ab2c2c;
-        min-width: 24px;
-        min-height: 24px;
-    }
-
-
-     input[type="password"], input[type="text"] {
-        border: none;
-     }
 `

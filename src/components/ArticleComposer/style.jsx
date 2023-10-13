@@ -5,8 +5,9 @@ export const StyleArticleCreationForm = styled.div`
     flex-direction: column;
     gap: 2rem;
     color: ${({ theme }) => theme.colors.black800};
-    background-color: #ffffff;
+    background-color: #232428;
     width: 100%;
+    border-radius: 5px;
 
 
 
@@ -20,12 +21,37 @@ export const StyleArticleCreationForm = styled.div`
         flex-direction: column;
         gap: 1rem;
         text-align: center;
-        padding: .6rem;
+        padding: 1rem;
+
     }
+
 
     div.tox  {
         width: 100%;
     }
+
+    div.tox-menubar, div.tox-toolbar , div.tox-editor-header,  div.tox-tinymce, div.tox-editor-header, div.tox-tbtn, div.tox .tox-mbtn--active, div.tox-menu, div.tox  {
+        background: #232428 !important;
+        border: none;
+        border-radius: 0px 0px 5px 0px;
+        padding: 0;
+    } 
+
+    .tox-menu tox-collection .tox-collection--list .tox-selected-menu {
+        background-color: #232428 !important;
+    }
+
+    .tox .tox-toolbar-overlord, .tox-toolbar__primary, .tox-tbtn--bespoke {
+        background-color: #232428 !important;
+    }
+
+    .tox-statusbar {
+        background-color: #121212 !important;
+    }
+
+    div.tox-collection {
+        background-color: #121212 !important;
+    } 
 
 
     select {
@@ -37,6 +63,9 @@ export const StyleArticleCreationForm = styled.div`
         font-weight: 500;
 
         padding: 0;
+        color: ${({theme}) => theme.colors.primary};
+        background: #232428;
+
 
         &:focus {
             outline: none;
@@ -62,23 +91,22 @@ export const UploadContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-color: #ffffff;
     border-radius: 10px;
-    padding: 0.5rem;
+    gap: 1rem;
     width: 100%;
 
     svg {
         margin-bottom: 5rem;
         position: absolute;
         align-self: center;
-        fill: #7b9be1;
+        fill: ${({theme}) => theme.colors.purple500};
     }
 
     span {
         align-self: center;
         position: absolute;
         text-align: center;
-        color: #7b9be1;
+        color: ${({theme}) => theme.colors.purple500};
         font-weight: bold;
     }
 
@@ -94,8 +122,9 @@ export const UploadContainer = styled.div`
         height: 12rem;
         font-size: 0rem;
         background: none;
-        border: 2px dashed #7b9be1;
+        border: 2px dashed ${({theme}) => theme.colors.purple500};
         border-radius: 10px;
+
     }
     
     input[type=file] {
@@ -116,10 +145,14 @@ export const IconsContainer = styled.div`
     align-items: center;
     text-align: start;
     font-weight: 500;
-    gap: .1rem;
+    gap: .5rem;
 
     p {
-        color: #22223E
+        color: ${({theme}) => theme.colors.primary};
+    }
+
+    label {
+        color: ${({theme}) => theme.colors.primary};
     }
 
     button {
@@ -140,6 +173,10 @@ export const ButtonDefault = styled.button`
     width: 8rem; 
     height: 3rem;
     border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
     background-color: ${({ theme }) => theme.colors.purple700};
     border: none;
     color: ${({ theme }) => theme.colors.primary};

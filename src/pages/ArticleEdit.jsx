@@ -11,23 +11,26 @@ export function ArticleEdit() {
 
     const token = useAdminVerify()
 
-    if (token == 'admin') {
+    if (token === 'admin') {
         return (
             <Wrapper>
                 <Header />
                 <ArticleEditForm />
             </Wrapper>
         )
-    } else if (token === 'error') {
+    } 
+    
+    if (token === 'error') {
         return (
             <Navigate to="/not-found-404" />
         )
-    } else {
-        return (
+    }
+
+        
+    return (
             <Wrapper>
                 <Header />
                 <Loader />
             </Wrapper>
         )
     }
-}

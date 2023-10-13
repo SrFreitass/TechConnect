@@ -36,13 +36,24 @@ export const HeaderContainer = styled.header`
     ul:first-child {
         padding-right: 1rem;
         gap: 1rem;
-    } 
+
+        
+        ${({ search }) => search && css` 
+            li {
+                display: none;
+            }
+        `}
+        
+        
+    }
+    
 
     ul:nth-child(2) {
         display: none;
     }
 
     ul:nth-child(3) {
+        
         display: flex;
         gap: 1rem;
         border-left: 1px solid ${({ theme }) => theme.colors.secundary};
@@ -51,13 +62,37 @@ export const HeaderContainer = styled.header`
             display: none;
         }
         
-        div:hover {
+        div{
 
-            li:nth-child(2) {
+            
+            div {
+                margin-left: -7rem;
+                margin-top: 1rem;
                 display: flex;
                 position: absolute;
+                background-color: #121212;
+                border-radius: 5px;
+                width: 10rem;
+                padding: 1rem;
+
+
+                &::after {
+                    content: '';
+                    width: 1rem;
+                    height: .5  rem;
+                    background-color: #121212;
+                    position: absolute;
+                    left: 75%;
+                    bottom: 100%;
+                    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+                }
+
 
                 button {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    gap: 3rem;
                     background: none;
                     border: none;
                     color: ${({theme}) => theme.colors.purple400};
@@ -67,6 +102,7 @@ export const HeaderContainer = styled.header`
                     a {
                         color: ${({theme}) => theme.colors.purple400};
                         margin-left: -1rem;
+                        font-size: 1rem;
                     }
                 }
             }
@@ -98,6 +134,8 @@ export const HeaderContainer = styled.header`
 
 
     @media (max-width: 850px) {
+
+        padding: 3rem 0rem;
 
         span {
             display: none;

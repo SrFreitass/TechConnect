@@ -5,7 +5,6 @@ export const SearchContainer = styled.div`
     display: flex;
     align-items: center;
     padding: 0.2rem;
-    border-radius: 5px;
 
     svg {
         margin-top: 0 !important;
@@ -34,19 +33,23 @@ export const SearchContainer = styled.div`
     }
 
     ${({ search }) => search && css`
-        background-color: #fff;  
-        border-radius: 8px;
-        border: solid 1.5px ${({theme}) => theme.colors.purple400};
-        filter: drop-shadow(0px 0px 5px ${({theme}) => theme.colors.purple400});
+        background-color: #121212;  
+        border: solid 1px ${({theme}) => theme.colors.purple400};
+        border-radius: 5px;
+
+        
 
         form {
-        width: 10rem; 
-         
+            width: 15rem; 
+            padding: .4rem .4rem;
+            
         }
-
+        
         input {
-        transition: all ease-in-out 0.3s;
-        width: 100%;    
+            border-radius: 5px;
+            transition: all ease-in-out 0.3s;
+            width: 100%;    
+            color: white;
             
         }
 

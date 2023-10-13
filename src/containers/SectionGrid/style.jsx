@@ -11,6 +11,7 @@ export const SectionGrid = styled.div`
     margin-top: .8rem;
 
     @media (max-width: 1050px) {
+        display: block;  
         grid-template-columns: none;
      }
     

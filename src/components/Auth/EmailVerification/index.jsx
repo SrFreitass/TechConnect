@@ -14,8 +14,8 @@ export function EmailVerification({ status, setStatus }) {
             <ProgressForm value="90" max="100" />
             <h1>Quase lá...</h1>
             <p>Confirme seu e-mail para ser um membro verificado da comunidade TechConnect</p>  
-            <ButtonDefault onClick={() => location.reload()}>Já verifiquei</ButtonDefault>
             <p>Inseriu o e-mail incorretamente? <span onClick={() => setStatus(!status)}>Volte aqui</span></p>
+            <ButtonDefault onClick={() => location.reload()}>Já verifiquei</ButtonDefault>
         </VerificationContainer>
     )
 }

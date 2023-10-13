@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { HeaderContainer } from './style'
-import { FacebookLogo, InstagramLogo, List, Popcorn, TwitterLogo, UserCircle, X } from '@phosphor-icons/react'
+import { FacebookLogo, InstagramLogo, List, Popcorn, TwitterLogo, UserCircle, UserPlus, X } from '@phosphor-icons/react'
 import { Search } from './Search'
 import { auth } from '../../services/firebaseconfig'
 import { onAuthStateChanged, signOut } from 'firebase/auth'
@@ -8,7 +8,8 @@ import { Link } from 'react-router-dom'
 
 export function Header() {
   const [menu, setMenu] = useState(false)
-  const [user, setUser] = useState('')
+  const [userMenu, setUserMenu] = useState(false)
+  const [search, setSearch] = useState(false)
   const popup = useRef()
   const { currentUser } = auth
 
@@ -34,7 +35,7 @@ export function Header() {
   return (
     <>
 
-      <HeaderContainer menu={menu} setMenu={setMenu}>
+      <HeaderContainer menu={menu} setMenu={setMenu} search={search}>
         <span>&#60;techconnect/&#62;</span>
         <span>&#60;/&#62;</span>
 
@@ -43,7 +44,7 @@ export function Header() {
             <li><a href="#">Artigos</a></li>
             <li><a href="#">Sobre nós</a></li>
             <li><a href="#">Fast</a></li>
-            <Search />
+            <Search search={search} setSearch={setSearch}/>
           </ul>
 
           <div>
@@ -51,7 +52,7 @@ export function Header() {
             <ul>
               <X size='32' color='#757575' onClick={handleMenu} />
               <br />
-              <Search />
+              <Search search={search} setSearch={setSearch}/>
               <li><strong>Categorias</strong></li>
               <li><Link to="home/fast/home"  onClick={handleMenu}>Fast</Link></li>
               <li><Link to="../category/jogos" onClick={handleMenu}>Jogos</Link></li>
@@ -73,8 +74,11 @@ export function Header() {
             <li><InstagramLogo size={32} /></li>
             <li><TwitterLogo size={32} /></li>
             <div>
-            <li><UserCircle size={32}/></li>
-            <li>{currentUser ? <button onClick={handleSignOut}>Sair</button> :  <button><Link to="../auth/login">Entrar</Link></button>}</li>
+              <li onClick={() => setUserMenu(!userMenu)}><UserCircle size={32}/></li>
+              {userMenu ? <div>
+                {currentUser ? <button onClick={handleSignOut}><X size={24} color="#C291F4"/> Sair</button> :  <button> <UserPlus size={24} color="#C291F4" /> <Link to="../auth/login"> Entrar</Link></button>}
+              </div> : ''}
+
             </div>  
           </ul>
 

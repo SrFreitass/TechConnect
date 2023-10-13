@@ -1,16 +1,19 @@
 import { Link } from "react-router-dom"
-import { SectionContainer, ButtonStyled } from "./style"
+import { SectionContainer, ButtonStyled, SectionFODA } from "./style"
 
 export function SectionMain() {
+
   return (
     <>
+    <SectionFODA>
       <SectionContainer>
-        <h1>Inovação, Conexão, Transformação.</h1>
         <div>
-          <ButtonStyled><a href="https://github.com/SrFreitass/TechConnect" target="__blank">Ajude nesse projeto!</a></ButtonStyled>
-          <ButtonStyled><Link to="/home">Dê uma olhada em nosso artigos</Link></ButtonStyled>
-        </div>
+          <h1>O seu guia para o <span>mundo</span> da tecnologia.</h1>
+          <h3>Explorando as últimas tendências, inovações e insights no fascinante universo da tecnologia - Mantenha-se atualizado conosco</h3>
+        </div>  
       </SectionContainer>
+      <span></span>
+    </SectionFODA>
     </>
   )
 }

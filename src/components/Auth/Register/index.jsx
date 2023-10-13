@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form'
 import { Link, Navigate } from 'react-router-dom'
 import { FormStyled, ContainerInputForm, ContainerCheckForm, ProgressForm, InputPassword } from './style'
 import { ButtonDefault } from '../../ArticleComposer/style'
-import { Eye, EyeClosed, Warning } from '@phosphor-icons/react'
+import { Eye, Keyhole, Warning, EnvelopeSimple, User, EyeSlash, ArrowLeft } from '@phosphor-icons/react'
 import { createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, signOut, updateProfile } from 'firebase/auth'
 import { auth } from '../../../services/firebaseconfig'
 import { useEffect, useState } from 'react'
@@ -86,47 +86,47 @@ export function Register() {
                     </div>
 
                     <ContainerInputForm error={errors}>
-                        <label>Usuário</label>
-                        <input {...register("username", { required: true, maxLength: 20 })} type="text" placeholder='Insira seu apelido' />
+                        <input {...register("username", { required: true, maxLength: 20 })} type="text" placeholder='Seu nome' />
+                        <User size={24} color="#757575" />
                         {errors?.username?.type === 'required' && <div> <Warning size={24} /> <span>Você precisa informar seu apelido.</span> </div>}
                     </ContainerInputForm>
 
                     <ContainerInputForm error={errors}>
-                        <label>E-mail</label>
-                        <input {...register("email", { required: true })} type="text" placeholder='Insira seu email' />
+                        <input {...register("email", { required: true })} type="text" placeholder='Seu e-mail' />
+                        <EnvelopeSimple size={24} color="#757575" />
                         {errors?.email?.type === 'required' && <div> <Warning size={24} /> <span>Você precisa informar um E-mail.</span> </div>}
                         {error == 'errorEmail' && <div> <Warning size={24} /> <span>O e-mail é inválido ou já está em uso</span> </div>}
                     </ContainerInputForm>
 
-                    <InputPassword error={errors}>
-                        <label>Senha</label>
-                        <div>
-                            <input {...register("password", { required: true, minLength: 8, pattern: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/ })} type={showPassword ? 'text' : 'password'} placeholder='Insira sua senha' />
-                            {showPassword ? <Eye size={24} onClick={handleVisiblePassword} /> : <EyeClosed size={24} onClick={handleVisiblePassword} />}
-                        </div>
+                    <ContainerInputForm error={errors}>
+                            <input {...register("password", { required: true, minLength: 8, pattern: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/ })} type={showPassword ? 'text' : 'password'} placeholder='Sua senha' />
+                            <Keyhole size={24} color="#757575" />
+                            {showPassword ? <Eye size={24} onClick={handleVisiblePassword} color="#C291F4"/> : <EyeSlash color="#C291F4" size={24} onClick={handleVisiblePassword} />}
                         {errors?.password?.type === 'required' && <div> <Warning size={24} /> <span>Você precisa definir uma senha.</span> </div>}
                         {errors?.password?.type === 'minLength' && <div> <Warning size={24} /> <span>Minímo de 8 caracteres</span> </div>}
                         {errors?.password?.type === 'pattern' && <div> <Warning size={24} /> <span>Letras maiúsculas, minúsculas, números e símbolos.</span> </div>}
-                    </InputPassword>
+                    </ContainerInputForm>
 
                     <ContainerInputForm error={errors}>
-                        <label>Confirmar senha</label>
                         <input {...register("passwordConfirmed", { required: true })} type='password' placeholder='Confirme sua senha' />
+                        <Keyhole size={24} color="#757575" />
                         {errors?.passwordConfirmed?.type === 'required' && <div> <Warning size={24} /> <span>Você precisa confirmar sua senha.</span></div>}
                         {error == 'notPassword' && <div> <Warning size={24} /> <span>As senhas não se coincidem</span> </div>}
                     </ContainerInputForm>
 
 
                     <ContainerCheckForm error={errors}>
-                        <input {...register("termsAccept", { required: true })} type="checkbox" />
-                        <label>Aceito os <Link>termos</Link> da TechConnect e da ConnectionXS</label>
+                        <br />
+                        <h4>Ao se registrar, você aceita nossos <Link>termos</Link> de uso e a nossa <Link>política de privacidade</Link>.</h4>
                     </ContainerCheckForm>
 
 
 
-
-                    <ButtonDefault>CRIAR CONTA</ButtonDefault>
-                    <p>Já tem uma conta? <Link to="/auth/login">Logue aqui</Link></p>
+                    <div>
+                        <ButtonDefault>CRIAR CONTA</ButtonDefault>
+                        <br/>
+                        <bold><Link to="../auth/login"><ArrowLeft size="24" color="#8A8AE0"/>Voltar para o login</Link></bold>
+                    </div>
                 </FormStyled>
             </>
         )

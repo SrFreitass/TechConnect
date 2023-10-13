@@ -8,15 +8,16 @@ import { list } from "firebase/storage";
 import { useNavigate } from "react-router-dom";
 import he from 'he'
 
-export function Search({ adminFilter }) {
+export function Search({ adminFilter, search, setSearch }) {
 
-    const [search, setSearch] = useState(false)
+    
     const inputRef = useRef()
     const navigate = useNavigate()
     console.log('renderizou')
 
     const handleActiveSearch = () => {
         setSearch(!search)
+        inputRef.current.focus()
     }
 
     const searchResults = (e) => {
@@ -46,10 +47,10 @@ export function Search({ adminFilter }) {
         <>
         <SearchContainer search={search} >
             <form onSubmit={searchResults}>
-                <input type="text" placeholder="Buscar..." ref={inputRef} />
+                <input onBlur={() => setSearch(false)} type="text" placeholder="Buscar..." ref={inputRef} />
                 <button type="submit"></button>
             </form>
-            {search ? <X color="#666" size={18}  onClick={handleActiveSearch} /> : < MagnifyingGlass color="#666" size={20} onClick={handleActiveSearch} />}
+            {search ? <X color="#666" size={20}/> : < MagnifyingGlass color="#666" size={20} onClick={handleActiveSearch} />}
         </SearchContainer>
         </>
     )

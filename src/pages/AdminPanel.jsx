@@ -18,7 +18,7 @@ export function AdminPanel() {
   const navigate = useNavigate()
 
 
-  if (token == 'admin') {
+  if (token === 'admin') {
     return (
       <Wrapper>
         <Header />
@@ -28,14 +28,16 @@ export function AdminPanel() {
         </SectionGrid>
       </Wrapper>
     )
-  } else if (token == 'error') {
+  } 
+
+  if (token === 'error') {
     return navigate('./404')
-  } else {
+  }
+  
     return (
       <Wrapper>
-        <Header />
         <Loader />
       </Wrapper>
     )
-  }
+
 }

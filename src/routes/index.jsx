@@ -53,7 +53,7 @@ export const router = createBrowserRouter([
     element: <ArticlesFinder />,
   },
   {
-    path: "home/fast/:title",
+    path: "home/fast/:titleID",
     element: <FastPage />,
   },
   {

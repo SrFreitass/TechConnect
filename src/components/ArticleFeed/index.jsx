@@ -6,15 +6,16 @@ import { Articles } from "../common/Articles";
 export function News() {
   const [news, setNews] = useState([]);
   const userCollectionRef = collection(db, "articles")
-  const [lastVisible, setLastVisible] = useState(0)
+  const [lastVisible, setLastVisible] = useState('')
   const [showButton, setShowButton] = useState(true)
+
 
   useEffect(() => {
     const getData = async () => {
       const q = query(userCollectionRef, where("emphasis", "==", false), orderBy('date', 'desc'), limit(5))
       const querySnapshot = await getDocs(q)
       setLastVisible(querySnapshot.docs[querySnapshot.docs.length - 1])
-
+      
       const data = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
       setNews(data)
       console.log(data)
@@ -25,19 +26,29 @@ export function News() {
 
 
 
-  const HandleClickNews = async () => {
+  const HandleClickNews = async (e) => {
     try {
+      console.log(lastVisible)
       const next = await query(userCollectionRef, where("emphasis", "==", false), orderBy('date', 'desc'), startAfter(lastVisible), limit(5))
       const querySnapshot = await getDocs(next)
+      
+      console.log(querySnapshot)
       const nextData = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
-      if (querySnapshot.docs.length == 0) {
+      console.log('teste')
+
+      if (querySnapshot.docs.length < 1) {
+        console.log('tem nada não meu fi')
         setShowButton(false)
         return
       }
+      
+      
       setLastVisible(querySnapshot.docs[querySnapshot.docs.length - 1])
       setNews((state) => [...state, ...nextData])
+    
     } catch (error) {
       console.log(error)
+      
     }
   };
 

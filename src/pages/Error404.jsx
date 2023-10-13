@@ -4,10 +4,10 @@ import { Wrapper } from "../Styles/Wrapper";
 
 export function Error404() {
   return (
-    <Wrapper>
-      <Header />
-      <NotFound />
-    </Wrapper>
+      <Wrapper>
+        <Header />
+        <NotFound />
+      </Wrapper>
   )
 }
 

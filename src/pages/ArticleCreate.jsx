@@ -20,16 +20,18 @@ export function ArticleCreate() {
                 <ArticleCreationForm />
             </Wrapper>
         )
-    } else if (token == 'error') {
+    } 
+    
+    if (token == 'error') {
         return (
             <Navigate to="/not-found-404" />
         )
-    } else {
-        return (
+    }
+
+    return (
             <Wrapper>
                 <Header />
                 <Loader />
             </Wrapper>
         )
     }
-}

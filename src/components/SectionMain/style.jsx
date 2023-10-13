@@ -1,30 +1,61 @@
 import { styled } from "styled-components";
 
-export const SectionContainer = styled.section`
+export const SectionFODA = styled.section`
+
+
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 75vh;
-    justify-content: center;
-    gap: 2rem;
 
-    h1 {
-        font-size: 2rem;
+    span:nth-child(2) {
+        margin-top: 10%;
+        width: 30rem;
+        height: 30rem;
+        background-color: ${({theme}) => theme.colors.purple400};
+        border-radius: 50%;
+        filter: blur(10rem)
+        
+    }
+
+
+`
+
+export const SectionContainer = styled.section`
+
+    div {
+        
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 75vh;
+        justify-content: center;
+        gap: 1rem;
     }
 
     h1 {
         color: ${({ theme }) => theme.colors.primary};
-        font-size: 2rem;
+        font-size: 2.5rem;
+        text-align: center;
         font-weight: bold;
         -webkit-animation: tracking-in-expand 1s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
 	    animation: tracking-in-expand 1s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+
+        span {
+            /* padding: .5rem .5rem;
+            border-radius: 10rem;
+            background-color: ${({theme}) => theme.colors.purple500}; */
+            color: ${({theme}) => theme.colors.purple500};
+        }
+    }
+
+    h3 {
+        font-weight: 500;
+        text-align: center;
+        width: 70%;
+        color: ${({theme}) => theme.colors.secundary};
     }
 
 
-    div {
-        display: flex;
-        gap: 1rem;
-    }
     
     @-webkit-keyframes tracking-in-expand {
     0% {

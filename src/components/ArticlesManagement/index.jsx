@@ -1,5 +1,5 @@
 import { db } from "../../services/firebaseconfig";
-import { collection, getDocs, deleteDoc, query, where, doc } from "firebase/firestore";
+import { collection, getDocs, deleteDoc, query, where, doc, limit, orderBy, startAfter } from "firebase/firestore";
 import { CloudArrowDown, TrashSimple, NotePencil, Bookmarks } from "@phosphor-icons/react";
 import { useEffect, useState } from 'react'
 import { NewsStyled, ButtonsContainer } from "../ArticleFeed/style";
@@ -16,12 +16,16 @@ import { Articles } from "../common/Articles";
 export function SectionAdmin() {
     const [newsEdit, setNewsEdit] = useState([])
     const [searchFilter, setSearchFilter] = useState('')
+    const [selectFilter, setSelectFilter] = useState('')
+    const [lastVisible, setLastVisible] = useState()
     const userCollectionRef = collection(db, "articles");
 
     useEffect(() => {
         const getData = async () => {
-            const data = await getDocs(userCollectionRef);
+            const q = query(userCollectionRef, orderBy("date", "desc"), limit(5))
+            const data = await getDocs(q);
             setNewsEdit(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+            setLastVisible(data.docs[data.docs.length - 1])
         };
         getData();
     }, []);
@@ -46,25 +50,58 @@ export function SectionAdmin() {
         getDataFilter()
     }, [searchFilter])
 
+    const handleNextArticles = async () => {
+        const q = query(userCollectionRef, orderBy('date', 'desc'), startAfter(lastVisible), limit(5))
+        const querySnapshot = await getDocs(q);
+        const data = querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+        setNewsEdit((lastData) => [...lastData, ...data]);
+
+        setLastVisible(querySnapshot.docs[querySnapshot.docs.length - 1])
+    }
+
     const handleDeleteArticle = async (id) => {
         const articleDoc = doc(db, "articles", id)
-        deleteDoc(articleDoc)
-        toast.success('Artigo excluído com sucesso')
-        const data = await getDocs(userCollectionRef);
-        setNewsEdit(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+        let indexOf = null
+        
+        try {
+            await deleteDoc(articleDoc)
+
+            newsEdit.find((item, index) => {
+                item.id == id ? indexOf = index : ''
+            })
+            
+            const data = newsEdit
+            data.splice(indexOf, 1)
+            setNewsEdit([...data])
+            toast.success('Artigo excluído com sucesso')
+        } catch (e) {
+            console.error(e)
+            toast.error('Houve algum erro na exclusão')
+        }
     }
 
     const handleFilterArticle = async (e) => {
-        if (e.target.value == 'false') {
+        const valueFilter = e.target.value
+
+        if (valueFilter == 'false') {
             const data = await getDocs(userCollectionRef);
             setNewsEdit(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+            setSelectFilter('false')
             return
         }
 
-        const q = query(userCollectionRef, where("category", "==", e.target.value))
+        const q = query(userCollectionRef, valueFilter == 'emphasis' ? where("emphasis", "==", true) : where("category", "==", valueFilter))
         const data = await getDocs(q);
+
+        if(data.docs.length == 0) {
+            toast.error('Não há artigos dessa categoria')
+            setSelectFilter('false')
+            return 
+        }
+
         const dataFilterd = (data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
         setNewsEdit(dataFilterd)
+        setSelectFilter(valueFilter)
     }
 
     return (
@@ -77,16 +114,17 @@ export function SectionAdmin() {
             <div>
                 <Search adminFilter={{setSearchFilter, searchFilter}}/>
 
-                <select onChange={handleFilterArticle}>
+                <select onChange={handleFilterArticle} value={selectFilter}>
                     <option value="false">Categoria</option>
-                    <option value="tecnologia">tecnologia</option>
-                    <option value="inovação">inovação</option>
-                    <option value="computação">computação</option>
-                    <option value="empreendendorismo">empreendendorismo</option>
-                    <option value="jogos">jogos</option>
+                    <option value="emphasis">Destaques</option>
+                    <option value="tecnologia">Tecnologia</option>
+                    <option value="inovação">Inovação</option>
+                    <option value="computação">Computação</option>
+                    <option value="empreendendorismo">Empreendendorismo</option>
+                    <option value="jogos">Jogos</option>
                 </select>
             </div>
-            <Articles articlesList={newsEdit} asidePanel={false} management={{isPageAdmin: true, handleFilterArticle, handleDeleteArticle}}/>
+            <Articles articlesList={newsEdit} HandleClickNews={handleNextArticles} asidePanel={false} management={{isPageAdmin: true, handleFilterArticle, handleDeleteArticle}}/>
         </SectionAdminStyled>
     )
 }

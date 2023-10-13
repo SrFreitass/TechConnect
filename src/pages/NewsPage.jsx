@@ -7,9 +7,7 @@ import { Wrapper } from "../Styles/Wrapper";
 import { useEffect } from 'react'
 
 export function NewsPage() {
-
-
-
+  
   return (
     <Wrapper>
       <Header />

@@ -1,8 +1,6 @@
 import { styled } from "styled-components";
 
 export const MainStyled = styled.main`
-    height: 100vh;
-    width: 100%;
 
 
     display: flex;
@@ -10,6 +8,12 @@ export const MainStyled = styled.main`
     justify-content: start;
     gap: 10rem;
     
+    div:nth-child(3) {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+
             h2 {
             font-weight: 600;
             color: ${({ theme }) => theme.colors.primary};
@@ -26,8 +30,8 @@ export const MainStyled = styled.main`
         gap: 1rem;
 
         input[type="text"] { 
-        height: 3rem;
-        width: 25rem;
+            height: 3rem;
+            width: 20rem;
 
         font-size: 1rem;
         padding: 1rem;
@@ -49,12 +53,56 @@ export const MainStyled = styled.main`
     }
 
 }
-    video {
-        border-radius: 10px;
-        width: 30rem;
-        height: 50rem;
-        object-fit: cover;
-        
+
+
+    @media (max-width: 925px) {
+        gap: 5rem;
+
+
+
+    }
+
+    @media (max-width: 800px) {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        form {
+            width: 100%;
+            max-width: 30rem;
+            display: flex;
+            justify-content: center;
+
+            input[type="text"] { 
+                height: 3rem;
+                width: 100%;
+
+                font-size: 1rem;
+                padding: 1rem;
+
+                color: ${({ theme }) => theme.colors.primary};
+                
+                &::placeholder {
+                    color: ${({ theme }) => theme.colors.secundary};
+                }
+
+                &:focus {
+                    outline: none;
+                }
+
+                background: none;
+                border: 2px solid ${({ theme }) => theme.colors.purple400};
+                border-radius: 8px;
+
+            }       
+
+            div:nth-child(3) {
+                display: flex;
+                justify-content: end;
+                gap: 1.5rem;
+                width: 100%;
+            }
+        }
     }
 
 `

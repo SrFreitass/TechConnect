@@ -1,21 +1,28 @@
 import { styled } from "styled-components";
 
-export const StyledLoader = styled.div`        
-        width:50px;
-        height:50px;
-        --c:radial-gradient(farthest-side,#766DF4 92%,#0000);
-        background: 
-            var(--c) 50% 0,
-            var(--c) 50% 100%,
-            var(--c) 100% 50%,
-            var(--c) 0    50%;
-            background-size:12px 12px;
-            background-repeat:no-repeat;
-            animation:s7 1s infinite;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            
-    @keyframes s7 {to{transform: rotate(.5turn)}}
+export const StyledLoader = styled.h1`        
+    height: 95vh;
+    font-size: 3rem;
+    color: ${({theme}) => theme.colors.primary};
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    animation: float ease-in-out 2s infinite;
+
+
+    @keyframes float {
+        0% {
+            margin-top: 0rem;
+        }
+
+        50% {
+            margin-top: 1rem;
+        }
+
+        100% {
+            margin-top: 0rem;
+        }
+    }
 
 `
