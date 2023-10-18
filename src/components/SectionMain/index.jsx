@@ -14,6 +14,7 @@ import {
 } from '@phosphor-icons/react';
 import { Theme } from '../../Styles/Theme';
 import { useEffect, useState } from 'react';
+import Blur from '../../assets/images/blur.svg';
 
 export function SectionMain() {
   const [arrow, setArrow] = useState(false);
@@ -29,14 +30,14 @@ export function SectionMain() {
     <MainStyle>
       <SectionContainer>
         <div>
-          <h1>
+          <h1 data-aos='zoom-in'>
             O seu guia para o <span>mundo</span> da tecnologia.
           </h1>
-          <h3>
+          <h3 data-aos='zoom-in'>
             Explore as últimas tendências, inovações e insights no fascinante
             universo da tecnologie, mantenha-se sempre atualizado conosco
           </h3>
-          <ButtonDefault>EXPLORAR</ButtonDefault>
+          <ButtonDefault data-aos='zoom-out'>EXPLORAR</ButtonDefault>
         </div>
       </SectionContainer>
       <span> </span>

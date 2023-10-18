@@ -6,11 +6,15 @@ import { Background } from '../Styles/Background';
 import { Wrapper } from '../Styles/Wrapper';
 import { useEffect, useState } from 'react';
 import bg from '../assets/images/background.png';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 export function Introduction() {
   useEffect(() => {
     document.title =
       'TechConnect | Explora as últimas tendências do mundo tech';
+    AOS.init();
+    AOS.refresh();
   }, []);
 
   return (

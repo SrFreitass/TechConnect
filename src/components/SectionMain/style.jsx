@@ -129,6 +129,7 @@ export const ButtonStyled = styled.button`
 export const MainStyle = styled.main`
   display: flex;
   flex-direction: column;
+  align-items: center;
   width: 100%;
 
   img {
@@ -143,15 +144,16 @@ export const MainStyle = styled.main`
     position: absolute;
     bottom: -15rem;
     display: flex;
-    display: none;
     align-self: center;
     width: 20rem;
     height: 20rem;
     border-radius: 50%;
     background-color: ${({ theme }) => theme.colors.purple700};
     animation: 5s infinite steps(60) Animation;
-    @media (max-width: 480px) {
-      animation: none;
+    filter: blur(150px);
+
+    @media (max-width: 1000px) {
+      display: none;
     }
   }
 

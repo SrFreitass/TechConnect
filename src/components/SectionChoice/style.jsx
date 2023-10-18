@@ -52,7 +52,7 @@ export const SectionChoiceStyle = styled.section`
 
     h3 {
       width: 80%;
-      font-size: 1rem;
+      font-size: 0.9rem;
     }
   }
 

@@ -5,7 +5,7 @@ export const SectionAboutStyle = styled.section`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(180deg, rgba(18, 18, 20, 0) 0%, #121214 32.13%);
+  background: linear-gradient(180deg, rgba(18, 18, 20, 0) 0%, #121214 12.13%);
 
   @keyframes downUp {
     0% {
@@ -87,11 +87,6 @@ export const SectionAboutStyle = styled.section`
       width: 80%;
       font-size: 1.8rem;
     }
-
-    p {
-      width: 100% !important;
-      font-size: 0.8rem;
-    }
   }
 
   p {
@@ -99,6 +94,11 @@ export const SectionAboutStyle = styled.section`
     font-size: 1.2rem;
     color: ${({ theme }) => theme.colors.secundary};
     padding: 0rem 0rem 1rem;
+
+    @media (max-width: 550px) {
+      width: 80%;
+      font-size: 1rem;
+    }
   }
 
   div:nth-child(3) {

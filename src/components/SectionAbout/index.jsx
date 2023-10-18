@@ -9,29 +9,19 @@ export function SectionAbout() {
   return (
     <>
       <SectionAboutStyle>
-        <div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }}></div>
+        <div></div>
         <div>
-          <h1
-            initial={{ opacity: 0, y: 0 }}
-            whileInView={{ opacity: 1, y: -20 }}
-          >
+          <h1 data-aos='fade-up' data-aos-anchor-placement='bottom'>
             Somos um portal de notícias completo, focado em tecnologia.
           </h1>
-          <p
-            initial={{ opacity: 0, x: 0 }}
-            whileInView={{ opacity: 1, y: -20 }}
-          >
+          <p data-aos='fade-up' data-aos-anchor-placement='bottom'>
             Bem-vindo ao TechConnect! Somos apaixonados por tecnologia e estamos
             empenhados em compartilhar informações atualizadas e relevantes
             sobre o mundo da inovação tecnológica.
           </p>
         </div>
         <div>
-          <div
-            initial={{ opacity: 0, y: 0 }}
-            whileInView={{ opacity: 1, y: -20 }}
-            whileHover={{ scale: 1.1 }}
-          >
+          <div data-aos='zoom-in-up'>
             <h3>
               <img src={target3D} />
               Objetivo
@@ -42,11 +32,7 @@ export function SectionAbout() {
               fácil entendimento.
             </p>
           </div>
-          <div
-            initial={{ opacity: 0, y: 0 }}
-            whileInView={{ opacity: 1, y: -20 }}
-            whileHover={{ scale: 1.1 }}
-          >
+          <div data-aos='zoom-in-up'>
             <h3>
               <img src={team3D} />
               Nossa Equipe
@@ -57,11 +43,7 @@ export function SectionAbout() {
               conteúdo de qualidade.
             </p>
           </div>
-          <div
-            initial={{ opacity: 0, y: 0 }}
-            whileInView={{ opacity: 1, y: -20 }}
-            whileHover={{ scale: 1.1 }}
-          >
+          <div data-aos='zoom-in-up'>
             <h3>
               <img src={hand3D} /> Futuro e Visão
             </h3>
@@ -72,10 +54,7 @@ export function SectionAbout() {
             </p>
           </div>
         </div>
-        <span
-          initial={{ opacity: 0, y: 0 }}
-          whileInView={{ opacity: 1, y: 20 }}
-        ></span>
+        <span data-aos='fade-down'></span>
         <br />
       </SectionAboutStyle>
     </>
