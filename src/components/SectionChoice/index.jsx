@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import { SectionChoiceStyle } from './style';
-import metaverse3DIcon from '../../assets/images/metaverse.png';
 import {
   Graph,
   ShieldCheck,

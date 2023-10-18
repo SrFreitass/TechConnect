@@ -1,6 +1,5 @@
 import { Section404 } from './style';
 import { ButtonStyled } from '../SectionMain/style';
-import image404 from '../../assets/images/image-404.svg';
 import { Link } from 'react-router-dom';
 import { ButtonDefault } from '../ArticleComposer/style';
 import { motion } from 'framer-motion';

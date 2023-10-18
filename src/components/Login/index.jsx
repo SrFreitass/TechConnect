@@ -2,7 +2,6 @@ import { FormStyled, PasswordStyled } from './style';
 import { useState, useEffect, useLayoutEffect } from 'react';
 import { signInWithEmailAndPassword } from '@firebase/auth';
 import { auth } from '../../services/firebaseconfig';
-import imageTypewriter from '../../assets/images/map-icon.svg';
 import { ButtonStyled } from '../SectionMain/style';
 import { Eye, EyeSlash } from '@phosphor-icons/react';
 import { useNavigate } from 'react-router-dom';
@@ -34,7 +33,6 @@ export function Login() {
 
   return (
     <FormStyled>
-      <img src={imageTypewriter} />
       <form onSubmit={onLogin}>
         <h1>LOGIN</h1>
 
