@@ -1,6 +1,6 @@
 // Estilização global da página.
 
-import { createGlobalStyle, styled } from "styled-components";
+import { createGlobalStyle, styled } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
     * {
@@ -10,9 +10,12 @@ export const GlobalStyle = createGlobalStyle`
         font-family: 'Montserrat', 'Arial', 'sans-serif';
 
         &:focus {
-            outline: ${( { theme } ) => theme.colors.purple400};
+            outline: ${({ theme }) => theme.colors.purple400};
         }
+        
+        transition: ease-in-out 0.1s;
     }
+
 
 
     body {
@@ -49,4 +52,4 @@ export const GlobalStyle = createGlobalStyle`
         background: #555; 
     }
 
-`
+`;

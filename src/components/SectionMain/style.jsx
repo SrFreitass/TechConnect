@@ -1,118 +1,175 @@
-import { styled } from "styled-components";
+import { styled } from 'styled-components';
 
-export const SectionFODA = styled.section`
+export const SectionContainer = styled.section`
+  display: flex;
+  flex-direction: column;
+  height: 75vh;
+  justify-content: center;
 
-
+  div {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 1rem;
+  }
 
-    span:nth-child(2) {
-        margin-top: 10%;
-        width: 30rem;
-        height: 30rem;
-        background-color: ${({theme}) => theme.colors.purple400};
-        border-radius: 50%;
-        filter: blur(10rem)
-        
+  div:nth-child(3) {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+  }
+
+  section {
+    margin-top: 20rem;
+  }
+
+  h1 {
+    color: ${({ theme }) => theme.colors.primary};
+    font-size: 2.5rem;
+    text-align: center;
+    font-weight: bold;
+
+    span {
+      color: ${({ theme }) => theme.colors.purple700};
+    }
+  }
+
+  h3 {
+    font-weight: 500;
+    text-align: center;
+    max-width: 45rem;
+    color: ${({ theme }) => theme.colors.secundary};
+  }
+
+  button {
+    @keyframes shadowAnim {
+      0% {
+        filter: drop-shadow(0 0 5px ${({ theme }) => theme.colors.purple700});
+      }
+
+      50% {
+        filter: drop-shadow(0 0 15px ${({ theme }) => theme.colors.purple700});
+      }
+      100% {
+        filter: drop-shadow(0 0 5px ${({ theme }) => theme.colors.purple700});
+      }
     }
 
-
-`
-
-export const SectionContainer = styled.section`
-
-    div {
-        
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        height: 75vh;
-        justify-content: center;
-        gap: 1rem;
+    font-weight: bold;
+    width: 10rem;
+    height: 3rem;
+    background-color: ${({ theme }) => theme.colors.purple700};
+    animation: 3s ease-in-out infinite shadowAnim;
+    filter: drop-shadow(0 0 5px ${({ theme }) => theme.colors.purple700});
+    &:hover {
+      background-color: ${({ theme }) => theme.colors.purple700};
+      transition: all 0.2s;
     }
+    z-index: 1;
+  }
 
+  @media (max-width: 1000px) {
     h1 {
-        color: ${({ theme }) => theme.colors.primary};
-        font-size: 2.5rem;
-        text-align: center;
-        font-weight: bold;
-        -webkit-animation: tracking-in-expand 1s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
-	    animation: tracking-in-expand 1s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
-
-        span {
-            /* padding: .5rem .5rem;
-            border-radius: 10rem;
-            background-color: ${({theme}) => theme.colors.purple500}; */
-            color: ${({theme}) => theme.colors.purple500};
-        }
+      font-size: 2rem;
     }
 
     h3 {
-        font-weight: 500;
-        text-align: center;
-        width: 70%;
-        color: ${({theme}) => theme.colors.secundary};
+      width: 80%;
+      font-size: 1rem;
+    }
+  }
+
+  @media (max-width: 730px) {
+    h3 {
+      width: 80%;
+    }
+  }
+
+  @media (max-width: 550px) {
+    h1 {
+      width: 80%;
+      font-size: 1.8rem;
     }
 
-
-    
-    @-webkit-keyframes tracking-in-expand {
-    0% {
-        letter-spacing: -0.5em;
-        opacity: 0;
+    h3 {
+      width: 80%;
+      font-size: 1rem;
     }
-    40% {
-        opacity: 0.6;
-    }
-    100% {
-        opacity: 1;
-    }
-    }
-    
-    @keyframes tracking-in-expand {
-    0% {
-        letter-spacing: -0.5em;
-        opacity: 0;
-    }
-    40% {
-        opacity: 0.6;
-    }
-    100% {
-        opacity: 1;
-    }
-    }
-
-`
+  }
+`;
 
 export const ButtonStyled = styled.button`
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    &:hover {
-        transition: all 0.1s;
-        filter: drop-shadow(0px 0px 20px ${({ theme }) => theme.colors.purple700});
-    }
+  &:hover {
+    transition: all 0.1s;
+    filter: drop-shadow(0px 0px 20px ${({ theme }) => theme.colors.purple700});
+  }
 
-    height: 2.5rem;
-    font-size: 1.2rem;
-    padding: 1rem;  
+  height: 2.5rem;
+  font-size: 1.2rem;
+  padding: 1rem;
 
-    border: none;
-    border-radius: 5px;
+  border: none;
+  border-radius: 5px;
 
-    background: none;
-    background-color: ${({ theme }) => theme.colors.purple700};
+  background: none;
+  background-color: ${({ theme }) => theme.colors.purple700};
+  color: ${({ theme }) => theme.colors.primary};
+  font-weight: bold;
+
+  a {
     color: ${({ theme }) => theme.colors.primary};
-    font-weight: bold;
-   
-    
-    
-     
-    a {
-        color: ${({ theme }) => theme.colors.primary};
-        text-decoration: none;
+    text-decoration: none;
+  }
+`;
+
+export const MainStyle = styled.main`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  img {
+    position: relative;
+    width: 3rem;
+    height: 5rem;
+    margin: 0 auto;
+    animation: 1s infinite steps(60) downUp;
+  }
+
+  span:nth-child(2) {
+    position: absolute;
+    bottom: -15rem;
+    display: flex;
+    display: none;
+    align-self: center;
+    width: 20rem;
+    height: 20rem;
+    border-radius: 50%;
+    background-color: ${({ theme }) => theme.colors.purple700};
+    animation: 5s infinite steps(60) Animation;
+    @media (max-width: 480px) {
+      animation: none;
+    }
+  }
+
+  @keyframes Animation {
+    0% {
+      width: 20rem;
     }
 
-`   
+    50% {
+      width: 30rem;
+    }
+
+    75% {
+      width: 25rem;
+    }
+
+    100% {
+      width: 20rem;
+    }
+  }
+`;

@@ -1,26 +1,28 @@
-import { useEffect, useState } from "react"
-import { onAuthStateChanged } from "firebase/auth"
-import { auth } from "../../../services/firebaseconfig"
+import { useEffect, useState } from 'react';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from '../../../services/firebaseconfig';
 
 export const useVerifyEmail = () => {
+  const [status, setStatus] = useState('');
 
-    const [status, setStatus] = useState('')
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user?.emailVerified) {
+        setStatus('emailVerified');
+        return;
+      }
 
-    useEffect(() => {
-        onAuthStateChanged(auth, (user) => {
+      if (user?.emailVerified == false) {
+        setStatus('verifyEmail');
+        return;
+      }
 
-            if (user?.emailVerified) {
-                setStatus('emailVerified')
-                return
-            }
+      setStatus('loggedOut');
+    });
+  }, []);
 
-            if(user) {
-                setStatus('verifyEmail')
-            }
-
-            setStatus('loggedOut')
-        })
-    }, [])
-    
-    return status
-}
+  return {
+    setStatus,
+    status,
+  };
+};

@@ -1,24 +1,27 @@
-import { Header } from "../components/Header/index"
-import { SectionMain } from "../components/SectionMain/index"
-import bgvideo from '../assets/videos/background.mp4'
-import { Background } from '../Styles/Background'
-import { Wrapper } from "../Styles/Wrapper";
-import { useEffect } from "react";
+import { Header } from '../components/Header';
+import { SectionAbout } from '../components/SectionAbout';
+import { SectionMain } from '../components/SectionMain';
+import { SectionChoice } from '../components/SectionChoice';
+import { Background } from '../Styles/Background';
+import { Wrapper } from '../Styles/Wrapper';
+import { useEffect, useState } from 'react';
+import bg from '../assets/images/background.png';
 
 export function Introduction() {
+  useEffect(() => {
+    document.title =
+      'TechConnect | Explora as últimas tendências do mundo tech';
+  }, []);
 
-    useEffect(() => {
-      document.documentElement.style.overflowY = 'hidden'
-
-    }, [])
-
-    return (
-      <>
-      <Background />
-        <Wrapper>
-          <Header/>
-          <SectionMain/>
-        </Wrapper>
-      </>
-    )
+  return (
+    <>
+      <Background bg={bg} />
+      <Wrapper>
+        <Header isIntroductionPage={true} />
+      </Wrapper>
+      <SectionMain />
+      <SectionAbout />
+      <SectionChoice />
+    </>
+  );
 }
