@@ -1,4 +1,4 @@
-import { styled } from 'styled-components';
+import { styled } from "styled-components";
 
 export const MainStyled = styled.main`
   display: flex;
@@ -37,7 +37,6 @@ export const Info = styled.section`
   width: 70%;
   display: flex;
   flex-direction: column;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.secundary};
   gap: 0.5rem;
 
   h1 {
@@ -87,7 +86,7 @@ export const ArticleContainerStyled = styled.main`
   textarea:focus {
     transition: ease-in-out 0.1s;
     outline: none;
-    border: 1px solid #8a8ae0;
+    border: 1px solid ${({ theme }) => theme.colors.purple700};
   }
 
   img {
@@ -145,7 +144,7 @@ export const ArticleContainerStyled = styled.main`
     }
   }
 
-  @media (max-width: 850px) {
+  @media (max-width: 1150px) {
     aside:first-child {
       display: none;
     }
@@ -153,7 +152,7 @@ export const ArticleContainerStyled = styled.main`
     div > aside {
       display: flex;
       flex-direction: row;
-      justify-content: space-evenly;
+      justify-content: start;
     }
   }
 
@@ -173,7 +172,7 @@ export const CommentContainer = styled.div`
 
   padding: 1rem;
 
-  border: solid 1px ${({ theme }) => theme.colors.secundary};
+  border: solid 1px #353438;
   border-radius: 5px;
 
   div {
@@ -197,7 +196,7 @@ export const CommentContainer = styled.div`
   }
 
   svg {
-    color: ${({ theme }) => theme.colors.purple400};
+    color: ${({ theme }) => theme.colors.purple700};
   }
 
   svg:hover {

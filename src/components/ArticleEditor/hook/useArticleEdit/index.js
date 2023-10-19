@@ -20,6 +20,8 @@ export function useArticleEdit() {
 
     const { articleTitle } = useParams();
     const editorRef = useRef();
+    const categoryRef = useRef(null)
+    const [category, setCategory] = useState('')
 
     useEffect(() => {
         const fetchData = async () => {
@@ -29,6 +31,7 @@ export function useArticleEdit() {
                 setId(articleTitle)
                 setContent((docSnap.data()).content)
                 setEmphasis((docSnap.data()).emphasis)
+                setCategory((docSnap.data()).category)
                 return
             }
 
@@ -60,24 +63,39 @@ export function useArticleEdit() {
     }, [imageUpload])
 
     useEffect(() => {
-        if (imageEditURL) {
-            updateDoc(doc(db, "articles", id), {
-                imageURL: imageEditURL,
-            })
-            toast('Imagem alterada com sucesso!', {
-                icon: '🖼️'
-            })
+        const updateArticle = async () => {
+            try {
+                if (imageEditURL) {
+                    updateDoc(doc(db, "articles", id), {
+                        imageURL: imageEditURL,
+                    })
+                    toast('Imagem alterada com sucesso!', {
+                        icon: '🖼️'
+                    })
+                }
+        
+                if (contentEdit) {
+                    const categoryCurrent = category != categoryRef.current.value ? categoryRef.current.value : category
+                    console.log(categoryCurrent)
+
+                    updateDoc(doc(db, "articles", id), {
+                        title,
+                        summary,
+                        author,
+                        content: contentEdit,
+                        category: categoryCurrent,
+                    })
+                    toast.success('Artigo alterado com sucesso!')
+                }
+            } catch (error) {
+                toast.error('Houve algum erro no envio do artigo')
+                console.log(error)
+            }
+
         }
 
-        if (contentEdit) {
-            updateDoc(doc(db, "articles", id), {
-                title,
-                summary,
-                author,
-                content: contentEdit,
-            })
-            toast.success('Artigo alterado com sucesso!')
-        }
+        updateArticle()
+
 
     }, [imageEditURL, contentEdit])
 
@@ -90,11 +108,12 @@ export function useArticleEdit() {
         setSummary((/<h2>(.*?)<\/h2>/.exec(contentEditor)[0]).replace(/(<([^>]+)>)/ig, ''));
         setAuthor((/<p>(.*?)<\/p>/.exec(contentEditor)[0]).replace(/(<([^>]+)>)/ig, ''));
         setImageEditURL(imageURL)
-
-        updateDoc(doc(db, "articles", id), {
-            emphasis,
-        })
-    }
+        
+                updateDoc(doc(db, "articles", id), {
+                    emphasis,
+                })
+        
+        }
 
     return {
         content,
@@ -104,5 +123,6 @@ export function useArticleEdit() {
         editorRef,
         setEmphasis,
         emphasis,
+        categoryRef,
     }
 }

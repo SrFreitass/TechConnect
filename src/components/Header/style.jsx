@@ -1,4 +1,4 @@
-import { styled, css } from 'styled-components';
+import { styled, css } from "styled-components";
 
 export const HeaderContainer = styled.header`
   display: flex;
@@ -79,11 +79,11 @@ export const HeaderContainer = styled.header`
         background-color: #242424;
         border-radius: 5px;
         width: 10rem;
-        padding: 1rem;
+        padding: 0.8rem 1rem;
         z-index: 100;
 
         &::after {
-          content: '';
+          content: "";
           width: 1rem;
           height: 0.5rem;
           background-color: #242424;
@@ -105,7 +105,7 @@ export const HeaderContainer = styled.header`
           font-weight: 500;
 
           a {
-            color: ${({ theme }) => theme.colors.purple400};
+            color: ${({ theme }) => theme.colors.purple600};
             margin-left: -1rem;
             font-size: 1rem;
           }
@@ -190,7 +190,7 @@ export const HeaderContainer = styled.header`
           display: flex;
           flex-direction: column;
           align-items: start;
-          margin-top: 3rem;
+          margin-top: 4rem;
           margin-right: -1.5rem;
           position: fixed;
           padding: 0rem 2.2rem;
@@ -198,7 +198,7 @@ export const HeaderContainer = styled.header`
 
           ${({ isIntroductionPage }) =>
             isIntroductionPage
-              ? 'backdrop-filter: blur(6rem);'
+              ? "backdrop-filter: blur(6rem);"
               : `background-color: #191919;`}
 
           li:first-child {
@@ -213,7 +213,7 @@ export const HeaderContainer = styled.header`
             justify-content: space-between;
             flex-direction: column;
             gap: 1rem;
-            border-bottom: 0.5px solid ${({ theme }) => theme.colors.secundary};
+            border-bottom: 0.5px solid #353438;
 
             div:first-child {
               display: flex;

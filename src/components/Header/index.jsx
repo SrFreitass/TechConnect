@@ -1,5 +1,5 @@
-import { useState, useEffect, useRef } from 'react';
-import { HeaderContainer } from './style';
+import { useState, useEffect, useRef } from "react";
+import { HeaderContainer } from "./style";
 import {
   Briefcase,
   CaretDown,
@@ -17,12 +17,12 @@ import {
   Graph,
   FastForwardCircle,
   X,
-} from '@phosphor-icons/react';
-import { Search } from './Search';
-import { auth } from '../../services/firebaseconfig';
-import { onAuthStateChanged, signOut } from 'firebase/auth';
-import { Link } from 'react-router-dom';
-import { ButtonDefault } from '../ArticleComposer/style';
+} from "@phosphor-icons/react";
+import { Search } from "./Search";
+import { auth } from "../../services/firebaseconfig";
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import { Link } from "react-router-dom";
+import { ButtonDefault } from "../ArticleComposer/style";
 
 export function Header({ isIntroductionPage }) {
   const [menu, setMenu] = useState(false);
@@ -36,8 +36,8 @@ export function Header({ isIntroductionPage }) {
   const handleMenu = () => {
     setMenu(!menu);
     menu
-      ? (document.documentElement.style.overflow = 'auto')
-      : (document.documentElement.style.overflow = 'hidden');
+      ? (document.documentElement.style.overflow = "auto")
+      : (document.documentElement.style.overflow = "hidden");
     console.log(document.documentElement);
   };
 
@@ -47,7 +47,7 @@ export function Header({ isIntroductionPage }) {
       location.reload();
       return;
     } catch {
-      console.log('Algo deu errado.');
+      console.log("Algo deu errado.");
     }
   };
 
@@ -69,13 +69,13 @@ export function Header({ isIntroductionPage }) {
         <nav>
           <ul>
             <li>
-              <a href='#'>Artigos</a>
+              <a href="#">Artigos</a>
             </li>
             <li>
-              <a href='#'>Sobre nós</a>
+              <a href="#">Sobre nós</a>
             </li>
             <li>
-              <a href='#'>Fast</a>
+              <a href="#">Fast</a>
             </li>
             <Search
               searchProps={{ search, setSearch }}
@@ -85,9 +85,9 @@ export function Header({ isIntroductionPage }) {
 
           <div>
             {menu ? (
-              <X size='32' color='#757575' onClick={handleMenu} />
+              <X size="32" color="#757575" onClick={handleMenu} />
             ) : (
-              <List size='32' color='#757575' onClick={handleMenu} />
+              <List size="32" color="#757575" onClick={handleMenu} />
             )}
             <ul>
               <li>
@@ -104,30 +104,30 @@ export function Header({ isIntroductionPage }) {
                 </div>
                 {menuCategory && (
                   <div>
-                    <Link onClick={handleMenu} to='../category/inovação'>
+                    <Link onClick={handleMenu} to="../category/inovação">
                       <Lightbulb />
                       Inovação
                     </Link>
-                    <Link onClick={handleMenu} to='../category/tecnologia'>
+                    <Link onClick={handleMenu} to="../category/tecnologia">
                       <Graph />
                       Tecnologia
                     </Link>
-                    <Link onClick={handleMenu} to='../category/computação'>
+                    <Link onClick={handleMenu} to="../category/computação">
                       <DesktopTower />
                       Computação
                     </Link>
                     <Link
                       onClick={handleMenu}
-                      to='../category/empreendendorismo'
+                      to="../category/empreendendorismo"
                     >
                       <Briefcase />
                       Empreendedorismo
                     </Link>
-                    <Link onClick={handleMenu} to='../category/jogos'>
+                    <Link onClick={handleMenu} to="../category/jogos">
                       <GameController />
                       Jogos
                     </Link>
-                    <Link onClick={handleMenu} to='../home/fast/fast'>
+                    <Link onClick={handleMenu} to="../home/fast/fast">
                       <FastForwardCircle />
                       Fast
                     </Link>
@@ -136,14 +136,16 @@ export function Header({ isIntroductionPage }) {
               </li>
 
               <li>
-                <Link to='../home' onClick={handleMenu}>
+                <Link to="../home" onClick={handleMenu}>
                   Artigos
                 </Link>
               </li>
 
-              <li>Sobre nós</li>
+              <li>
+                <Link to="../">Sobre nós</Link>
+              </li>
               {currentUser ? (
-                <li>
+                <li onClick={handleSignOut}>
                   <X />
                   Sair da plataforma
                 </li>
@@ -178,18 +180,18 @@ export function Header({ isIntroductionPage }) {
                 <div>
                   {currentUser ? (
                     <button onClick={handleSignOut}>
-                      <X size={24} color='#C291F4' /> Sair
+                      <X size={24} color="#C291F4" /> Sair
                     </button>
                   ) : (
                     <button>
-                      {' '}
-                      <UserPlus size={24} color='#C291F4' />{' '}
-                      <Link to='../auth/login'> Entrar </Link>
+                      {" "}
+                      <UserPlus size={24} color="#C291F4" />{" "}
+                      <Link to="../auth/login"> Entrar </Link>
                     </button>
                   )}
                 </div>
               ) : (
-                ''
+                ""
               )}
             </div>
           </ul>

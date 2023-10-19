@@ -13,7 +13,7 @@ export const GlobalStyle = createGlobalStyle`
             outline: ${({ theme }) => theme.colors.purple400};
         }
         
-        transition: ease-in-out 0.1s;
+        transition: all ease-in-out 0.1s;
     }
 
 

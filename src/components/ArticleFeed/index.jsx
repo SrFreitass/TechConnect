@@ -1,59 +1,82 @@
 import { db } from "../../services/firebaseconfig";
 import { useEffect, useState, useRef } from "react";
-import { getDocs, collection, where, query, orderBy, limit, startAfter, startAt } from "firebase/firestore";
+import {
+  getDocs,
+  collection,
+  where,
+  query,
+  orderBy,
+  limit,
+  startAfter,
+  startAt,
+} from "firebase/firestore";
 import { Articles } from "../common/Articles";
 
 export function News() {
   const [news, setNews] = useState([]);
-  const userCollectionRef = collection(db, "articles")
-  const [lastVisible, setLastVisible] = useState('')
-  const [showButton, setShowButton] = useState(true)
-
+  const userCollectionRef = collection(db, "articles");
+  const [lastVisible, setLastVisible] = useState("");
+  const [showButton, setShowButton] = useState(true);
 
   useEffect(() => {
     const getData = async () => {
-      const q = query(userCollectionRef, where("emphasis", "==", false), orderBy('date', 'desc'), limit(5))
-      const querySnapshot = await getDocs(q)
-      setLastVisible(querySnapshot.docs[querySnapshot.docs.length - 1])
-      
-      const data = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
-      setNews(data)
-      console.log(data)
+      const q = query(
+        userCollectionRef,
+        where("emphasis", "==", false),
+        orderBy("date", "desc"),
+        limit(5)
+      );
+      const querySnapshot = await getDocs(q);
+      setLastVisible(querySnapshot.docs[querySnapshot.docs.length - 1]);
+
+      const data = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setNews(data);
+      console.log(data);
     };
-    getData()
+    getData();
   }, []);
 
-
-
-
-  const HandleClickNews = async (e) => {
+  const handleNextArticles = async (e) => {
     try {
-      console.log(lastVisible)
-      const next = await query(userCollectionRef, where("emphasis", "==", false), orderBy('date', 'desc'), startAfter(lastVisible), limit(5))
-      const querySnapshot = await getDocs(next)
-      
-      console.log(querySnapshot)
-      const nextData = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
-      console.log('teste')
+      console.log(lastVisible);
+      const next = await query(
+        userCollectionRef,
+        where("emphasis", "==", false),
+        orderBy("date", "desc"),
+        startAfter(lastVisible),
+        limit(5)
+      );
+      const querySnapshot = await getDocs(next);
+
+      console.log(querySnapshot);
+      const nextData = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      console.log("teste");
 
       if (querySnapshot.docs.length < 1) {
-        console.log('tem nada não meu fi')
-        setShowButton(false)
-        return
+        console.log("tem nada não meu fi");
+        setShowButton(false);
+        return;
       }
-      
-      
-      setLastVisible(querySnapshot.docs[querySnapshot.docs.length - 1])
-      setNews((state) => [...state, ...nextData])
-    
+
+      setLastVisible(querySnapshot.docs[querySnapshot.docs.length - 1]);
+      setNews((state) => [...state, ...nextData]);
     } catch (error) {
-      console.log(error)
-      
+      console.log(error);
     }
   };
 
   return (
-    <Articles articlesList={news} showButton={showButton} HandleClickNews={HandleClickNews} asidePanel={true}/>
+    <Articles
+      articlesList={news}
+      showButton={showButton}
+      handleNextArticles={handleNextArticles}
+      asidePanel={true}
+    />
   );
 }
-

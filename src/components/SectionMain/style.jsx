@@ -1,4 +1,4 @@
-import { styled } from 'styled-components';
+import { styled } from "styled-components";
 
 export const SectionContainer = styled.section`
   display: flex;
@@ -138,23 +138,6 @@ export const MainStyle = styled.main`
     height: 5rem;
     margin: 0 auto;
     animation: 1s infinite steps(60) downUp;
-  }
-
-  span:nth-child(2) {
-    position: absolute;
-    bottom: -15rem;
-    display: flex;
-    align-self: center;
-    width: 20rem;
-    height: 20rem;
-    border-radius: 50%;
-    background-color: ${({ theme }) => theme.colors.purple700};
-    animation: 5s infinite steps(60) Animation;
-    filter: blur(150px);
-
-    @media (max-width: 1000px) {
-      display: none;
-    }
   }
 
   @keyframes Animation {

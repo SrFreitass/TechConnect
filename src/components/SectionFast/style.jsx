@@ -1,5 +1,5 @@
-import { styled } from 'styled-components';
-import { css } from 'styled-components';
+import { styled } from "styled-components";
+import { css } from "styled-components";
 
 export const SectionFastStyle = styled.div`
   display: flex;
@@ -125,7 +125,7 @@ export const MobileVideo = styled.div`
     }
 
     &::after {
-      content: '';
+      content: "";
       height: 100%;
     }
   }
@@ -183,7 +183,7 @@ export const MobileVideo = styled.div`
 `;
 export const ShareButtons = styled.aside`
   display: flex;
-  flex-direction: ${({ direction }) => (direction ? 'row' : 'column')};
+  flex-direction: ${({ direction }) => (direction ? "row" : "column")};
   gap: 1rem;
 
   @keyframes animation {

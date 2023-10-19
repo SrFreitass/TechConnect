@@ -1,9 +1,8 @@
-import { Section404 } from './style';
-import { ButtonStyled } from '../SectionMain/style';
-import { Link } from 'react-router-dom';
-import { ButtonDefault } from '../ArticleComposer/style';
-import { motion } from 'framer-motion';
-import { useEffect, useState, useRef } from 'react';
+import { Section404 } from "./style";
+import { ButtonStyled } from "../SectionMain/style";
+import { Link } from "react-router-dom";
+import { ButtonDefault } from "../ArticleComposer/style";
+import { useEffect, useState, useRef } from "react";
 
 export function NotFound() {
   const [scale, setScale] = useState(1);
@@ -18,13 +17,13 @@ export function NotFound() {
     <>
       <Section404>
         <div>
-          {scale <= 0.1 ? '' : ''}
-          <motion.h1 ref={ref404} onClick={() => setScale(scale - 0.1)}>
+          {scale <= 0.1 ? "" : ""}
+          <h1 ref={ref404} onClick={() => setScale(scale - 0.1)}>
             404
-          </motion.h1>
+          </h1>
           <p>Bem, acho que tentou entrar numa página que não existe!</p>
         </div>
-        <Link to='./home'>Volte para o início.</Link>
+        <Link to="./home">Volte para o início.</Link>
       </Section404>
     </>
   );

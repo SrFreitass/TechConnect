@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const SectionAboutStyle = styled.section`
   display: flex;
@@ -33,6 +33,14 @@ export const SectionAboutStyle = styled.section`
     border-radius: 5px;
     position: relative;
     top: 5rem;
+
+    &::before {
+      display: flex;
+      justify-content: center;
+      content: "👋";
+      color: ${({ theme }) => theme.colors.primary};
+      font-weight: 500;
+    }
   }
 
   img {

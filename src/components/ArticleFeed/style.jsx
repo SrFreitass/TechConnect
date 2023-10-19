@@ -1,4 +1,4 @@
-import { styled } from 'styled-components';
+import { styled } from "styled-components";
 
 export const NewsStyled = styled.article`
   width: 100%;
@@ -6,13 +6,14 @@ export const NewsStyled = styled.article`
   gap: 1.5rem;
 
   padding: 1rem 0rem;
+  border-bottom: 1px solid #353438;
 
   img {
     object-fit: cover;
     border-radius: 5px;
-    min-width: 30rem;
-    height: 17rem;
-    width: 30rem;
+    min-width: 21.25rem;
+    height: 12.5rem;
+    width: 21.25rem;
   }
 
   div {
@@ -85,17 +86,55 @@ export const ButtonsContainer = styled.div`
 `;
 
 export const AsidePanel = styled.aside`
+  display: flex;
+  flex-direction: column;
   border-radius: 5px;
   margin-top: 1rem;
+  gap: 2rem;
+
+  div:nth-child(3) {
+    p {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      color: ${({ theme }) => theme.colors.secundary};
+    }
+
+    svg {
+      color: ${({ theme }) => theme.colors.primary};
+      border-radius: 50%;
+      background-color: #121214;
+      padding: 0.5rem;
+    }
+  }
+
+  p {
+    padding: 0rem 0.6rem;
+    font-weight: 600;
+    color: ${({ theme }) => theme.colors.secundary};
+  }
+
+  button {
+    filter: drop-shadow(0 0 20px ${({ theme }) => theme.colors.purple700});
+
+    width: 100%;
+    margin-top: 1rem;
+    background: none;
+    border: ${({ theme }) => theme.colors.purple700} 1px solid;
+
+    &:hover {
+      background: ${({ theme }) => theme.colors.purple700};
+    }
+  }
 
   h3 {
     color: ${({ theme }) => theme.colors.primary};
     font-weight: 600;
-    padding: 0rem 1rem;
+    padding: 0.5rem 0.6rem;
   }
 
   div {
-    padding: 0.6rem;
+    padding: 0.5rem;
     border: solid 1px ${({ theme }) => theme.colors.secundary};
     border-radius: 5px;
     display: flex;
@@ -105,11 +144,17 @@ export const AsidePanel = styled.aside`
       display: flex;
       gap: 0.5rem;
       flex-wrap: wrap;
-      padding: 0rem 1rem;
       list-style: none;
 
       li {
-        font-weight: 500;
+        font-weight: 600;
+        background: #121214;
+        padding: 0.3rem 1rem;
+        border-radius: 0.7rem;
+
+        a {
+          color: ${({ theme }) => theme.colors.purple400};
+        }
       }
     }
   }

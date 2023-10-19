@@ -1,9 +1,8 @@
-import { Link } from 'react-router-dom';
-import { SectionContainer, ButtonStyled, MainStyle } from './style';
-import { ButtonDefault } from '../ArticleComposer/style';
-import arrowImg from '../../assets/images/arrowdown.svg';
+import { Link } from "react-router-dom";
+import { SectionContainer, ButtonStyled, MainStyle } from "./style";
+import { ButtonDefault } from "../ArticleComposer/style";
+import arrowImg from "../../assets/images/arrowdown.svg";
 
-import { motion, useScroll } from 'framer-motion';
 import {
   Graph,
   ShieldCheck,
@@ -11,37 +10,38 @@ import {
   ChatsTeardrop,
   FastForwardCircle,
   VirtualReality,
-} from '@phosphor-icons/react';
-import { Theme } from '../../Styles/Theme';
-import { useEffect, useState } from 'react';
-import Blur from '../../assets/images/blur.svg';
+} from "@phosphor-icons/react";
+import { Theme } from "../../Styles/Theme";
+import { useEffect, useState } from "react";
+import Blur from "../../assets/images/blur.svg";
 
 export function SectionMain() {
   const [arrow, setArrow] = useState(false);
 
   const handleArrow = () => {
     setArrow(true);
-    window.removeEventListener('scroll', handleArrow);
+    window.removeEventListener("scroll", handleArrow);
   };
 
-  window.addEventListener('scroll', handleArrow);
+  window.addEventListener("scroll", handleArrow);
 
   return (
     <MainStyle>
       <SectionContainer>
         <div>
-          <h1 data-aos='zoom-in'>
+          <h1 data-aos="zoom-in">
             O seu guia para o <span>mundo</span> da tecnologia.
           </h1>
-          <h3 data-aos='zoom-in'>
+          <h3 data-aos="zoom-in">
             Explore as últimas tendências, inovações e insights no fascinante
             universo da tecnologie, mantenha-se sempre atualizado conosco
           </h3>
-          <ButtonDefault data-aos='zoom-out'>EXPLORAR</ButtonDefault>
+          <ButtonDefault data-aos="zoom-out">
+            <Link to="./home">EXPLORAR</Link>
+          </ButtonDefault>
         </div>
       </SectionContainer>
-      <span> </span>
-      {arrow ? '' : <img src={arrowImg} />}
+      {arrow ? "" : <img src={arrowImg} />}
     </MainStyle>
   );
 }

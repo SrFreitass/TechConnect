@@ -1,9 +1,8 @@
-import { motion } from 'framer-motion';
-import { SectionAboutStyle } from './style';
-import target3D from '../../assets/images/target.png';
-import team3D from '../../assets/images/team.png';
-import hand3D from '../../assets/images/hand.png';
-import { useEffect, useRef } from 'react';
+import { SectionAboutStyle } from "./style";
+import target3D from "../../assets/images/target.png";
+import team3D from "../../assets/images/team.png";
+import hand3D from "../../assets/images/hand.png";
+import { useEffect, useRef } from "react";
 
 export function SectionAbout() {
   return (
@@ -11,17 +10,17 @@ export function SectionAbout() {
       <SectionAboutStyle>
         <div></div>
         <div>
-          <h1 data-aos='fade-up' data-aos-anchor-placement='bottom'>
+          <h1 data-aos="fade-up" data-aos-anchor-placement="bottom">
             Somos um portal de notícias completo, focado em tecnologia.
           </h1>
-          <p data-aos='fade-up' data-aos-anchor-placement='bottom'>
+          <p data-aos="fade-up" data-aos-anchor-placement="bottom">
             Bem-vindo ao TechConnect! Somos apaixonados por tecnologia e estamos
             empenhados em compartilhar informações atualizadas e relevantes
             sobre o mundo da inovação tecnológica.
           </p>
         </div>
         <div>
-          <div data-aos='zoom-in-up'>
+          <div data-aos="zoom-in-up">
             <h3>
               <img src={target3D} />
               Objetivo
@@ -32,7 +31,7 @@ export function SectionAbout() {
               fácil entendimento.
             </p>
           </div>
-          <div data-aos='zoom-in-up'>
+          <div data-aos="zoom-in-up">
             <h3>
               <img src={team3D} />
               Nossa Equipe
@@ -43,7 +42,7 @@ export function SectionAbout() {
               conteúdo de qualidade.
             </p>
           </div>
-          <div data-aos='zoom-in-up'>
+          <div data-aos="zoom-in-up">
             <h3>
               <img src={hand3D} /> Futuro e Visão
             </h3>
@@ -54,7 +53,7 @@ export function SectionAbout() {
             </p>
           </div>
         </div>
-        <span data-aos='fade-down'></span>
+        <span data-aos="fade-down"></span>
         <br />
       </SectionAboutStyle>
     </>

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const SectionChoiceStyle = styled.section`
   display: flex;
@@ -10,13 +10,25 @@ export const SectionChoiceStyle = styled.section`
   height: 50rem;
 
   span {
-    position: absolute;
-    align-self: end;
-    min-width: 15rem;
-    min-height: 15rem;
-    background-color: ${({ theme }) => theme.colors.purple700};
-    border-radius: 50%;
-    display: none;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0) 10.22%,
+      ${({ theme }) => theme.colors.purple700} 52.3%
+    );
+    width: 0.2rem;
+    min-height: 5rem;
+    max-width: 5rem;
+    border-radius: 5px;
+    position: relative;
+    top: 5rem;
+
+    &::before {
+      display: flex;
+      justify-content: center;
+      content: "🚀";
+      color: ${({ theme }) => theme.colors.primary};
+      font-weight: 500;
+    }
   }
 
   h1 {
@@ -62,11 +74,12 @@ export const SectionChoiceStyle = styled.section`
     color: ${({ theme }) => theme.colors.secundary};
     padding: 0rem 0rem 1rem;
   }
+
   p {
     width: 80%;
     font-size: 1.2rem;
     color: ${({ theme }) => theme.colors.secundary};
-    border-bottom: solid 1px;
+    border-bottom: solid 1px #353438;
     padding: 0rem 0rem 1rem;
   }
 

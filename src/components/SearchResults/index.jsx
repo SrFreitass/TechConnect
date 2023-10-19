@@ -1,7 +1,7 @@
-import { NewsStyled } from '../ArticleFeed/style';
-import { Link, useParams } from 'react-router-dom';
-import { db } from '../../services/firebaseconfig';
-import { useEffect, useState } from 'react';
+import { NewsStyled } from "../ArticleFeed/style";
+import { Link, useParams } from "react-router-dom";
+import { db } from "../../services/firebaseconfig";
+import { useEffect, useState } from "react";
 import {
   getDocs,
   collection,
@@ -9,36 +9,36 @@ import {
   query,
   startAfter,
   limit,
-} from 'firebase/firestore';
-import { ArticleStyled } from '../ArticleBody/style';
-import { ButtonStyled } from '../SectionMain/style';
-import DOMPurify from 'dompurify';
-import { Loader } from '../Loader';
-import { Articles } from '../common/Articles';
-import { SearchResultsStyled } from './style';
-import he from 'he';
+} from "firebase/firestore";
+import { ArticleStyled } from "../ArticleBody/style";
+import { ButtonStyled } from "../SectionMain/style";
+import DOMPurify from "dompurify";
+import { Loader } from "../Loader";
+import { Articles } from "../common/Articles";
+import { SearchResultsStyled } from "./style";
+import he from "he";
 
-export function SearchContainer({}) {
+export function SearchContainer() {
   const [newsResults, setNewsResults] = useState([]);
   const [visibleItems, setVisibleItems] = useState();
   const [searchHasResults, setSearchHasResults] = useState();
   let { searchTitle } = useParams();
   searchTitle = he.decode(searchTitle);
-  const userCollectionRef = collection(db, 'articles');
+  const userCollectionRef = collection(db, "articles");
 
   useEffect(() => {
     const getData = async () => {
       const q = query(
         userCollectionRef,
-        where('title', '>=', searchTitle),
-        limit(5),
+        where("title", ">=", searchTitle),
+        limit(5)
       );
       const querySnapshot = await getDocs(q);
 
       if (querySnapshot.docs.length === 0) {
         const queryEmphasis = query(
           userCollectionRef,
-          where('emphasis', '==', true),
+          where("emphasis", "==", true)
         );
 
         const querySnapshot1 = await getDocs(queryEmphasis);
@@ -64,22 +64,28 @@ export function SearchContainer({}) {
     getData();
   }, [searchTitle]);
 
-  const HandleClickNews = async () => {
-    const q = query(
-      userCollectionRef,
-      where('title', '>=', searchTitle),
-      startAfter(visibleItems),
-      limit(5),
-    );
-    const querySnapshot = await getDocs(q);
-    const data = querySnapshot.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data(),
-    }));
+  const handleNextArticles = async () => {
+    try {
+      const q = query(
+        userCollectionRef,
+        where("title", ">=", searchTitle),
+        startAfter(visibleItems),
+        limit(5)
+      );
+      const querySnapshot = await getDocs(q);
+      const data = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
 
-    setNewsResults([...data, ...newsResults]);
-    setVisibleItems(querySnapshot.docs[querySnapshot.docs.length - 1]);
+      setNewsResults([...data, ...newsResults]);
+      setVisibleItems(querySnapshot.docs[querySnapshot.docs.length - 1]);
+    } catch (e) {
+      console.error(e);
+    }
   };
+
+  console.log(handleNextArticles);
 
   return (
     <SearchResultsStyled>
@@ -98,7 +104,7 @@ export function SearchContainer({}) {
       <Articles
         articlesList={newsResults}
         showButton={false}
-        HandleClickNews={HandleClickNews}
+        handleNextArticles={handleNextArticles}
         asidePanel={false}
       />
     </SearchResultsStyled>
