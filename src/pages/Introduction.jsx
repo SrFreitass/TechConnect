@@ -21,7 +21,7 @@ export function Introduction() {
 
   return (
     <>
-      <Background bg={bg} />
+      {/* <Background bg={bg} /> */}
       <Wrapper>
         <Header isIntroductionPage={true} />
       </Wrapper>

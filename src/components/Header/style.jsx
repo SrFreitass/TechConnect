@@ -195,11 +195,7 @@ export const HeaderContainer = styled.header`
           position: fixed;
           padding: 0rem 2.2rem;
           gap: 1rem;
-
-          ${({ isIntroductionPage }) =>
-            isIntroductionPage
-              ? "backdrop-filter: blur(6rem);"
-              : `background-color: #191919;`}
+          background-color: #191919;
 
           li:first-child {
             border: none;

@@ -1,6 +1,6 @@
-import { useState, useEffect, useRef } from 'react';
-import { useParams } from 'react-router-dom';
-import { auth, db } from '../../services/firebaseconfig';
+import { useState, useEffect, useRef } from "react";
+import { useParams } from "react-router-dom";
+import { auth, db } from "../../services/firebaseconfig";
 import {
   collection,
   query,
@@ -10,24 +10,24 @@ import {
   addDoc,
   deleteDoc,
   doc,
-} from 'firebase/firestore';
+} from "firebase/firestore";
 import {
   ArticleStyled,
   MainStyled,
   ArticleContainerStyled,
   CommentContainer,
-} from './style';
-import { ShareAside } from '../SectionFast';
-import DOMPurify from 'dompurify';
-import he from 'he';
-import toast, { Toaster } from 'react-hot-toast';
-import { Comments } from '../Comments';
-import { Recomend } from '../Recomend';
+} from "./style";
+import { ShareAside } from "../SectionFast";
+import DOMPurify from "dompurify";
+import he from "he";
+import toast, { Toaster } from "react-hot-toast";
+import { Comments } from "../Comments";
+import { Recomend } from "../Recomend";
 
 export function BodyNews() {
   const [content, setContent] = useState({});
-  const [title, setTitle] = useState('');
-  const [image, setImage] = useState('');
+  const [title, setTitle] = useState("");
+  const [image, setImage] = useState("");
   const [comments, setComments] = useState([]);
   const [eventHandlerComment, setEventHandlerComment] = useState(false);
   const inputRef = useRef();
@@ -38,7 +38,7 @@ export function BodyNews() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const q = doc(db, 'articles', titleID);
+      const q = doc(db, "articles", titleID);
       const querySnapshot = await getDoc(q);
 
       if (querySnapshot.exists()) {
@@ -53,25 +53,26 @@ export function BodyNews() {
   }, [titleID]);
 
   useEffect(() => {
-    if (
-      contentRef.current.querySelector('img') ||
-      contentRef.current.querySelector('p')
-    ) {
-      contentRef.current.querySelector('img').src = image;
-      const author = contentRef.current.querySelector('p');
+    if (contentRef.current.querySelector("p")) {
+      const author = contentRef.current.querySelector("p");
+      const createImage = document.createElement("img");
+      createImage.src = image;
+
+      author.after(createImage);
+
+      const date = new Date(content.date.seconds * 1000);
       author.after(``);
-      author.innerText = `${author.innerText} ${new Date(
-        content.date.seconds * 1000,
-      ).toLocaleString('pt-BR')}`;
-      author.style.borderBottom = '1px solid #757575';
-      console.log(window.innerWidth);
+
+      author.innerText += ` ${date.toLocaleDateString(
+        "pt-br"
+      )} ás ${date.getHours()}h`;
     }
   }, [image]);
 
   return (
     <>
       <Toaster
-        position='bottom-left'
+        position="bottom-left"
         toastOptions={{
           loading: {
             duration: 1000,

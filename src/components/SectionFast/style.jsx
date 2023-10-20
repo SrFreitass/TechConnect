@@ -2,9 +2,6 @@ import { styled } from "styled-components";
 import { css } from "styled-components";
 
 export const SectionFastStyle = styled.div`
-  display: flex;
-  flex-direction: column;
-
   h2 {
     color: ${({ theme }) => theme.colors.primary};
   }
@@ -17,10 +14,16 @@ export const SectionFastStyle = styled.div`
 export const SectionFastStyled = styled.section`
   display: flex;
   align-items: center;
+  justify-content: space-between;
   flex-direction: column;
   gap: 2rem;
   width: 100%;
-  height: 80vh;
+  height: 85vh;
+
+  @media (max-width: 500px) {
+    gap: 0rem;
+    height: 100vh;
+  }
 
   overflow-y: auto;
   overflow-x: hidden;
@@ -87,11 +90,19 @@ export const MobileVideo = styled.div`
   gap: 1rem;
   align-items: end;
   position: relative;
-  margin-left: 5rem;
+  margin-left: 4.5rem;
+
+  @media (max-width: 500px) {
+    video {
+      width: 100vw;
+      border-radius: 0px;
+    }
+  }
 
   div:nth-child(2) {
     display: flex;
     flex-direction: column-reverse;
+
     gap: 1.5rem;
     align-items: center;
     margin-top: -1rem;
@@ -107,10 +118,8 @@ export const MobileVideo = styled.div`
     object-fit: cover;
     object-position: center;
     width: auto;
-    max-width: 40rem;
-    height: 80vh;
-    min-height: 30rem;
-    max-height: auto;
+    width: 28.125rem;
+    height: 50rem;
     border-radius: 0.5rem;
 
     -webkit-overflow-scrolling: touch;
@@ -146,7 +155,7 @@ export const MobileVideo = styled.div`
   }
 
   p {
-    bottom: 0%;
+    bottom: 3%;
     width: 91%;
     color: ${({ theme }) => theme.colors.secundary};
   }
@@ -161,7 +170,7 @@ export const MobileVideo = styled.div`
   @media (max-width: 720px) {
     div:nth-child(2) {
       position: relative;
-      right: 6rem;
+      right: 5rem;
       bottom: 2rem;
       svg {
         background: none;
@@ -175,9 +184,11 @@ export const MobileVideo = styled.div`
     }
   }
 
-  @media (max-width: 425px) {
+  @media (max-width: 500px) {
     video {
+      margin: 0 auto;
       width: 100vw;
+      height: 100vh;
     }
   }
 `;

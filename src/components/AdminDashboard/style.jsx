@@ -5,7 +5,7 @@ export const AsideStyled = styled.aside`
   flex-direction: column;
   padding-right: 1rem;
   gap: 1.5rem;
-  border-right: 1px solid ${({ theme }) => theme.colors.secundary};
+  border-right: 1px solid #353438;
   min-width: 15rem;
   max-width: 15rem;
 
@@ -54,6 +54,8 @@ export const AsideStyled = styled.aside`
   }
 
   @media (max-width: 1050px) {
-    display: none;
+    display: flex;
+    max-width: 100%;
+    border: none;
   }
 `;

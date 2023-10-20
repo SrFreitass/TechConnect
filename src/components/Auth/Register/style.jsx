@@ -1,4 +1,5 @@
-import { styled, css } from 'styled-components';
+import { styled, css } from "styled-components";
+import bg from "../../../assets/images/bg2.png";
 
 export const ContainerInputForm = styled.div`
   display: flex;
@@ -12,6 +13,12 @@ export const ContainerInputForm = styled.div`
 
     color: #ab2c2c;
   }
+`;
+
+export const ContainerMain = styled.main`
+  width: 100vw;
+  background: url(${bg}) center center no-repeat;
+  background-size: cover;
 `;
 
 export const FormStyled = styled.form`
@@ -81,9 +88,9 @@ export const FormStyled = styled.form`
     margin-right: 1rem;
   }
 
-  input[type='text'],
-  input[type='password'],
-  input[type='email'] {
+  input[type="text"],
+  input[type="password"],
+  input[type="email"] {
     &:-webkit-autofill,
     &:-webkit-autofill:hover,
     &:-webkit-autofill:focus,

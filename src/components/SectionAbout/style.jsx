@@ -5,7 +5,8 @@ export const SectionAboutStyle = styled.section`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(180deg, rgba(18, 18, 20, 0) 0%, #121214 12.13%);
+  background: linear-gradient(180deg, rgba(18, 18, 20, 0) 5%, #121214 30.11%);
+  border-top: 1px #353438 solid;
 
   @keyframes downUp {
     0% {

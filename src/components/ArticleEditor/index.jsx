@@ -62,18 +62,18 @@ export function ArticleEditForm() {
           <IconsContainer>
             <button>
               {" "}
-              <TrashSimple size={24} color="#4D4DB5" />{" "}
+              <TrashSimple size={24} color="#8A8AE0" />{" "}
             </button>
-            <p>{imageUpload && imageUpload.name}</p>
+            <p>{imageUpload ? imageUpload.name : ""}</p>
           </IconsContainer>
 
           <IconsContainer>
-            <NotePencil size={24} color="#4D4DB5" />
+            <NotePencil size={24} color="#8A8AE0" />
             <p>Postado</p>
           </IconsContainer>
 
           <IconsContainer>
-            <Bookmarks size={24} color="#4D4DB5" />
+            <Bookmarks size={24} color="#8A8AE0" />
             <label htmlFor="">É um artigo de destaque?</label>
             <input
               type="checkbox"

@@ -31,8 +31,13 @@ export const RecomentDiv = styled.div`
     margin-left: 0;
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 450px) {
     width: 100%;
+
+    span:first-child {
+      border: none;
+    }
+
     span {
       border-bottom: 1px solid #353438;
     }

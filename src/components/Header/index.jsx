@@ -152,10 +152,10 @@ export function Header({ isIntroductionPage }) {
               ) : (
                 <>
                   <li>
-                    <Link>Entrar</Link>
+                    <Link to="../auth/login">Entrar</Link>
                   </li>
                   <li>
-                    <Link>Criar conta</Link>
+                    <Link to="../auth/register">Criar conta</Link>
                   </li>
                 </>
               )}

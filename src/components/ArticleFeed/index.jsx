@@ -72,7 +72,7 @@ export function News() {
   };
 
   return (
-    <Articles
+    <Artihttp://localhost:5173/cles
       articlesList={news}
       showButton={showButton}
       handleNextArticles={handleNextArticles}

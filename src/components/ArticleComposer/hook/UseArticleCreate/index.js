@@ -26,7 +26,6 @@ export function useArticleCreate() {
     `<h1>Tit&uacute;lo.</h1>
     <h2>Subtit&uacute;lo.</h2>
     <p>Autor.</p>
-    <p><img></p>
     <p>Come&ccedil;aaqui...</p>`.replace(/ /g, '')
 
     console.log('renderizou')

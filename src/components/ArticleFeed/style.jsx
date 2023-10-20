@@ -1,22 +1,31 @@
 import { styled } from "styled-components";
 
 export const NewsStyled = styled.article`
-  width: 100%;
   display: flex;
   gap: 1.5rem;
+  max-width: auto;
 
   padding: 1rem 0rem;
   border-bottom: 1px solid #353438;
 
+  a:first-child {
+    align-self: center;
+  }
+
+  div > a:first-child {
+    align-self: flex-start;
+  }
+
   img {
     object-fit: cover;
     border-radius: 5px;
-    min-width: 21.25rem;
+    min-width: 23rem;
     height: 12.5rem;
-    width: 21.25rem;
+    width: 23rem;
   }
 
   div {
+    word-break: break-word;
     display: flex;
     flex-direction: column;
     gap: 0.4rem;
@@ -38,7 +47,7 @@ export const NewsStyled = styled.article`
     font-weight: 500;
   }
 
-  @media (max-width: 1050px) (min-width: 651px) {
+  @media (max-width: 1050px) {
     h3 {
       display: none;
     }
@@ -54,6 +63,15 @@ export const NewsStyled = styled.article`
 
   @media (max-width: 690px) {
     flex-direction: column;
+
+    a:first-child {
+      align-self: flex-start;
+      width: 100%;
+    }
+
+    button > a:first-child {
+      align-self: center;
+    }
 
     h3 {
       display: none;

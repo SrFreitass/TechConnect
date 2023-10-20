@@ -1,12 +1,19 @@
 import { styled } from "styled-components";
+import bg from "../../assets/images/background.png";
 
 export const SectionContainer = styled.section`
   display: flex;
   flex-direction: column;
-  height: 75vh;
+  height: 90vh;
+  width: 100%;
   justify-content: center;
+  background: url(${bg}), linear-gradient(180deg, #121214 0%, transparent 0%);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
 
   div {
+    margin-bottom: 10vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -55,16 +62,13 @@ export const SectionContainer = styled.section`
       }
     }
 
-    font-weight: bold;
+    font-weight: 600;
     width: 10rem;
     height: 3rem;
     background-color: ${({ theme }) => theme.colors.purple700};
     animation: 3s ease-in-out infinite shadowAnim;
-    filter: drop-shadow(0 0 5px ${({ theme }) => theme.colors.purple700});
-    &:hover {
-      background-color: ${({ theme }) => theme.colors.purple700};
-      transition: all 0.2s;
-    }
+    filter: drop-shadow(0 0 5px ${({ theme }) => theme.colors.purple400});
+    transition: all 0.2s;
     z-index: 1;
   }
 

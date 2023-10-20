@@ -61,6 +61,7 @@ export function SectionAdmin() {
           id: doc.id,
         }));
         toast.success("Artigos encontrados");
+        setLastVisible(data.docs[data.docs.length - 1]);
         setNewsEdit(dataFilterd);
       }
     };
@@ -68,22 +69,37 @@ export function SectionAdmin() {
   }, [searchFilter]);
 
   const handleNextArticles = async () => {
-    // const q = query(
-    //   userCollectionRef,
-    //   searchFilter
-    //     ? where("category", "==", searchFilter)
-    //     : where("emphasis", "==", false),
-    //   orderBy("date", "desc"),
-    //   startAfter(lastVisible),
-    //   limit(5)
-    // );
-    // const querySnapshot = await getDocs(q);
-    // const data = querySnapshot.docs.map((doc) => ({
-    //   ...doc.data(),
-    //   id: doc.id,
-    // }));
-    // setNewsEdit((lastData) => [...lastData, ...data]);
-    // setLastVisible(querySnapshot.docs[querySnapshot.docs.length - 1]);
+    if (selectFilter) {
+      const q = query(
+        userCollectionRef,
+        where("category", "==", selectFilter),
+        orderBy("date", "desc"),
+        startAfter(lastVisible),
+        limit(5)
+      );
+      const querySnapshot = await getDocs(q);
+      const data = querySnapshot.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
+      setNewsEdit((lastData) => [...lastData, ...data]);
+      setLastVisible(querySnapshot.docs[querySnapshot.docs.length - 1]);
+      return;
+    }
+
+    const q = query(
+      userCollectionRef,
+      orderBy("date", "desc"),
+      startAfter(lastVisible),
+      limit(5)
+    );
+    const querySnapshot = await getDocs(q);
+    const data = querySnapshot.docs.map((doc) => ({
+      ...doc.data(),
+      id: doc.id,
+    }));
+    setNewsEdit((lastData) => [...lastData, ...data]);
+    setLastVisible(querySnapshot.docs[querySnapshot.docs.length - 1]);
   };
 
   const handleDeleteArticle = async (id) => {
@@ -116,7 +132,7 @@ export function SectionAdmin() {
       const data = await getDocs(q);
       setNewsEdit(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
       setLastVisible(data.docs[data.docs.length - 1]);
-      setNewsEdit(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      setSelectFilter("");
       return;
     }
 
@@ -130,7 +146,7 @@ export function SectionAdmin() {
 
     if (data.docs.length == 0) {
       toast.error("Não há artigos dessa categoria");
-      setSelectFilter("false");
+      setSelectFilter("");
       return;
     }
 
