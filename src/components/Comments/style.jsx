@@ -32,6 +32,10 @@ export const ContainerComments = styled.div`
     resize: none;
   }
 
+  a {
+    align-self: start;
+  }
+
   @media (max-width: 1050px) {
     textarea {
       max-height: 15rem;

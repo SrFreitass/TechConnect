@@ -69,6 +69,8 @@ export function Register() {
     setShowPassword((state) => !state);
   };
 
+  console.log(errors);
+
   if (status == "loggedOut") {
     return (
       <ContainerMain>
@@ -80,9 +82,13 @@ export function Register() {
             <p>Crie sua conta nomelhor portal de notícias tech da internet!</p>
           </div>
 
-          <ContainerInputForm error={errors}>
+          <ContainerInputForm>
             <input
-              {...register("username", { required: true, maxLength: 20 })}
+              {...register("username", {
+                required: true,
+                maxLength: 20,
+                pattern: /^[^\W_]+$/,
+              })}
               type="text"
               placeholder="Seu nome"
             />
@@ -92,6 +98,18 @@ export function Register() {
                 {" "}
                 <Warning size={24} />{" "}
                 <span>Você precisa informar seu apelido.</span>{" "}
+              </div>
+            )}
+            {errors?.username?.type === "maxLength" && (
+              <div>
+                {" "}
+                <Warning size={24} /> <span>Máximo 20 caracteres</span>{" "}
+              </div>
+            )}
+            {errors?.username?.type === "pattern" && (
+              <div>
+                {" "}
+                <Warning size={24} /> <span>Nome de usuário inválido</span>{" "}
               </div>
             )}
           </ContainerInputForm>
@@ -207,7 +225,7 @@ export function Register() {
   }
 
   if (status == "verifyEmail") {
-    return <EmailVerification />;
+    return <EmailVerification status={status} setStatus={setStatus} />;
   }
 
   return (

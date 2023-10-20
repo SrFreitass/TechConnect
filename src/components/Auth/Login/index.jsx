@@ -134,7 +134,7 @@ export function Login() {
           <ButtonDefault>ENTRAR</ButtonDefault>
           <p>
             Ainda não tem uma conta?{" "}
-            <Link to="/auth/register">Registre-se aqui</Link>
+            <Link to="../auth/register">Registre-se aqui</Link>
           </p>
         </FormStyled>
       </ContainerMain>
@@ -148,7 +148,7 @@ export function Login() {
   return (
     <>
       <Loader />
-      {status == "verifyEmail" && navigate("../home/register")}
+      {status == "verifyEmail" && navigate("../auth/register")}
     </>
   );
 }

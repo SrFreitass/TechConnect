@@ -1,4 +1,4 @@
-import { styled } from 'styled-components';
+import { styled } from "styled-components";
 
 export const VerificationContainer = styled.div`
   height: 100vh;
@@ -28,7 +28,7 @@ export const VerificationContainer = styled.div`
     cursor: pointer;
   }
 
-  bold > a {
+  strong > a {
     display: flex;
     align-items: center;
     gap: 0.3rem;

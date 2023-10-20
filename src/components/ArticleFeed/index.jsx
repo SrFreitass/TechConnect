@@ -72,11 +72,6 @@ export function News() {
   };
 
   return (
-    <Artihttp://localhost:5173/cles
-      articlesList={news}
-      showButton={showButton}
-      handleNextArticles={handleNextArticles}
-      asidePanel={true}
-    />
+    <Articles articlesList={news} handleNextArticles={handleNextArticles} />
   );
 }

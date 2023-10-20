@@ -1,29 +1,35 @@
-import { ButtonDefault } from '../../ArticleComposer/style';
-import { FormStyled, ProgressForm } from '../Register/style';
-import { VerificationContainer } from './style';
-import { Link, useNavigate } from 'react-router-dom';
-import { onAuthStateChanged, sendEmailVerification } from 'firebase/auth';
-import { auth } from '../../../services/firebaseconfig';
-import { ArrowLeft } from '@phosphor-icons/react';
-import toast, { Toaster } from 'react-hot-toast';
+import { ButtonDefault } from "../../ArticleComposer/style";
+import { FormStyled, ProgressForm } from "../Register/style";
+import { VerificationContainer } from "./style";
+import { Link, useNavigate } from "react-router-dom";
+import { onAuthStateChanged, sendEmailVerification } from "firebase/auth";
+import { auth } from "../../../services/firebaseconfig";
+import { ArrowLeft } from "@phosphor-icons/react";
+import toast, { Toaster } from "react-hot-toast";
+import { ContainerMain } from "../Register/style";
 
-export function EmailVerification() {
-  const navigate = useNavigate();
-
+export function EmailVerification({ status, setStatus }) {
   const sendConfirmEmail = async () => {
     try {
       await sendEmailVerification(auth.currentUser);
-      toast.success('E-mail enviado');
+      toast.success("E-mail enviado");
     } catch (e) {
       console.log(e);
-      toast.error('Houve algum no problema no envio');
+      toast.error("Houve algum no problema no envio");
     }
   };
 
+  const backLogin = (e) => {
+    e.preventDefault();
+
+    setStatus("loggedOut");
+    useNavigate("../auth/login");
+  };
+
   return (
-    <>
+    <ContainerMain>
       <Toaster
-        position='bottom-left'
+        position="bottom-left"
         reverseOrder={false}
         toastOptions={{
           loading: {
@@ -39,16 +45,17 @@ export function EmailVerification() {
           fazer parte desse incrível portal de notícias sobre tecnologia e muito
           mais!
         </p>
+        <a href="">Já verifiquei o email</a>
         <Link onClick={sendConfirmEmail}>
           E-mail não chegou? Reenviar e-mail
         </Link>
-        <bold>
-          <Link onClick={() => navigate('../auth/login')}>
-            <ArrowLeft size='24' color='#8A8AE0' />
+        <strong>
+          <Link onClick={backLogin}>
+            <ArrowLeft size="24" color="#8A8AE0" />
             Voltar para o login
           </Link>
-        </bold>
+        </strong>
       </VerificationContainer>
-    </>
+    </ContainerMain>
   );
 }

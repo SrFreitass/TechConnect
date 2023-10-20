@@ -30,6 +30,7 @@ import { Pen, TrashSimple, PaperPlaneRight } from "@phosphor-icons/react";
 import { ContainerComments, Nocomments } from "./style";
 import { Link } from "react-router-dom";
 import { useAdminVerify } from "../../hooks/useAdminVerify";
+import { useVerifyEmail } from "../Auth/hook/useVerifyEmail";
 
 export function Comments() {
   const [comments, setComments] = useState([]);
@@ -44,6 +45,7 @@ export function Comments() {
   const { title } = useParams();
   const [clicksPersMin, setClicksPersMin] = useState(0);
   const [count, setCount] = useState(0);
+  const { status } = useVerifyEmail();
   console.log("renderizouX");
 
   useEffect(() => {
@@ -164,15 +166,23 @@ export function Comments() {
           <br />
           <h3>Comentários</h3>
           <section>
-            <textarea
-              cols="20"
-              rows="15"
-              placeholder="O que deseja comentar?"
-              ref={inputRef}
-            />
-            <ButtonDefault onClick={handleComment}>
-              <PaperPlaneRight size="28" />
-            </ButtonDefault>
+            {status == "emailVerified" ? (
+              <>
+                <textarea
+                  cols="20"
+                  rows="15"
+                  placeholder="O que deseja comentar?"
+                  ref={inputRef}
+                />
+                <ButtonDefault onClick={handleComment}>
+                  <PaperPlaneRight size="28" />
+                </ButtonDefault>
+              </>
+            ) : (
+              <Link to="../auth/register">
+                Verifique seu e-mail para comentar
+              </Link>
+            )}
           </section>
           {comments.map((comment, index) => {
             return (
