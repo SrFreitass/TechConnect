@@ -68,21 +68,22 @@ export function SectionAdmin() {
   }, [searchFilter]);
 
   const handleNextArticles = async () => {
-    const q = query(
-      userCollectionRef,
-      where("category", "==", searchFilter),
-      orderBy("date", "desc"),
-      startAfter(lastVisible),
-      limit(5)
-    );
-    const querySnapshot = await getDocs(q);
-    const data = querySnapshot.docs.map((doc) => ({
-      ...doc.data(),
-      id: doc.id,
-    }));
-    setNewsEdit((lastData) => [...lastData, ...data]);
-
-    setLastVisible(querySnapshot.docs[querySnapshot.docs.length - 1]);
+    // const q = query(
+    //   userCollectionRef,
+    //   searchFilter
+    //     ? where("category", "==", searchFilter)
+    //     : where("emphasis", "==", false),
+    //   orderBy("date", "desc"),
+    //   startAfter(lastVisible),
+    //   limit(5)
+    // );
+    // const querySnapshot = await getDocs(q);
+    // const data = querySnapshot.docs.map((doc) => ({
+    //   ...doc.data(),
+    //   id: doc.id,
+    // }));
+    // setNewsEdit((lastData) => [...lastData, ...data]);
+    // setLastVisible(querySnapshot.docs[querySnapshot.docs.length - 1]);
   };
 
   const handleDeleteArticle = async (id) => {
@@ -110,7 +111,7 @@ export function SectionAdmin() {
     const valueFilter = e.target.value;
     console.log(e.target.value);
 
-    if (valueFilter == "true") {
+    if (valueFilter == "") {
       const q = query(userCollectionRef, orderBy("date", "desc"), limit(5));
       const data = await getDocs(q);
       setNewsEdit(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
@@ -150,7 +151,7 @@ export function SectionAdmin() {
         />
 
         <select onChange={handleFilterArticle} value={selectFilter}>
-          <option value="true">Categoria</option>
+          <option value="">Categoria</option>
           <option value="emphasis">Destaques</option>
           <option value="tecnologia">Tecnologia</option>
           <option value="inovação">Inovação</option>
