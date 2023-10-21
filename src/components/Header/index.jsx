@@ -58,13 +58,13 @@ export function Header({ isIntroductionPage }) {
         <nav>
           <ul>
             <li>
-              <a href="#">Artigos</a>
+              <Link to="../home">Artigos</Link>
             </li>
             <li>
-              <a href="#">Sobre nós</a>
+              <Link to="../">Sobre nós</Link>
             </li>
             <li>
-              <a href="#">Fast</a>
+              <Link href="../home/fast/fast">Fast</Link>
             </li>
             <Search
               searchProps={{ search, setSearch }}
