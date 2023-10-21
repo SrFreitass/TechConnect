@@ -64,7 +64,7 @@ export function Header({ isIntroductionPage }) {
               <Link to="../">Sobre nós</Link>
             </li>
             <li>
-              <Link href="../home/fast/fast">Fast</Link>
+              <Link to="../home/fast/fast">Fast</Link>
             </li>
             <Search
               searchProps={{ search, setSearch }}
