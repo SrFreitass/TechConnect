@@ -13,6 +13,6 @@ export function Metaverso() {
   }, []);
 
   return (
-    <MetaversoIframe src="https://www.spatial.io/s/Metaverso-TechConnect-64ebfa810969def9be3236b0?share=9123803830227446099"></MetaversoIframe>
+    <MetaversoIframe src="https://www.spatial.io/s/Guilherme-Freitass-Virtual-Space-653141e99a71afefbc4cce83?share=7175629859969925409"></MetaversoIframe>
   );
 }

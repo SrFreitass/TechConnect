@@ -45,7 +45,7 @@ export function Articles({
   const articles = articlesList.map((article, index) => {
     return (
       <NewsStyled key={index}>
-        <Link to={`./home/article/${article.id}`}>
+        <Link to={`../home/article/${article.id}`}>
           <img src={article.imageURL} alt="" />
         </Link>
         <div>
