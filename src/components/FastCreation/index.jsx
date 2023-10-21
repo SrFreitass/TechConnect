@@ -14,7 +14,7 @@ import { Header } from "../Header";
 import { MobileVideo } from "../SectionFast/style";
 import toast, { Toaster } from "react-hot-toast";
 import { Link } from "react-router-dom";
-import { ContainerInputForm } from "../auth/Register/style";
+import { ContainerInputForm } from "../Auth/Register/style";
 import { Theme } from "../../Styles/Theme";
 import posterPreview from "../../assets/images/thumbcreatefast.png";
 
