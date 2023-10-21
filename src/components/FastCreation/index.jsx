@@ -10,13 +10,11 @@ import { CloudArrowDown, Share, X } from "@phosphor-icons/react";
 import { addDoc, collection } from "firebase/firestore";
 import { MainStyled } from "./style";
 import { Wrapper } from "../../Styles/Wrapper";
-import testeVideo from "../../assets/videos/celularteste.mp4";
 import { Header } from "../Header";
 import { MobileVideo } from "../SectionFast/style";
 import toast, { Toaster } from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { ContainerInputForm } from "../auth/Register/style";
-import { SectionFastStyled } from "../SectionFast/style";
 import { Theme } from "../../Styles/Theme";
 import posterPreview from "../../assets/images/thumbcreatefast.png";
 

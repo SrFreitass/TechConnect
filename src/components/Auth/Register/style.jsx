@@ -30,6 +30,7 @@ export const ContainerInputForm = styled.div`
       transition: background-color 5000s ease-in-out 0s;
       box-shadow: inset 0 0 20px 20px #121212;
     }
+
     transition: 0.1s ease-in-out;
     height: 3.125rem;
     width: 100%;
