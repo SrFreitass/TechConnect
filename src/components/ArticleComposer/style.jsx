@@ -184,8 +184,12 @@ export const ButtonDefault = styled.button`
   cursor: pointer;
 
   a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-decoration: none;
     color: ${({ theme }) => theme.colors.primary};
-    width: 100%;
+    min-width: 100%;
+    min-height: 100%;
   }
 `;
