@@ -60,11 +60,9 @@ export function useArticleCreate() {
         const uploadImage = async (e) => {
             const imageRef = ref(storage, `images/${imageUpload.name}`);
             console.log(imageUpload)
-
             if (imageUpload == '') {
                 return
             }
-
             try {
                 await uploadBytes(imageRef, imageUpload)
                 toast.loading('Enviando a imagem')
@@ -76,7 +74,6 @@ export function useArticleCreate() {
             catch (error) {
                 toast.error('Erro ao enviar a imagem')
             }
-
         }
         uploadImage()
     }, [imageUpload])
@@ -88,30 +85,22 @@ export function useArticleCreate() {
         const valueEditor = editorRef.current.getContent()
 
         if (valueEditor != standardStructure) {
-
             try {
-                
                 if(content == valueEditor && imageURL == url) {
                     throw 'equal'
                 }
-
                 setContent(valueEditor);
                 setTitle((/<h1>(.*?)<\/h1>/.exec(valueEditor)[0]).replace(/(<([^>]+)>)/ig, ''))
                 setSummary((/<h2>(.*?)<\/h2>/.exec(valueEditor)[0]).replace(/(<([^>]+)>)/ig, ''));
                 setAuthor((/<p>(.*?)<\/p>/.exec(valueEditor)[0]).replace(/(<([^>]+)>)/ig, ''));
                 setImageURL(url)
-                
             } catch (error) {
                 toast.error(error == 'equal' ? 'Preencha todos os campos' : 'Revise o conteúdo do artigo')
                 console.log(error)
             }
-            
             return
         }
-
-
         toast.error('Revise o conteúdo do artigo')
-
     }
 
     const handleImageDelete = (e) => {

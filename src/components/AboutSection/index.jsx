@@ -4,7 +4,7 @@ import team3D from "../../assets/images/team.png";
 import hand3D from "../../assets/images/hand.png";
 import { useEffect, useRef } from "react";
 
-export function SectionAbout() {
+export function AboutSection() {
   return (
     <>
       <SectionAboutStyle>

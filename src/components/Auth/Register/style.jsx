@@ -13,6 +13,46 @@ export const ContainerInputForm = styled.div`
 
     color: #ab2c2c;
   }
+
+  input:focus + svg {
+    fill: ${({ theme }) => theme.colors.purple400};
+  }
+
+  input[type="text"],
+  input[type="password"],
+  input[type="email"] {
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus,
+    &:-webkit-autofill:active {
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: #fff;
+      transition: background-color 5000s ease-in-out 0s;
+      box-shadow: inset 0 0 20px 20px #121212;
+    }
+    transition: 0.1s ease-in-out;
+    height: 3.125rem;
+    width: 100%;
+    max-width: 25rem;
+    font-size: 1rem;
+    padding: 0rem 1rem 0rem ${({ icon }) => (icon ? "3.5rem" : "1rem")};
+
+    color: ${({ theme }) => theme.colors.primary};
+
+    &::placeholder {
+      color: ${({ theme }) => theme.colors.secundary};
+    }
+
+    border: 2px solid ${({ theme }) => theme.colors.background};
+
+    &:focus {
+      border: 2px solid ${({ theme }) => theme.colors.purple400};
+    }
+
+    background-color: #121212;
+
+    border-radius: 5px;
+  }
 `;
 
 export const ContainerMain = styled.main`
@@ -71,10 +111,6 @@ export const FormStyled = styled.form`
       }
     `}
 
-  input:focus + svg {
-    fill: ${({ theme }) => theme.colors.purple400};
-  }
-
   div > svg:nth-child(2) {
     position: absolute;
     margin-top: 0.8rem;
@@ -86,42 +122,6 @@ export const FormStyled = styled.form`
     align-self: end;
     margin-top: 0.8rem;
     margin-right: 1rem;
-  }
-
-  input[type="text"],
-  input[type="password"],
-  input[type="email"] {
-    &:-webkit-autofill,
-    &:-webkit-autofill:hover,
-    &:-webkit-autofill:focus,
-    &:-webkit-autofill:active {
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: #fff;
-      transition: background-color 5000s ease-in-out 0s;
-      box-shadow: inset 0 0 20px 20px #121212;
-    }
-    transition: 0.1s ease-in-out;
-    height: 3.125rem;
-    width: 100%;
-    max-width: 25rem;
-    font-size: 1rem;
-    padding: 0rem 1rem 0rem 3rem;
-
-    color: ${({ theme }) => theme.colors.primary};
-
-    &::placeholder {
-      color: ${({ theme }) => theme.colors.secundary};
-    }
-
-    border: 2px solid ${({ theme }) => theme.colors.background};
-
-    &:focus {
-      border: 2px solid ${({ theme }) => theme.colors.purple400};
-    }
-
-    background-color: #121212;
-
-    border-radius: 5px;
   }
 
   label {

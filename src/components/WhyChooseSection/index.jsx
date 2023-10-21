@@ -13,7 +13,7 @@ import {
 import { Wrapper } from "../../Styles/Wrapper";
 import { useEffect, useRef } from "react";
 
-export function SectionChoice() {
+export function WhyChooseSection() {
   return (
     <>
       <SectionChoiceStyle>

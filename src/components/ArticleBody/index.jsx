@@ -24,7 +24,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { Comments } from "../Comments";
 import { Recomend } from "../Recomend";
 
-export function BodyNews() {
+export function ArticleBody() {
   const [content, setContent] = useState({});
   const [title, setTitle] = useState("");
   const [image, setImage] = useState("");

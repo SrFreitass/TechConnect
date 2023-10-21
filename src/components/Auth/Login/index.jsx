@@ -82,7 +82,7 @@ export function Login() {
             </p>
           </div>
 
-          <ContainerInputForm error={errors}>
+          <ContainerInputForm error={errors} icon={true}>
             <input
               {...register("email", { required: true })}
               type="email"
@@ -97,7 +97,7 @@ export function Login() {
             )}
           </ContainerInputForm>
 
-          <ContainerInputForm error={errors}>
+          <ContainerInputForm error={errors} icon={true}>
             <input
               {...register("password", { required: true })}
               type={showPassword ? "text" : "password"}

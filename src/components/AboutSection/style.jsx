@@ -10,15 +10,15 @@ export const SectionAboutStyle = styled.section`
 
   @keyframes downUp {
     0% {
-      top: 0px;
+      bottom: 0px;
     }
 
     50% {
-      top: -20px;
+      bottom: 20px;
     }
 
     100% {
-      top: 0px;
+      bottom: 0px;
     }
   }
 

@@ -2,12 +2,7 @@ import { Wrapper } from "../../../Styles/Wrapper";
 import { Header } from "../../Header";
 import { useForm } from "react-hook-form";
 import { Link, Navigate } from "react-router-dom";
-import {
-  FormStyled,
-  ContainerInputForm,
-  ContainerCheckForm,
-  ProgressForm,
-} from "./style";
+import { FormStyled, ContainerInputForm, ContainerCheckForm } from "./style";
 import { ButtonDefault } from "../../ArticleComposer/style";
 import {
   Eye,
@@ -28,7 +23,6 @@ import {
 import { auth } from "../../../services/firebaseconfig";
 import { useEffect, useState } from "react";
 import { EmailVerification } from "../EmailVerification";
-import { FirebaseError } from "firebase/app";
 import { Loader } from "../../Loader";
 import { useVerifyEmail } from "../hook/useVerifyEmail";
 import { ContainerMain } from "./style";
@@ -82,7 +76,7 @@ export function Register() {
             <p>Crie sua conta nomelhor portal de notícias tech da internet!</p>
           </div>
 
-          <ContainerInputForm>
+          <ContainerInputForm icon={true}>
             <input
               {...register("username", {
                 required: true,
@@ -114,7 +108,7 @@ export function Register() {
             )}
           </ContainerInputForm>
 
-          <ContainerInputForm error={errors}>
+          <ContainerInputForm error={errors} icon={true}>
             <input
               {...register("email", { required: true })}
               type="text"
@@ -137,7 +131,7 @@ export function Register() {
             )}
           </ContainerInputForm>
 
-          <ContainerInputForm error={errors}>
+          <ContainerInputForm error={errors} icon={true}>
             <input
               {...register("password", {
                 required: true,
@@ -179,7 +173,7 @@ export function Register() {
             )}
           </ContainerInputForm>
 
-          <ContainerInputForm error={errors}>
+          <ContainerInputForm error={errors} icon={true}>
             <input
               {...register("passwordConfirmed", { required: true })}
               type="password"
@@ -201,7 +195,7 @@ export function Register() {
             )}
           </ContainerInputForm>
 
-          <ContainerCheckForm error={errors}>
+          <ContainerCheckForm error={errors} icon={true}>
             <br />
             <h4>
               Ao se registrar, você aceita nossos <Link>termos</Link> de uso e a

@@ -1,12 +1,13 @@
 import { NewsStyled } from "../ArticleFeed/style";
 import { Link, useParams } from "react-router-dom";
-import { ButtonStyled } from "../SectionMain/style";
-import { SectionGrid } from "../../containers/SectionGrid/style";
+import { ButtonStyled } from "../IntroSection/style";
 import { AsidePanel } from "../ArticleFeed/style";
 import { ButtonsContainer } from "../ArticleFeed/style";
 import { ButtonDefault } from "../ArticleComposer/style";
 import DOMPurify from "dompurify";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, Suspense } from "react";
+import { Loader } from "../Loader";
+import { LoaderArticle } from "./LoaderArticle.jsx";
 
 export function Articles({
   articlesList,
@@ -19,6 +20,7 @@ export function Articles({
   const element = useRef();
   const [count, setCount] = useState(0);
   const [exchangeRate, setExchangeRate] = useState({}); //[USD, EUR, BTC
+  const [loading, setLoading] = useState(false);
 
   const dateConverter = (date) => {
     return new Date(date * 1000).toLocaleString("pt-BR");
@@ -43,11 +45,11 @@ export function Articles({
   const articles = articlesList.map((article, index) => {
     return (
       <NewsStyled key={index}>
-        <Link to={`./news/${article.id}`}>
+        <Link to={`./home/article/${article.id}`}>
           <img src={article.imageURL} alt="" />
         </Link>
         <div>
-          <Link to={`./news/${article.id}`}>
+          <Link to={`../home/article/${article.id}`}>
             <h2 dangerouslySetInnerHTML={innerContentHTML(article.title)} />
           </Link>
 
@@ -87,9 +89,57 @@ export function Articles({
   }, [count]);
 
   return (
-    <section>
-      {articles}
-      <br ref={element}></br>
-    </section>
+    <>
+      <section>
+        {articles == "" ? (
+          <>
+            <br />
+            <LoaderArticle>
+              <div>
+                <span />
+                <div>
+                  <h2></h2>
+                  <p></p>
+                </div>
+              </div>
+            </LoaderArticle>
+            <br />
+            <LoaderArticle>
+              <div>
+                <span />
+                <div>
+                  <h2></h2>
+                  <p></p>
+                </div>
+              </div>
+            </LoaderArticle>
+            <br />
+            <LoaderArticle>
+              <div>
+                <span />
+                <div>
+                  <h2></h2>
+                  <p></p>
+                </div>
+              </div>
+              <br />
+            </LoaderArticle>
+            <LoaderArticle>
+              <div>
+                <span />
+                <div>
+                  <h2></h2>
+                  <p></p>
+                </div>
+              </div>
+              <br />
+            </LoaderArticle>
+          </>
+        ) : (
+          articles
+        )}
+        <br ref={element}></br>
+      </section>
+    </>
   );
 }

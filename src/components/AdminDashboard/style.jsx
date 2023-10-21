@@ -3,15 +3,20 @@ import { styled, css } from "styled-components";
 export const AsideStyled = styled.aside`
   display: flex;
   flex-direction: column;
-  padding-right: 1rem;
+  position: relative;
+  padding-right: 1.5rem;
   gap: 1.5rem;
   border-right: 1px solid #353438;
   min-width: 15rem;
   max-width: 15rem;
 
+  @media (max-width: 1050px) {
+    padding-right: 0rem;
+  }
+
   button:first-child {
     width: 100%;
-    border-radius: 8px;
+    border-radius: 5px;
     height: 2.75rem;
     background-color: ${({ theme }) => theme.colors.purple700};
     justify-content: center;
@@ -55,7 +60,19 @@ export const AsideStyled = styled.aside`
 
   @media (max-width: 1050px) {
     display: flex;
-    max-width: 100%;
+    min-width: 100%;
     border: none;
+    margin: 0 auto;
+    padding-right: 1.7rem;
+
+    button:first-child {
+      height: 3rem;
+      align-self: center;
+    }
+
+    button:last-child {
+      border-bottom: 1px solid #353438;
+      padding: 0rem 0rem 1rem 0rem;
+    }
   }
 `;

@@ -1,44 +1,28 @@
 import { useState, useEffect, useRef } from "react";
-import { HeaderContainer } from "./style";
-import {
-  Briefcase,
-  CaretDown,
-  CaretUp,
-  DesktopTower,
-  FacebookLogo,
-  GameController,
-  InstagramLogo,
-  Lightbulb,
-  List,
-  Popcorn,
-  TwitterLogo,
-  UserCircle,
-  UserPlus,
-  Graph,
-  FastForwardCircle,
-  X,
-} from "@phosphor-icons/react";
+import { HeaderContainer, Logo, DropDown } from "./style";
+import { UserCircle, UserPlus, X } from "@phosphor-icons/react";
 import { Search } from "./Search";
 import { auth } from "../../services/firebaseconfig";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { Link } from "react-router-dom";
 import { ButtonDefault } from "../ArticleComposer/style";
+import { MobileMenu } from "./MobileMenu";
 
 export function Header({ isIntroductionPage }) {
   const [menu, setMenu] = useState(false);
   const [userMenu, setUserMenu] = useState(false);
   const [search, setSearch] = useState(false);
   const [accountMenu, setAccountMenu] = useState(false);
-  const [menuCategory, setMenuCategory] = useState(false);
-  const popup = useRef();
+
+  const userMenuElement = useRef(null);
   const { currentUser } = auth;
 
-  const handleMenu = () => {
-    setMenu(!menu);
-    menu
-      ? (document.documentElement.style.overflow = "auto")
-      : (document.documentElement.style.overflow = "hidden");
-    console.log(document.documentElement);
+  const handleUserMenu = () => {
+    setUserMenu(!userMenu);
+  };
+
+  const observerMenu = () => {
+    setUserMenu && setUserMenu(false);
   };
 
   const handleSignOut = async () => {
@@ -51,10 +35,6 @@ export function Header({ isIntroductionPage }) {
     }
   };
 
-  const HandlemenuCategory = () => {
-    setMenuCategory(!menuCategory);
-  };
-
   return (
     <>
       <HeaderContainer
@@ -63,8 +43,17 @@ export function Header({ isIntroductionPage }) {
         search={search}
         isIntroductionPage={isIntroductionPage}
       >
-        <span>&#60;techconnect/&#62;</span>
-        <span>&#60;/&#62;</span>
+        <Logo>
+          {/* Full Logo */}
+          <Link to="../home">
+            <span>&#60;techconnect/&#62;</span>
+          </Link>
+
+          {/* Min Logo */}
+          <Link to="../home">
+            <span>&#60;/&#62;</span>
+          </Link>
+        </Logo>
 
         <nav>
           <ul>
@@ -83,118 +72,35 @@ export function Header({ isIntroductionPage }) {
             />
           </ul>
 
-          <div>
-            {menu ? (
-              <X size="32" color="#757575" onClick={handleMenu} />
-            ) : (
-              <List size="32" color="#757575" onClick={handleMenu} />
-            )}
-            <ul>
-              <li>
-                <Search
-                  searchProps={{ search, setSearch }}
-                  menuProps={{ menu, setMenu }}
-                />
-              </li>
-
-              <li onClick={HandlemenuCategory}>
-                <div>
-                  Categorias
-                  {menuCategory ? <CaretUp /> : <CaretDown />}
-                </div>
-                {menuCategory && (
-                  <div>
-                    <Link onClick={handleMenu} to="../category/inovação">
-                      <Lightbulb />
-                      Inovação
-                    </Link>
-                    <Link onClick={handleMenu} to="../category/tecnologia">
-                      <Graph />
-                      Tecnologia
-                    </Link>
-                    <Link onClick={handleMenu} to="../category/computação">
-                      <DesktopTower />
-                      Computação
-                    </Link>
-                    <Link
-                      onClick={handleMenu}
-                      to="../category/empreendendorismo"
-                    >
-                      <Briefcase />
-                      Empreendedorismo
-                    </Link>
-                    <Link onClick={handleMenu} to="../category/jogos">
-                      <GameController />
-                      Jogos
-                    </Link>
-                    <Link onClick={handleMenu} to="../home/fast/fast">
-                      <FastForwardCircle />
-                      Fast
-                    </Link>
-                  </div>
+          <DropDown>
+            <li onClick={handleUserMenu}>
+              <UserCircle size={32} />
+            </li>
+            {userMenu ? (
+              <div>
+                {currentUser ? (
+                  <button onClick={handleSignOut}>
+                    <X size={24} color="#C291F4" /> Sair
+                  </button>
+                ) : (
+                  <button>
+                    {" "}
+                    <UserPlus size={24} color="#C291F4" />{" "}
+                    <Link to="../auth/login"> Entrar </Link>
+                  </button>
                 )}
-              </li>
+              </div>
+            ) : (
+              ""
+            )}
+          </DropDown>
 
-              <li>
-                <Link to="../home" onClick={handleMenu}>
-                  Artigos
-                </Link>
-              </li>
+          {/*---------------------Menu Mobile--------------------- */}
 
-              <li>
-                <Link to="../">Sobre nós</Link>
-              </li>
-              {currentUser ? (
-                <li onClick={handleSignOut}>
-                  <X />
-                  Sair da plataforma
-                </li>
-              ) : (
-                <>
-                  <li>
-                    <Link to="../auth/login">Entrar</Link>
-                  </li>
-                  <li>
-                    <Link to="../auth/register">Criar conta</Link>
-                  </li>
-                </>
-              )}
-            </ul>
-          </div>
-
-          <ul>
-            <li>
-              <FacebookLogo size={32} />
-            </li>
-            <li>
-              <InstagramLogo size={32} />
-            </li>
-            <li>
-              <TwitterLogo size={32} />
-            </li>
-            <div>
-              <li onClick={() => setUserMenu(!userMenu)}>
-                <UserCircle size={32} />
-              </li>
-              {userMenu ? (
-                <div>
-                  {currentUser ? (
-                    <button onClick={handleSignOut}>
-                      <X size={24} color="#C291F4" /> Sair
-                    </button>
-                  ) : (
-                    <button>
-                      {" "}
-                      <UserPlus size={24} color="#C291F4" />{" "}
-                      <Link to="../auth/login"> Entrar </Link>
-                    </button>
-                  )}
-                </div>
-              ) : (
-                ""
-              )}
-            </div>
-          </ul>
+          <MobileMenu
+            menuProps={{ menu, setMenu }}
+            searchProps={{ search, setSearch }}
+          />
         </nav>
       </HeaderContainer>
     </>

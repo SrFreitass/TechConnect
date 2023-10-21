@@ -5,6 +5,12 @@ export const ContainerComments = styled.div`
   flex-direction: column;
   gap: 1rem;
 
+  h3 {
+    font-size: 1.6rem;
+    border-bottom: 1px solid ${({ theme }) => theme.colors.gray600};
+    padding: 1rem 0rem;
+  }
+
   section {
     display: flex;
     flex-direction: column;
@@ -47,10 +53,15 @@ export const Nocomments = styled.div`
   display: flex;
   width: 100%;
   border-radius: 5px;
-  height: 10rem;
+  height: 15rem;
   border: 1px solid #353438;
   justify-content: center;
-  background: linear-gradient(180deg, rgba(33, 33, 36, 0) 0%, #212124 100%);
+  background: linear-gradient(
+    180deg,
+    #212124 61.04%,
+    #c391f4 397.95%,
+    rgba(28, 13, 44, 0.8) 401.46%
+  );
 
   span {
     align-self: center;

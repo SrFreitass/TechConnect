@@ -8,7 +8,9 @@ export function ControlsAdmin({ sectionState }) {
   return (
     <AsideStyled sectionState={sectionState}>
       <ButtonDefault>
-        <Link to="./create">
+        <Link
+          to={sectionState.section == "article" ? "./create" : "./fast/create"}
+        >
           + NOVO {sectionState.section == "article" ? "ARTIGO" : "FAST"}
         </Link>
       </ButtonDefault>

@@ -1,4 +1,4 @@
-import { styled } from 'styled-components';
+import { styled } from "styled-components";
 
 export const Section404 = styled.section`
   display: flex;
@@ -11,12 +11,21 @@ export const Section404 = styled.section`
   div {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
   }
 
   img {
+    border: 2px solid ${({ theme }) => theme.colors.purple400};
+    max-width: 20rem;
+    height: auto;
+    max-height: 20rem;
     border-radius: 5px;
+  }
+
+  h2 {
+    color: ${({ theme }) => theme.colors.primary};
+    text-align: center;
   }
 
   h1 {
@@ -41,5 +50,17 @@ export const Section404 = styled.section`
     text-align: center;
     color: ${({ theme }) => theme.colors.secundary};
     font-size: 1.2rem;
+  }
+
+  @media (max-width: 1000px) {
+    h1 {
+      font-size: 10rem;
+    }
+  }
+
+  @media (max-width: 350px) {
+    h1 {
+      font-size: 8rem;
+    }
   }
 `;

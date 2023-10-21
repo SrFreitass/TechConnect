@@ -11,7 +11,7 @@ import {
   limit,
 } from "firebase/firestore";
 import { ArticleStyled } from "../ArticleBody/style";
-import { ButtonStyled } from "../SectionMain/style";
+import { ButtonStyled } from "../IntroSection/style";
 import DOMPurify from "dompurify";
 import { Loader } from "../Loader";
 import { Articles } from "../common/Articles";

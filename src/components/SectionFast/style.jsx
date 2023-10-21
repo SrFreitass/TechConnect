@@ -2,7 +2,16 @@ import { styled } from "styled-components";
 import { css } from "styled-components";
 
 export const SectionFastStyle = styled.div`
+  ${({ isAdmin }) =>
+    isAdmin
+      ? css`
+          max-width: 100vw;
+          margin-left: -1.54rem;
+        `
+      : ""}
+
   h2 {
+    margin-left: 1.54rem;
     color: ${({ theme }) => theme.colors.primary};
   }
 
@@ -19,6 +28,20 @@ export const SectionFastStyled = styled.section`
   gap: 2rem;
   width: 100%;
   height: 85vh;
+
+  @media (min-width: 500px) and (max-height: 850px) {
+    video {
+      width: 25rem !important;
+      height: 82vh !important;
+    }
+  }
+
+  @media (min-height: 1000px) and (max-width: 1000px) {
+    video {
+      width: 37rem !important;
+      height: 85vh !important;
+    }
+  }
 
   @media (max-width: 500px) {
     gap: 0rem;
@@ -94,7 +117,8 @@ export const MobileVideo = styled.div`
 
   @media (max-width: 500px) {
     video {
-      width: 100vw;
+      width: 100vw !important;
+      height: 100vh !important;
       border-radius: 0px;
     }
   }
@@ -147,7 +171,7 @@ export const MobileVideo = styled.div`
     padding: 1rem;
     position: absolute;
     font-weight: 600;
-    bottom: 4%;
+    bottom: 12%;
 
     span {
       color: ${({ theme }) => theme.colors.purple400};
@@ -155,7 +179,7 @@ export const MobileVideo = styled.div`
   }
 
   p {
-    bottom: 3%;
+    bottom: 8%;
     width: 91%;
     color: ${({ theme }) => theme.colors.secundary};
   }
@@ -171,7 +195,7 @@ export const MobileVideo = styled.div`
     div:nth-child(2) {
       position: relative;
       right: 5rem;
-      bottom: 2rem;
+      bottom: 6rem;
       svg {
         background: none;
       }
@@ -193,6 +217,15 @@ export const MobileVideo = styled.div`
   }
 `;
 export const ShareButtons = styled.aside`
+  top: 1.5rem;
+  position: sticky;
+  max-height: 10rem;
+
+  @media (max-width: 1150px) {
+    height: auto;
+    position: static;
+  }
+
   display: flex;
   flex-direction: ${({ direction }) => (direction ? "row" : "column")};
   gap: 1rem;

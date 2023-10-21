@@ -2,18 +2,17 @@
 
 import { RouterProvider } from "react-router-dom";
 import { router } from "./routes";
-import { GlobalStyle } from './Styles/Global.jsx'
-import { ThemeProvider } from 'styled-components'
-import { Theme } from './Styles/Theme.jsx'
+import { GlobalStyle } from "./Styles/Global.jsx";
+import { ThemeProvider } from "styled-components";
+import { Theme } from "./Styles/Theme.jsx";
 
 export function App() {
   return (
     <>
-       <ThemeProvider theme={Theme} >
-          <GlobalStyle/>
-          <RouterProvider router={router} />
+      <ThemeProvider theme={Theme}>
+        <GlobalStyle />
+        <RouterProvider router={router} />
       </ThemeProvider>
     </>
-  )
+  );
 }
-

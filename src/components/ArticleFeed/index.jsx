@@ -20,21 +20,56 @@ export function News() {
 
   useEffect(() => {
     const getData = async () => {
+      if (window.innerWidth <= 800) {
+        const q = query(
+          userCollectionRef,
+          where("emphasis", "==", true),
+          orderBy("date", "desc"),
+          limit(5)
+        );
+
+        const qEmphasis = query(
+          userCollectionRef,
+          where("emphasis", "==", true),
+          orderBy("date", "desc"),
+          limit(5)
+        );
+
+        const querySnapshotEmphasis = await getDocs(qEmphasis);
+        const querySnapshot = await getDocs(q);
+        setLastVisible(querySnapshot.docs[querySnapshot.docs.length - 1]);
+
+        const dataEmphasis = querySnapshotEmphasis.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+
+        const data = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+
+        setNews([...dataEmphasis, ...data]);
+        console.log(data, dataEmphasis);
+        return;
+      }
+
       const q = query(
         userCollectionRef,
         where("emphasis", "==", false),
         orderBy("date", "desc"),
         limit(5)
       );
+
       const querySnapshot = await getDocs(q);
-      setLastVisible(querySnapshot.docs[querySnapshot.docs.length - 1]);
 
       const data = querySnapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
       }));
+
+      setLastVisible(querySnapshot.docs[querySnapshot.docs.length - 1]);
       setNews(data);
-      console.log(data);
     };
     getData();
   }, []);

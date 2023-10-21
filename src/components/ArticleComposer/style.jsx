@@ -76,7 +76,7 @@ export const StyleArticleCreationForm = styled.div`
     }
   }
 
-  @media (max-width: 850px) {
+  @media (max-width: 1050px) {
     form {
       border-radius: 10px;
       flex-direction: column-reverse;
@@ -115,7 +115,7 @@ export const UploadContainer = styled.div`
     display: block;
     text-align: center;
     font-weight: 500;
-    content: "Ou arraste para cá.";
+    content: "Ou arraste aqui";
   }
 
   input[type="file"]::-webkit-file-upload-button {
@@ -143,10 +143,11 @@ export const IconsContainer = styled.div`
   align-items: center;
   text-align: start;
   font-weight: 500;
+  padding: 0.6rem 0rem;
   gap: 0.5rem;
 
   p {
-    width: 80%;
+    max-width: 20rem;
     color: ${({ theme }) => theme.colors.primary};
   }
 

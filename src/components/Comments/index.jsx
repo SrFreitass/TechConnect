@@ -210,22 +210,24 @@ export function Comments() {
         </ContainerComments>
       </>
     );
-  } else {
-    return (
-      <>
-        <h3>Comentários</h3>
-        <Nocomments>
-          <br />
-          <span>
-            Faça{" "}
-            <Link to="../auth/login">
-              <u>login</u>
-            </Link>{" "}
-            para ter acesso aos comentários
-          </span>
-          <br ref={elementObserver} />
-        </Nocomments>
-      </>
-    );
   }
+
+  return (
+    <ContainerComments>
+      <br />
+      <h3>Comentários</h3>
+      <Nocomments>
+        <br />
+        <span>
+          Faça{" "}
+          <Link to="../auth/login">
+            <u>login</u>{" "}
+          </Link>
+          para ter acesso aos comentários
+        </span>
+        <br ref={elementObserver} />
+      </Nocomments>
+      <br />
+    </ContainerComments>
+  );
 }

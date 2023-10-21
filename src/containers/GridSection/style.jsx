@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 
-export const SectionGrid = styled.div`
+export const GridSection = styled.div`
   display: flex;
   flex-direction: column;
 

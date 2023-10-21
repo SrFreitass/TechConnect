@@ -2,6 +2,7 @@ import { ButtonDefault } from "../ArticleComposer/style";
 import { SectionGoHomeStyle } from "./style";
 import astronaut from "../../assets/images/astronaut3d.png";
 import { Wrapper } from "../../Styles/Wrapper";
+import { Link } from "react-router-dom";
 
 export function SectionGoHome() {
   return (
@@ -14,7 +15,9 @@ export function SectionGoHome() {
           Inicie sua jornada para se tornar um conhecedor de tecnologia mais bem
           informado através do TechConnect.
         </h3>
-        <ButtonDefault>EXPLORAR</ButtonDefault>
+        <ButtonDefault>
+          <Link to="../home">EXPLORAR</Link>
+        </ButtonDefault>
       </div>
       <img data-aos="fade-up" src={astronaut} />
     </SectionGoHomeStyle>

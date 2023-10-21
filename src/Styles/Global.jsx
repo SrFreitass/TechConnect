@@ -16,8 +16,6 @@ export const GlobalStyle = createGlobalStyle`
         transition: all ease-in-out 0.1s;
     }
 
-
-
     body {
         background-color: ${({ theme }) => theme.colors.background};
     }
@@ -27,7 +25,7 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     hr {
-        border: 1px solid ${({ theme }) => theme.colors.secundary};
+        border: 1px solid #353438;
     }
 
     a {
@@ -37,6 +35,7 @@ export const GlobalStyle = createGlobalStyle`
 
     ::-webkit-scrollbar {
         width: 5px;
+        height: 5px;
     }
 
     ::-webkit-scrollbar-track {

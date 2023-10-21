@@ -42,7 +42,7 @@ export function PasswordRecovery() {
         <div>
           <h2>Recuperar senha</h2>
         </div>
-        <ContainerInputForm>
+        <ContainerInputForm icon={true}>
           <input ref={inputRef} type="email" placeholder="Seu email" />
           <EnvelopeSimple size={24} color="#757575" />
         </ContainerInputForm>

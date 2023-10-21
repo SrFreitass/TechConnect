@@ -12,18 +12,6 @@ import { useEffect, useState } from "react";
 export function AsideHome() {
   const [exchangeRate, setExchangeRate] = useState();
 
-  useEffect(() => {
-    const fetchApiExchangeRate = async () => {
-      const response = await fetch(
-        "https://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL,BTC-BRL"
-      );
-      const data = await response.json();
-      setExchangeRate(data);
-    };
-
-    fetchApiExchangeRate();
-  }, []);
-
   return (
     <AsidePanel>
       <div>
@@ -56,22 +44,9 @@ export function AsideHome() {
           <Link>
             <u>Metaverso</u>
           </Link>
-          <ButtonDefault>CONECTAR</ButtonDefault>
-        </p>
-      </div>
-      <div>
-        <h3>Cotação atual</h3>
-        <p>
-          <CurrencyDollar size={32} />
-          R$ {exchangeRate?.USDBRL?.ask.replace(".", ",")} - USD
-        </p>
-        <p>
-          <CurrencyEur size="32" />
-          R$ {exchangeRate?.EURBRL?.ask.replace(".", ",")} - EUR
-        </p>
-        <p>
-          <CurrencyBtc size="32" />
-          R$ {exchangeRate?.BTCBRL?.ask} - BTC
+          <ButtonDefault>
+            <Link to="../metaverso">CONECTAR</Link>
+          </ButtonDefault>
         </p>
       </div>
     </AsidePanel>

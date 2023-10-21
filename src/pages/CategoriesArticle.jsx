@@ -16,7 +16,7 @@ import { Wrapper } from "../Styles/Wrapper";
 import DOMPurify from "dompurify";
 import { Articles } from "../components/common/Articles";
 
-export function CategoryPage() {
+export function CategoriesArticle() {
   const { tag } = useParams();
   const [articles, setArticles] = useState([]);
   const [lastVisible, setLastVisible] = useState({});

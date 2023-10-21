@@ -62,6 +62,11 @@ export const ArticleContainerStyled = styled.main`
   display: flex;
   gap: 1rem;
 
+  strong {
+    font-size: 1.2rem;
+    color: ${({ theme }) => theme.colors.primary};
+  }
+
   div:nth-child(2) {
     display: flex;
     flex-direction: column;
@@ -91,7 +96,7 @@ export const ArticleContainerStyled = styled.main`
 
   img {
     width: 100%;
-    height: 25rem;
+    max-height: 25rem;
     object-fit: cover;
     border-radius: 5px;
   }
@@ -99,26 +104,38 @@ export const ArticleContainerStyled = styled.main`
   h2,
   h3,
   h4,
-  h5,
-  h6 {
+  h5 {
     color: #eeeeee;
+    font-family: "Bitter";
   }
 
   h1 {
+    font-family: "Montserrat";
+    color: #e0e0e0;
     color: ${({ theme }) => theme.colors.primary};
     font-weight: 600;
     font-size: 2rem;
   }
 
   h2 {
+    font-family: "Montserrat";
     color: ${({ theme }) => theme.colors.secundary};
     font-weight: 500;
     font-size: 1.2rem;
   }
 
+  strong {
+    font-family: "Bitter";
+  }
+
   p {
-    color: #cdcccc;
+    text-align: start !important;
+    width: 100%;
+    font-family: "Bitter";
+    font-size: 17px;
+    color: #dedede;
     font-weight: 400;
+    line-height: 1.8rem;
   }
 
   ul {
@@ -159,6 +176,7 @@ export const ArticleContainerStyled = styled.main`
   @media (max-width: 650px) {
     img {
       height: 100%;
+      max-height: 25rem;
       object-fit: contain;
     }
   }
@@ -182,10 +200,12 @@ export const CommentContainer = styled.div`
   }
 
   h4 {
+    font-family: "Montserrat";
     color: ${({ theme }) => theme.colors.primary};
   }
 
   p {
+    font-family: "Montserrat";
     color: ${({ theme }) => theme.colors.secundary};
   }
 

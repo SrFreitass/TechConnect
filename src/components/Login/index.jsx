@@ -1,14 +1,14 @@
-import { FormStyled, PasswordStyled } from './style';
-import { useState, useEffect, useLayoutEffect } from 'react';
-import { signInWithEmailAndPassword } from '@firebase/auth';
-import { auth } from '../../services/firebaseconfig';
-import { ButtonStyled } from '../SectionMain/style';
-import { Eye, EyeSlash } from '@phosphor-icons/react';
-import { useNavigate } from 'react-router-dom';
+import { FormStyled, PasswordStyled } from "./style";
+import { useState, useEffect, useLayoutEffect } from "react";
+import { signInWithEmailAndPassword } from "@firebase/auth";
+import { auth } from "../../services/firebaseconfig";
+import { ButtonStyled } from "../IntroSection/style";
+import { Eye, EyeSlash } from "@phosphor-icons/react";
+import { useNavigate } from "react-router-dom";
 
 export function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
   const navigate = useNavigate();
@@ -19,10 +19,10 @@ export function Login() {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user.uid;
-        localStorage.setItem('token', user);
+        localStorage.setItem("token", user);
       })
       .catch((error) => {
-        console.log('erro');
+        console.log("erro");
       });
   };
 
@@ -37,20 +37,20 @@ export function Login() {
         <h1>LOGIN</h1>
 
         <div>
-          <label for='email'>E-mail</label>
+          <label for="email">E-mail</label>
           <input
-            type='email'
-            placeholder='Email'
+            type="email"
+            placeholder="Email"
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
 
         <div>
-          <label for='password'>Senha</label>
+          <label for="password">Senha</label>
           <PasswordStyled>
             <input
-              type={showPassword ? 'text' : 'password'}
-              placeholder='Senha'
+              type={showPassword ? "text" : "password"}
+              placeholder="Senha"
               onChange={(e) => setPassword(e.target.value)}
             />
             <button onClick={handlePasswordChange}>
@@ -59,7 +59,7 @@ export function Login() {
           </PasswordStyled>
         </div>
 
-        <ButtonStyled type='submit'>ENTRAR</ButtonStyled>
+        <ButtonStyled type="submit">ENTRAR</ButtonStyled>
       </form>
     </FormStyled>
   );

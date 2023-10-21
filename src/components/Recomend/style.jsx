@@ -20,18 +20,19 @@ export const RecomentDiv = styled.div`
     font-size: 1.2rem;
   }
 
-  @media (max-width: 1050px) {
-    width: 60%;
-    display: flex;
-    margin-left: 3.5rem;
-  }
-
   @media (max-width: 1150px) {
     width: 100%;
     margin-left: 0;
   }
 
+  @media (max-width: 1050px) {
+    width: 100%;
+    display: flex;
+    margin-left: 0rem;
+  }
+
   @media (max-width: 450px) {
+    margin-left: 0rem;
     width: 100%;
 
     span:first-child {

@@ -31,6 +31,10 @@ export const SectionChoiceStyle = styled.section`
     }
   }
 
+  h3 {
+    font-size: 1rem;
+  }
+
   h1 {
     text-align: center;
     margin-top: 5rem;

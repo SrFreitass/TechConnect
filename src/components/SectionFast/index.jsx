@@ -1,4 +1,3 @@
-import untitled from "./untitled.mp4";
 import {
   MobileVideo,
   SectionFastStyled,
@@ -22,6 +21,7 @@ import {
   NotePencil,
   PencilSimpleLine,
   ShareFat,
+  SignOut,
 } from "@phosphor-icons/react";
 import { useRef, useState, useEffect, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
@@ -184,12 +184,13 @@ export function SectionFast({ isAdmin }) {
   };
 
   return (
-    <SectionFastStyle>
+    <SectionFastStyle isAdmin={isAdmin}>
       {isAdmin ? (
         <>
           <h2>
             Gerenciamento de <span>#fast</span>
           </h2>
+          <br />
         </>
       ) : (
         ""
@@ -304,6 +305,9 @@ export function SectionFast({ isAdmin }) {
                         size={48}
                         color="#8A8AE0"
                       />
+                      <Link to="../home">
+                        <SignOut size={48} color="#8A8AE0" title="Voltar" />
+                      </Link>
                     </>
                   )}
                 </div>
@@ -338,29 +342,29 @@ export const ShareAside = ({ setShare, share, title, direction }) => {
         href={`https://www.facebook.com/sharer.php?u=https://techconnectdev.vercel.app/home/news/${titleID}`}
         target="__blank"
       >
-        <FacebookLogo size={22} />
+        <FacebookLogo size={28} />
       </a>
       <a href="" onClick={copyLink}>
-        <InstagramLogo size={22} />
+        <InstagramLogo size={28} />
       </a>
       <a
         href={`https://twitter.com/intent/tweet?url=https://techconnectdev.vercel.app/home/news/${titleID}&text=${title}`}
         target="__blank"
       >
-        <TwitterLogo size={22} />
+        <TwitterLogo size={28} />
       </a>
       <a
-        href={`https://whatsapp://send?text=${title}+https://techconnectdev.vercel.app/home/news/${titleID}`}
+        href={`whatsapp://send?text=${title}+https://techconnectdev.vercel.app/home/news/${titleID}`}
         target="__blank"
       >
         {" "}
-        <WhatsappLogo size={22} />{" "}
+        <WhatsappLogo size={28} />{" "}
       </a>
       <a
         href={`https://telegram.me/share/url?url=https://techconnectdev.vercel.app/home/news/${titleID}&text=${title}`}
         target="__blank"
       >
-        <TelegramLogo size={22} />
+        <TelegramLogo size={28} />
       </a>
     </ShareButtons>
   );

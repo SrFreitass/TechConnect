@@ -1,84 +1,79 @@
-import { createBrowserRouter } from 'react-router-dom';
-import { Introduction } from '../pages/Introduction';
-import { Error404 } from '../pages/Error404';
-import { Home } from '../pages/Home';
-import { NewsPage } from '../pages/NewsPage';
-import { AdminPanel } from '../pages/AdminPanel';
-import { ArticleEdit } from '../pages/ArticleEdit';
-import { ArticleCreate } from '../pages/ArticleCreate';
-import { ArticlesFinder } from '../pages/ArticlesFinder';
-import { FastPage } from '../pages/FastPage';
-import { FastCreation } from '../components/FastCreation';
-import { AuthPage } from '../pages/AuthPage';
-import { RegisterPage } from '../pages/Auth/Register';
-import { LoginPage } from '../pages/Auth/Login';
-import { CategoryPage } from '../pages/CategoryPage';
-import { Metaverso } from '../pages/Metaverso';
-import { PasswordRecoveryPage } from '../pages/Auth/PasswordRecovery';
+import { createBrowserRouter } from "react-router-dom";
+import { Overview } from "../pages/Overview";
+import { NotFoundRouter } from "../pages/NotFoundRouter";
+import { MainPage } from "../pages/Main";
+import { AdminPanel } from "../pages/AdminPage";
+import { ArticleEdit } from "../pages/ArticleEditPage";
+import { CreateArticle } from "../pages/CreateArticle";
+import { ArticlesFinder } from "../pages/ArticleFinderPage";
+import { FastPage } from "../pages/FastPage";
+import { FastCreation } from "../components/FastCreation";
+import { RegisterPage } from "../pages/Auth/Register";
+import { LoginPage } from "../pages/Auth/Login";
+import { CategoriesArticle } from "../pages/CategoriesArticle";
+import { Metaverso } from "../pages/Metaverso";
+import { PasswordRecoveryPage } from "../pages/Auth/PasswordRecovery";
+import { ArticlePage } from "../pages/Article";
 
 export const router = createBrowserRouter([
   {
-    path: '*',
-    element: <Error404 />,
+    path: "*",
+    element: <NotFoundRouter />,
   },
   {
-    path: '',
-    element: <Introduction />,
+    path: "",
+    element: <Overview />,
   },
   {
-    path: 'home',
-    element: <Home />,
+    path: "home",
+    element: <MainPage />,
   },
   {
-    path: 'home/news',
-    element: <NewsPage />,
+    path: "home/article/:titleID",
+    element: <ArticlePage />,
   },
   {
-    path: 'home/news/:titleID',
-    element: <NewsPage />,
-  },
-  {
-    path: 'admin',
+    path: "admin",
     element: <AdminPanel />,
   },
   {
-    path: 'admin/create',
-    element: <ArticleCreate />,
+    path: "admin/create",
+    element: <CreateArticle />,
   },
   {
-    path: 'admin/edit/:articleTitle',
+    path: "admin/edit/:articleTitle",
     element: <ArticleEdit />,
   },
   {
-    path: 'results/:searchTitle',
+    path: "results/:searchTitle",
     element: <ArticlesFinder />,
   },
   {
-    path: 'home/fast/:titleID',
+    path: "home/fast/:titleID",
     element: <FastPage />,
   },
   {
-    path: 'admin/fast/create',
+    path: "admin/fast/create",
     element: <FastCreation />,
   },
   {
-    path: 'auth/login',
+    path: "auth/login",
     element: <LoginPage />,
   },
   {
-    path: 'auth/register',
+    path: "auth/register",
     element: <RegisterPage />,
   },
   {
-    path: 'auth/recovery',
+    path: "auth/recovery",
     element: <PasswordRecoveryPage />,
   },
   {
-    path: 'category/:tag',
-    element: <CategoryPage />,
+    path: "category/:tag",
+    element: <CategoriesArticle />,
   },
   {
-    path: 'metaverso',
+    path: "metaverso",
     element: <Metaverso />,
   },
 ]);
