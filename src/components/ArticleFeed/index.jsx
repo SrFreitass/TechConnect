@@ -23,7 +23,7 @@ export function News() {
       if (window.innerWidth <= 800) {
         const q = query(
           userCollectionRef,
-          where("emphasis", "==", true),
+          where("emphasis", "==", false),
           orderBy("date", "desc"),
           limit(5)
         );
@@ -51,6 +51,7 @@ export function News() {
 
         setNews([...dataEmphasis, ...data]);
         console.log(data, dataEmphasis);
+
         return;
       }
 
