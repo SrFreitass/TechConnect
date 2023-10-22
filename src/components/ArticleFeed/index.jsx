@@ -11,6 +11,7 @@ import {
   startAt,
 } from "firebase/firestore";
 import { Articles } from "../common/Articles";
+import toast, { Toaster } from "react-hot-toast";
 
 export function News() {
   const [news, setNews] = useState([]);
@@ -19,6 +20,7 @@ export function News() {
   const [showButton, setShowButton] = useState(true);
 
   useEffect(() => {
+    toast("Essa versão do projeto está em fases testes!", { icon: "✨" });
     const getData = async () => {
       if (window.innerWidth <= 800) {
         const q = query(
@@ -108,6 +110,17 @@ export function News() {
   };
 
   return (
-    <Articles articlesList={news} handleNextArticles={handleNextArticles} />
+    <>
+      <Toaster
+        position="bottom-left"
+        reverseOrder={false}
+        toastOptions={{
+          loading: {
+            duration: 1000,
+          },
+        }}
+      />
+      <Articles articlesList={news} handleNextArticles={handleNextArticles} />
+    </>
   );
 }
