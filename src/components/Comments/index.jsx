@@ -86,7 +86,10 @@ export function Comments() {
         }));
         setLastVisible(querySnapshot.docs[querySnapshot.docs.length - 1]);
         setComments(doc);
+        return;
       }
+
+      setComments([]);
     };
     FetchComments();
   }, [eventHandlerComment]);
