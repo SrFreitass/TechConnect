@@ -14,6 +14,7 @@ import {
   Graph,
   FastForwardCircle,
   X,
+  VirtualReality,
 } from "@phosphor-icons/react";
 import { Search } from "../Search";
 import { useState } from "react";
@@ -82,6 +83,10 @@ export function MobileMenu({ menuProps, searchProps, currentUser }) {
               <Link onClick={handleMenu} to="../home/fast/fast">
                 <FastForwardCircle />
                 Fast
+              </Link>
+              <Link onClick={handleMenu} to="../metaverso">
+                <VirtualReality />
+                Metaverso
               </Link>
             </div>
           )}

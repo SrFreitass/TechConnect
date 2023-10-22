@@ -6,6 +6,7 @@ export const ContainerComments = styled.div`
   gap: 1rem;
 
   h3 {
+    font-family: 'Montserrat';
     font-size: 1.6rem;
     border-bottom: 1px solid ${({ theme }) => theme.colors.gray600};
     padding: 1rem 0rem;

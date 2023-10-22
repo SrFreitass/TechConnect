@@ -29,10 +29,20 @@ export const SectionFastStyled = styled.section`
   width: 100%;
   height: 85vh;
 
+
+
+
   @media (min-width: 500px) and (max-height: 850px) {
     video {
       width: 25rem !important;
       height: 82vh !important;
+    }
+  }
+
+  @media (max-width: 1400px) {
+    video {
+      width: 25rem !important;
+      height: 85vh !important;
     }
   }
 
