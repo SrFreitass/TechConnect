@@ -70,8 +70,7 @@ export function SectionFast({ isAdmin }) {
       );
       const outherQ = await query(
         collection(db, "fast"),
-        where("title", "!=", titleID ? titleID : ""),
-        limit(5)
+        where("title", "!=", titleID ? titleID : "")
       );
 
       const querySnapshot = {

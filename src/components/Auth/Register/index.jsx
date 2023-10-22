@@ -89,21 +89,18 @@ export function Register() {
             <User size={24} color="#757575" />
             {errors?.username?.type === "required" && (
               <div>
-                {" "}
-                <Warning size={24} />{" "}
-                <span>Você precisa informar seu apelido.</span>{" "}
+                <Warning size={24} />
+                <span>Você precisa informar seu apelido.</span>
               </div>
             )}
             {errors?.username?.type === "maxLength" && (
               <div>
-                {" "}
-                <Warning size={24} /> <span>Máximo 20 caracteres</span>{" "}
+                <Warning size={24} /> <span>Máximo 20 caracteres</span>
               </div>
             )}
             {errors?.username?.type === "pattern" && (
               <div>
-                {" "}
-                <Warning size={24} /> <span>Nome de usuário inválido</span>{" "}
+                <Warning size={24} /> <span>Nome de usuário inválido</span>
               </div>
             )}
           </ContainerInputForm>
@@ -117,16 +114,14 @@ export function Register() {
             <EnvelopeSimple size={24} color="#757575" />
             {errors?.email?.type === "required" && (
               <div>
-                {" "}
-                <Warning size={24} />{" "}
-                <span>Você precisa informar um E-mail.</span>{" "}
+                <Warning size={24} />
+                <span>Você precisa informar um E-mail.</span>
               </div>
             )}
             {error == "errorEmail" && (
               <div>
-                {" "}
-                <Warning size={24} />{" "}
-                <span>O e-mail é inválido ou já está em uso</span>{" "}
+                <Warning size={24} />
+                <span>O e-mail é inválido ou já está em uso</span>
               </div>
             )}
           </ContainerInputForm>
@@ -153,22 +148,19 @@ export function Register() {
             )}
             {errors?.password?.type === "required" && (
               <div>
-                {" "}
-                <Warning size={24} />{" "}
-                <span>Você precisa definir uma senha.</span>{" "}
+                <Warning size={24} />
+                <span>Você precisa definir uma senha.</span>
               </div>
             )}
             {errors?.password?.type === "minLength" && (
               <div>
-                {" "}
-                <Warning size={24} /> <span>Minímo de 8 caracteres</span>{" "}
+                <Warning size={24} /> <span>Minímo de 8 caracteres</span>
               </div>
             )}
             {errors?.password?.type === "pattern" && (
               <div>
-                {" "}
-                <Warning size={24} />{" "}
-                <span>Letras maiúsculas, minúsculas, números e símbolos.</span>{" "}
+                <Warning size={24} />
+                <span>Letras maiúsculas, minúsculas, números e símbolos.</span>
               </div>
             )}
           </ContainerInputForm>
@@ -182,15 +174,13 @@ export function Register() {
             <Keyhole size={24} color="#757575" />
             {errors?.passwordConfirmed?.type === "required" && (
               <div>
-                {" "}
-                <Warning size={24} />{" "}
+                <Warning size={24} />
                 <span>Você precisa confirmar sua senha.</span>
               </div>
             )}
             {error == "notPassword" && (
               <div>
-                {" "}
-                <Warning size={24} /> <span>As senhas não se coincidem</span>{" "}
+                <Warning size={24} /> <span>As senhas não se coincidem</span>
               </div>
             )}
           </ContainerInputForm>
