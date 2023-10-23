@@ -109,10 +109,10 @@ export function MobileMenu({ menuProps, searchProps, currentUser }) {
         ) : (
           <>
             <li>
-              <Link to="../auth/login">Entrar</Link>
+              <Link to="../auth/login" onClick={handleMenu}>Entrar</Link>
             </li>
             <li>
-              <Link to="../auth/register">Criar conta</Link>
+              <Link to="../auth/register" onClick={handleMenu}<Criar conta</Link>
             </li>
           </>
         )}
