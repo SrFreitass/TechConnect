@@ -177,10 +177,11 @@ export function SectionFast({ isAdmin }) {
     document.querySelector("dialog").style.display = "flex";
 
     popup.current.showModal();
+    console.log(he.encode(title));
     console.log(navigator);
-    popup.current.querySelector(
-      "input"
-    ).value = `${window.location.origin}/home/fast/${title}`;
+    popup.current.querySelector("input").value = `${
+      window.location.origin
+    }/home/fast/${title.replace(/\s/g, "%20")}`;
   };
 
   const copyboardFast = async () => {

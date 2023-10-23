@@ -51,7 +51,7 @@ export function FastCreation() {
   const handlePostFast = async (e) => {
     e.preventDefault();
 
-    const titlePurify = title.replace(/\./g, "");
+    const titlePurify = title.replace(/[<>#"{}|\\\^[\]`]/g, "");
 
     if (videoURL && title) {
       if (title.length > 60) {
