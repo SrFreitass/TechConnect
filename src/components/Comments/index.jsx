@@ -42,11 +42,35 @@ export function Comments() {
   const commentRef = useRef();
   const elementObserver = useRef(null);
   const token = useAdminVerify();
-  const { title } = useParams();
+  const { titleID } = useParams();
   const [clicksPersMin, setClicksPersMin] = useState(0);
   const [count, setCount] = useState(0);
   const { status } = useVerifyEmail();
   console.log("renderizouX");
+
+  const FetchComments = async () => {
+    const q = query(
+      collection(db, `/articles/${titleID}/comments`),
+      orderBy("date", "desc"),
+      limit(10)
+    );
+    const querySnapshot = await getDocs(q);
+    if (querySnapshot.docs.length > 0) {
+      const doc = querySnapshot.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
+      setLastVisible(querySnapshot.docs[querySnapshot.docs.length - 1]);
+      setComments(doc);
+      return;
+    }
+
+    setComments([]);
+  };
+
+  useEffect(() => {
+    FetchComments();
+  }, [titleID]);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -72,25 +96,6 @@ export function Comments() {
   }, [userID]);
 
   useEffect(() => {
-    const FetchComments = async () => {
-      const q = query(
-        collection(db, `/articles/${title}/comments`),
-        orderBy("date", "desc"),
-        limit(10)
-      );
-      const querySnapshot = await getDocs(q);
-      if (querySnapshot.docs.length > 0) {
-        const doc = querySnapshot.docs.map((doc) => ({
-          ...doc.data(),
-          id: doc.id,
-        }));
-        setLastVisible(querySnapshot.docs[querySnapshot.docs.length - 1]);
-        setComments(doc);
-        return;
-      }
-
-      setComments([]);
-    };
     FetchComments();
   }, [eventHandlerComment]);
 
@@ -98,7 +103,7 @@ export function Comments() {
     count > 1 && handleNextComments();
   }, [count]);
 
-  const commentsCollectionRef = collection(db, `/articles/${title}/comments`);
+  const commentsCollectionRef = collection(db, `/articles/${titleID}/comments`);
 
   const handleComment = async () => {
     if (inputRef.current.value == false) {
@@ -130,7 +135,7 @@ export function Comments() {
   };
 
   const handleDelComment = async (id) => {
-    const commentDoc = doc(db, `/articles/${title}/comments`, id);
+    const commentDoc = doc(db, `/articles/${titleID}/comments`, id);
 
     try {
       toast.loading("Excluindo comentario");
@@ -145,7 +150,7 @@ export function Comments() {
 
   const handleNextComments = async () => {
     const q = query(
-      collection(db, `/articles/${title}/comments`),
+      collection(db, `/articles/${titleID}/comments`),
       orderBy("date", "desc"),
       startAfter(lastVisible),
       limit(10)

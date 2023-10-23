@@ -31,11 +31,6 @@ export function NotFound() {
             <img src={data.message} />
           </>
         ) : (
-          ""
-        )}
-        {scale <= 0.1 ? (
-          ""
-        ) : (
           <h1 ref={ref404} onClick={() => setScale(scale - 0.1)}>
             404
           </h1>
