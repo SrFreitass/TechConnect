@@ -100,6 +100,7 @@ export function Header({ isIntroductionPage }) {
           <MobileMenu
             menuProps={{ menu, setMenu }}
             searchProps={{ search, setSearch }}
+            currentUser={currentUser}
           />
         </nav>
       </HeaderContainer>
