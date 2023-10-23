@@ -101,6 +101,7 @@ export function Header({ isIntroductionPage }) {
             menuProps={{ menu, setMenu }}
             searchProps={{ search, setSearch }}
             currentUser={currentUser}
+            handleSignOut={handleSignOut}
           />
         </nav>
       </HeaderContainer>
