@@ -45,7 +45,7 @@ export function Recomend({ category, title }) {
             <NewsStyled key={index}>
               <img src={article.imageURL} alt="" />
               <div>
-                <Link to={`../home/article/${article.id}`}>
+                <Link to={`../home/article  /${article.id}`}>
                   <h3
                     dangerouslySetInnerHTML={{
                       __html: DOMPurify.sanitize(article.title),

@@ -119,15 +119,29 @@ export function SectionFast({ isAdmin }) {
 
   const nextVideo = (e) => {
     const legal = e.target.querySelectorAll("video");
-    legal.forEach((video) => {
-      video.pause();
-      video.currentTime = 0;
-      video.muted = false;
-    });
-    setPlaying(true);
-    setSound(true);
-    setShare(false);
-    setFastEdit(false);
+    const video = e.target.querySelector("video");
+    console.log(document.querySelector("section").scrollTop);
+    const index =
+      document.querySelector("section").scrollTop /
+      (video.offsetHeight +
+        Number(
+          getComputedStyle(document.querySelector("section")).gap.replace(
+            "px",
+            ""
+          )
+        ));
+
+    console.log(index.toString().split("0")[0].split("."));
+
+    // legal.forEach((video) => {
+    //   video.pause();
+    //   video.currentTime = 0;
+    //   video.muted = false;
+    // });
+    // setPlaying(true);
+    // setSound(true);
+    // setShare(false);
+    // setFastEdit(false);
   };
 
   const handleDelFast = async (id) => {
@@ -329,7 +343,7 @@ export const ShareAside = ({ setShare, share, title, direction }) => {
   const copyLink = async (e) => {
     e.preventDefault();
     await navigator.clipboard.writeText(
-      `https://techconnectdev.vercel.app/home/news/${titleID}`
+      `https://techconnectdev.vercel.app/home/article/${titleID}`
     );
     toast.success("Link copiado com sucesso");
   };
@@ -338,7 +352,7 @@ export const ShareAside = ({ setShare, share, title, direction }) => {
     <ShareButtons direction={direction}>
       {/* <button onClick={handleShareButtons}><X size="32" color="#C291F4" /></button> */}
       <a
-        href={`https://www.facebook.com/sharer.php?u=https://techconnectdev.vercel.app/home/news/${titleID}`}
+        href={`https://www.facebook.com/sharer.php?u=https://techconnectdev.vercel.app/home/article/${titleID}`}
         target="__blank"
       >
         <FacebookLogo size={28} />
@@ -347,20 +361,20 @@ export const ShareAside = ({ setShare, share, title, direction }) => {
         <InstagramLogo size={28} />
       </a>
       <a
-        href={`https://twitter.com/intent/tweet?url=https://techconnectdev.vercel.app/home/news/${titleID}&text=${title}`}
+        href={`https://twitter.com/intent/tweet?url=https://techconnectdev.vercel.app/home/article/${titleID}&text=${title}`}
         target="__blank"
       >
         <TwitterLogo size={28} />
       </a>
       <a
-        href={`whatsapp://send?text=${title}+https://techconnectdev.vercel.app/home/news/${titleID}`}
+        href={`whatsapp://send?text=${title}+https://techconnectdev.vercel.app/home/article/${titleID}`}
         target="__blank"
       >
         {" "}
         <WhatsappLogo size={28} />{" "}
       </a>
       <a
-        href={`https://telegram.me/share/url?url=https://techconnectdev.vercel.app/home/news/${titleID}&text=${title}`}
+        href={`https://telegram.me/share/url?url=https://techconnectdev.vercel.app/home/article/${titleID}&text=${title}`}
         target="__blank"
       >
         <TelegramLogo size={28} />
