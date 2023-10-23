@@ -21,7 +21,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { MobileMenuStyle } from "./style";
 
-export function MobileMenu({ menuProps, searchProps, currentUser }) {
+export function MobileMenu({ menuProps, searchProps, currentUser, handleSignOut}) {
   const { menu, setMenu } = menuProps;
   const { search, setSearch } = searchProps;
   const [menuCategory, setMenuCategory] = useState(false);
