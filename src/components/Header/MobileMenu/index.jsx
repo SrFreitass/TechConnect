@@ -103,8 +103,8 @@ export function MobileMenu({ menuProps, searchProps, currentUser, handleSignOut}
         </li>
         {currentUser ? (
           <li onClick={handleSignOut}>
-            <X />
-            Sair da plataforma
+            <Link> <X />
+            Sair da plataforma </Link>
           </li>
         ) : (
           <>
