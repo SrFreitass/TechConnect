@@ -21,7 +21,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { MobileMenuStyle } from "./style";
 
-export function MobileMenu({ menuProps, searchProps, currentUser }) {
+export function MobileMenu({ menuProps, searchProps, currentUser, handleSignOut}) {
   const { menu, setMenu } = menuProps;
   const { search, setSearch } = searchProps;
   const [menuCategory, setMenuCategory] = useState(false);
@@ -103,16 +103,16 @@ export function MobileMenu({ menuProps, searchProps, currentUser }) {
         </li>
         {currentUser ? (
           <li onClick={handleSignOut}>
-            <X />
-            Sair da plataforma
+            <Link> <X />
+            Sair da plataforma </Link>
           </li>
         ) : (
           <>
             <li>
-              <Link to="../auth/login">Entrar</Link>
+              <Link to="../auth/login" onClick={handleMenu}>Entrar</Link>
             </li>
             <li>
-              <Link to="../auth/register">Criar conta</Link>
+              <Link to="../auth/register" onClick={handleMenu}>Criar conta</Link>
             </li>
           </>
         )}
