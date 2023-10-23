@@ -41,6 +41,7 @@ import toast, { Toaster } from "react-hot-toast";
 import he from "he";
 import { ButtonDefault } from "../ArticleComposer/style";
 import { Search } from "../Header/Search";
+import { set } from "react-hook-form";
 
 export function SectionFast({ isAdmin }) {
   const videoRef = useRef(null);
@@ -94,6 +95,7 @@ export function SectionFast({ isAdmin }) {
     };
 
     FetchFast();
+    toast("Dê o primeiro play", { icon: "🎬" });
   }, []);
 
   const videoState = async (e) => {
@@ -121,27 +123,23 @@ export function SectionFast({ isAdmin }) {
     const legal = e.target.querySelectorAll("video");
     const video = e.target.querySelector("video");
     console.log(document.querySelector("section").scrollTop);
-    const index =
+    const index = Math.floor(
       document.querySelector("section").scrollTop /
-      (video.offsetHeight +
-        Number(
-          getComputedStyle(document.querySelector("section")).gap.replace(
-            "px",
-            ""
-          )
-        ));
-
-    console.log(index.toString().split("0")[0].split("."));
-
-    // legal.forEach((video) => {
-    //   video.pause();
-    //   video.currentTime = 0;
-    //   video.muted = false;
-    // });
-    // setPlaying(true);
-    // setSound(true);
-    // setShare(false);
-    // setFastEdit(false);
+        (video.offsetHeight +
+          Number(
+            getComputedStyle(document.querySelector("section")).gap.replace(
+              "px",
+              ""
+            )
+          ))
+    );
+    console.log(index);
+    legal[index].play().then(() => {
+      setPlaying(false);
+      legal.forEach((video, indexVideo) => {
+        indexVideo != index ? video.pause() : "";
+      });
+    });
   };
 
   const handleDelFast = async (id) => {
