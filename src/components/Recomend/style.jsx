@@ -35,6 +35,10 @@ export const RecomentDiv = styled.div`
     margin-left: 0rem;
     width: 100%;
 
+    a:first-child {
+      width: 100%;
+    }
+
     span:first-child {
       border: none;
     }
