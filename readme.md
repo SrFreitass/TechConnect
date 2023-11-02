@@ -6,7 +6,7 @@ Bem-vindo ao repositório do projeto TechConnect! Este repositório contém todo
 
 ## 📑Descrição
 
-O TechConnect é um projeto desenvolvido pelo itinerário técnico de Assistente de Projetista de Games, da Escola Ee Prof Silvio Oliveira Dos Santos, localizada em MS. O objetivo deste projeto é fornecer informações atualizadas e relevantes sobre tecnologia por meio de um site desenvolvido com React JS e algumas bibliotecas complementares. O projeto é liderado por Guilherme Freitas do Nascimento, e o orientador do projeto é Thiago. 👨‍💻
+O TechConnect é um projeto desenvolvido pelo itinerário técnico de Assistente de Projetista de Games, da Escola Ee Prof Silvio Oliveira Dos Santos, localizada em MS. O objetivo deste projeto é fornecer informações atualizadas e relevantes sobre tecnologia por meio de um site desenvolvido com React JS e algumas bibliotecas complementares. O projeto é liderado por Guilherme Freitas do Nascimento. 👨‍💻
 
 #
 
