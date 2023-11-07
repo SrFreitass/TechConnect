@@ -27,14 +27,13 @@ export function News() {
           userCollectionRef,
           where("emphasis", "==", false),
           orderBy("date", "desc"),
-          limit(5)
+          limit(9)
         );
 
         const qEmphasis = query(
           userCollectionRef,
           where("emphasis", "==", true),
-          orderBy("date", "desc"),
-          limit(5)
+          orderBy("date", "desc")
         );
 
         const querySnapshotEmphasis = await getDocs(qEmphasis);
@@ -61,7 +60,7 @@ export function News() {
         userCollectionRef,
         where("emphasis", "==", false),
         orderBy("date", "desc"),
-        limit(5)
+        limit(6)
       );
 
       const querySnapshot = await getDocs(q);
@@ -85,7 +84,7 @@ export function News() {
         where("emphasis", "==", false),
         orderBy("date", "desc"),
         startAfter(lastVisible),
-        limit(5)
+        limit(6)
       );
       const querySnapshot = await getDocs(next);
 

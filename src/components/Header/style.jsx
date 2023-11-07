@@ -143,3 +143,46 @@ export const DropDown = styled.ul`
     }
   }
 `;
+
+export const HeaderContainerLoader = styled.div`
+  @keyframes show {
+    0% {
+      opacity: 1;
+    }
+
+    100% {
+      opacity: 0;
+    }
+  }
+
+  .loader {
+    width: 100%;
+    height: 4.8px;
+    display: inline-block;
+    position: fixed;
+    overflow: hidden;
+  }
+
+  &::after {
+    content: "";
+    box-sizing: border-box;
+    width: 0;
+    height: 4.8px;
+    background: ${({ theme }) => theme.colors.purple400};
+    position: absolute;
+    top: 0;
+    left: 0;
+    animation: animFw 1s linear;
+  }
+
+  @keyframes animFw {
+    0% {
+      width: 0;
+      opacity: 1;
+    }
+    100% {
+      width: 100%;
+      opacity: 0;
+    }
+  }
+`;

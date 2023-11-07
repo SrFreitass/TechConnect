@@ -73,6 +73,7 @@ export function CategoriesArticle() {
       <Articles
         articlesList={articles}
         handleNextArticles={handleNextArticles}
+        isHome={false}
       />
     </Wrapper>
   );

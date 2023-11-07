@@ -7,7 +7,7 @@ import {
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { storage, db, auth } from "../../services/firebaseconfig";
 import { CloudArrowDown, Share, X } from "@phosphor-icons/react";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { MainStyled } from "./style";
 import { Wrapper } from "../../Styles/Wrapper";
 import { Header } from "../Header";
@@ -63,6 +63,7 @@ export function FastCreation() {
         title: titlePurify,
         author: auth?.currentUser?.displayName,
         videoURL,
+        date: serverTimestamp(),
       });
 
       setTitle("");

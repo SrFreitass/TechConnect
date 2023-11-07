@@ -37,18 +37,6 @@ export function AsideHome() {
           </li>
         </ul>
       </div>
-      <div>
-        <h3>Metaverso</h3>
-        <p>
-          Conecte com os membros do techconnect em nosso{" "}
-          <Link>
-            <u>Metaverso</u>
-          </Link>
-          <ButtonDefault>
-            <Link to="../metaverso">CONECTAR</Link>
-          </ButtonDefault>
-        </p>
-      </div>
     </AsidePanel>
   );
 }

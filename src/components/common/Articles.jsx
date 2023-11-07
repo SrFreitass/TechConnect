@@ -8,6 +8,7 @@ import DOMPurify from "dompurify";
 import { useEffect, useState, useRef, Suspense } from "react";
 import { Loader } from "../Loader";
 import { LoaderArticle } from "./LoaderArticle.jsx";
+import { GridArticle, SectionFeedStyle } from "./styledCommons";
 
 export function Articles({
   articlesList,
@@ -15,15 +16,23 @@ export function Articles({
   handleNextArticles,
   asidePanel,
   management,
+  isHome,
 }) {
   console.log(showButton);
   const element = useRef();
   const [count, setCount] = useState(0);
-  const [exchangeRate, setExchangeRate] = useState({}); //[USD, EUR, BTC
+  const [exchangeRate, setExchangeRate] = useState({});
   const [loading, setLoading] = useState(false);
 
   const dateConverter = (date) => {
-    return new Date(date * 1000).toLocaleString("pt-BR");
+    const options = {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+    };
+    return new Date(date * 1000).toLocaleString("pt-BR", options);
   };
 
   const innerContentHTML = (content) => {
@@ -49,18 +58,18 @@ export function Articles({
           <img src={article.imageURL} alt="" />
         </Link>
         <div>
-          <Link to={`../home/article/${article.id}`}>
-            <h2 dangerouslySetInnerHTML={innerContentHTML(article.title)} />
-          </Link>
-
-          <h3 dangerouslySetInnerHTML={innerContentHTML(article.summary)} />
-          <h4 dangerouslySetInnerHTML={innerContentHTML(article.author)} />
-
-          <p>{dateConverter(article.date?.seconds)}</p>
-
           <Link to={`../category/${article.category}`}>
             #{article.category}
           </Link>
+
+          <Link to={`../home/article/${article.id}`}>
+            <h2 dangerouslySetInnerHTML={innerContentHTML(article.title)} />
+            {/* // <h3 dangerouslySetInnerHTML={innerContentHTML(article.summary)} /> */}
+          </Link>
+
+          <h4 dangerouslySetInnerHTML={innerContentHTML(article.author)} />
+
+          <p>{dateConverter(article.date?.seconds)}h</p>
 
           {management?.isPageAdmin && (
             <>
@@ -90,7 +99,7 @@ export function Articles({
 
   return (
     <>
-      <section>
+      <SectionFeedStyle isHome={isHome}>
         {articles == "" ? (
           <>
             <br />
@@ -136,10 +145,15 @@ export function Articles({
             </LoaderArticle>
           </>
         ) : (
-          articles
+          <>
+            <div></div>
+
+            <GridArticle isHome={isHome}>{articles}</GridArticle>
+          </>
         )}
-        <br ref={element}></br>
-      </section>
+        <br ref={element} />
+        <ButtonDefault onClick={handleNextArticles}>Ler mais</ButtonDefault>
+      </SectionFeedStyle>
     </>
   );
 }

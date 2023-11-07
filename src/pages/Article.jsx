@@ -8,7 +8,7 @@ export function ArticlePage() {
   return (
     <Wrapper>
       <Header />
-      <GridSection oneGrid="1fr" twoGrid=".5fr">
+      <GridSection gap={true} oneGrid="1fr" twoGrid=".5fr">
         <ArticleBody />
       </GridSection>
     </Wrapper>

@@ -35,6 +35,7 @@ import {
   updateDoc,
   doc,
   limit,
+  orderBy,
 } from "firebase/firestore";
 import { db } from "../../services/firebaseconfig";
 import toast, { Toaster } from "react-hot-toast";
@@ -44,8 +45,9 @@ import { Search } from "../Header/Search";
 import { set } from "react-hook-form";
 
 export function SectionFast({ isAdmin }) {
-  const videoRef = useRef(null);
+  const videosRef = useRef(null);
   const popup = useRef(null);
+  const element = useRef(null);
   const [playing, setPlaying] = useState(true);
   const [sound, setSound] = useState(true);
   const [fast, setFast] = useState([]);
@@ -55,6 +57,8 @@ export function SectionFast({ isAdmin }) {
   const [fastEdit, setFastEdit] = useState(false);
   const [title, setTitle] = useState("");
   const [searchFilter, setSearchFilter] = useState("");
+  const [lastVisible, setLastVisible] = useState({});
+  const [isLast, setIsLast] = useState(false);
 
   console.log("RENDERIZO");
 
@@ -69,6 +73,7 @@ export function SectionFast({ isAdmin }) {
         where("title", "==", titleID ? titleID : ""),
         limit(1)
       );
+
       const outherQ = await query(
         collection(db, "fast"),
         where("title", "!=", titleID ? titleID : "")
@@ -90,8 +95,10 @@ export function SectionFast({ isAdmin }) {
         })),
       };
 
+      setLastVisible(
+        querySnapshot.docs.docs[querySnapshot.docs.docs.length - 1]
+      );
       setFast([...data.maindoc, ...data.docs]);
-      console.log(data.docs);
     };
 
     FetchFast();
@@ -119,25 +126,28 @@ export function SectionFast({ isAdmin }) {
     }
   };
 
-  const nextVideo = (e) => {
-    const legal = e.target.querySelectorAll("video");
+  const nextVideo = async (e) => {
+    const videos = e.target.querySelectorAll("video");
     const video = e.target.querySelector("video");
-    console.log(document.querySelector("section").scrollTop);
-    const index = Math.floor(
+    const index =
       document.querySelector("section").scrollTop /
-        (video.offsetHeight +
-          Number(
-            getComputedStyle(document.querySelector("section")).gap.replace(
-              "px",
-              ""
-            )
-          ))
-    );
-    console.log(index);
-    legal[index].play().then(() => {
+      (video.offsetHeight +
+        Number(
+          getComputedStyle(document.querySelector("section")).gap.replace(
+            "px",
+            ""
+          )
+        ));
+
+    videos[Math.floor(index)].play().then(() => {
+      sound
+        ? (videos[Math.floor(index)].muted = false)
+        : (videos[Math.floor(index)].muted = true);
       setPlaying(false);
-      legal.forEach((video, indexVideo) => {
-        indexVideo != index ? video.pause() : "";
+      videos.forEach((video, indexVideo) => {
+        indexVideo != Math.floor(index)
+          ? (video.pause(), (video.currentTime = 0))
+          : "";
       });
     });
   };
@@ -208,7 +218,7 @@ export function SectionFast({ isAdmin }) {
         ""
       )}
 
-      <SectionFastStyled onScroll={nextVideo}>
+      <SectionFastStyled onScroll={nextVideo} ref={videosRef}>
         <Toaster
           position="bottom-left"
           reverseOrder={false}
@@ -239,12 +249,7 @@ export function SectionFast({ isAdmin }) {
             <>
               <MobileVideo key={index}>
                 <div>
-                  <video
-                    ref={videoRef}
-                    src={fast.videoURL}
-                    loop
-                    onClick={videoState}
-                  ></video>
+                  <video src={fast.videoURL} loop onClick={videoState}></video>
                   <footer>
                     <h3
                       onBlur={(e) => handleEditTitle(e, fast.id)}
@@ -327,6 +332,8 @@ export function SectionFast({ isAdmin }) {
             </>
           );
         })}
+        <br />
+        <br ref={element} />
       </SectionFastStyled>
     </SectionFastStyle>
   );

@@ -115,6 +115,11 @@ export function Comments() {
       const date = new Date();
       const valueComment = inputRef.current.value;
       setClicksPersMin(clicksPersMin + 1);
+
+      if (valueComment.length > 500) {
+        return toast.error("Limite de 500 caracteres");
+      }
+
       toast.loading("Publicando comentário...");
       await addDoc(commentsCollectionRef, {
         valueComment,

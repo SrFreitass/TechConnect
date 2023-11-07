@@ -22,6 +22,11 @@ export const AsideStyled = styled.aside`
     justify-content: center;
     font-weight: 600;
 
+    @media (max-width: 1050px) {
+      width: 102.5%;
+      margin-left: 1.5rem;
+    }
+
     a {
       color: #ffff;
       text-decoration: none;

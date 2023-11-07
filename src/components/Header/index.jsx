@@ -1,5 +1,10 @@
 import { useState, useEffect, useRef } from "react";
-import { HeaderContainer, Logo, DropDown } from "./style";
+import {
+  HeaderContainer,
+  Logo,
+  DropDown,
+  HeaderContainerLoader,
+} from "./style";
 import { UserCircle, UserPlus, X } from "@phosphor-icons/react";
 import { Search } from "./Search";
 import { auth } from "../../services/firebaseconfig";
@@ -36,7 +41,8 @@ export function Header({ isIntroductionPage }) {
   };
 
   return (
-    <>
+    <HeaderContainerLoader>
+      <span className="loader"></span>
       <HeaderContainer
         menu={menu}
         setMenu={setMenu}
@@ -105,6 +111,6 @@ export function Header({ isIntroductionPage }) {
           />
         </nav>
       </HeaderContainer>
-    </>
+    </HeaderContainerLoader>
   );
 }
