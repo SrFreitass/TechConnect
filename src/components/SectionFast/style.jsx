@@ -107,14 +107,6 @@ export const MobileVideo = styled.div`
   position: relative;
   margin-left: 4.5rem;
 
-  @media (max-width: 500px) {
-    video {
-      width: 100vw !important;
-      height: 100vh !important;
-      border-radius: 0px;
-    }
-  }
-
   div:nth-child(2) {
     display: flex;
     flex-direction: column-reverse;
@@ -124,6 +116,7 @@ export const MobileVideo = styled.div`
     margin-top: -1rem;
 
     svg {
+      cursor: pointer;
       border-radius: 50%;
       padding: 0.6rem;
       background-color: #212124;
@@ -137,7 +130,7 @@ export const MobileVideo = styled.div`
     width: 28.125rem;
     height: 50rem;
     border-radius: 0.5rem;
-
+    margin-top: 1rem;
     -webkit-overflow-scrolling: touch;
     scroll-snap-align: start;
 
@@ -205,6 +198,14 @@ export const MobileVideo = styled.div`
       margin: 0 auto;
       width: 100vw;
       height: 100vh;
+    }
+  }
+
+  @media (max-width: 500px) {
+    video {
+      width: 100vw !important;
+      height: 100vh !important;
+      border-radius: 0px;
     }
   }
 `;

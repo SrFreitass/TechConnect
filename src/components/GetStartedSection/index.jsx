@@ -19,7 +19,11 @@ export function SectionGoHome() {
           <Link to="../home">EXPLORAR</Link>
         </ButtonDefault>
       </div>
-      <img data-aos="fade-up" src={astronaut} />
+      <img
+        data-aos="fade-up"
+        src={astronaut}
+        alt="Astrounauta em cima do foguete"
+      />
     </SectionGoHomeStyle>
   );
 }

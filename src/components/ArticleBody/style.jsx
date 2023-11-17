@@ -128,6 +128,10 @@ export const ArticleContainerStyled = styled.main`
     font-family: "Bitter";
   }
 
+  p:nth-child(3) {
+    font-family: "Montserrat" !important;
+  }
+
   p {
     text-align: start !important;
     width: 100%;
@@ -187,11 +191,15 @@ export const CommentContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   flex-direction: row !important;
-
+  min-width: 75%;
   padding: 1rem;
 
   border: solid 1px #353438;
   border-radius: 5px;
+
+  h3 {
+    font-family: "Montserrat";
+  }
 
   div {
     display: flex;
@@ -205,6 +213,7 @@ export const CommentContainer = styled.div`
   }
 
   p {
+    word-break: break-word;
     font-family: "Montserrat";
     color: ${({ theme }) => theme.colors.secundary};
   }
@@ -216,6 +225,8 @@ export const CommentContainer = styled.div`
   }
 
   svg {
+    min-width: 1.2rem;
+    align-self: flex-start;
     color: ${({ theme }) => theme.colors.purple700};
   }
 

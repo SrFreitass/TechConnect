@@ -22,7 +22,7 @@ export function AboutSection() {
         <div>
           <div data-aos="zoom-in-up">
             <h3>
-              <img src={target3D} />
+              <img src={target3D} alt="Flecha no alvo 3D" />
               Objetivo
             </h3>
             <p>
@@ -33,7 +33,7 @@ export function AboutSection() {
           </div>
           <div data-aos="zoom-in-up">
             <h3>
-              <img src={team3D} />
+              <img src={team3D} alt="Aperto de mão 3D" />
               Nossa Equipe
             </h3>
             <p>
@@ -44,7 +44,8 @@ export function AboutSection() {
           </div>
           <div data-aos="zoom-in-up">
             <h3>
-              <img src={hand3D} /> Futuro e Visão
+              <img src={hand3D} alt="Mão segurando uma lâmpada 3D" /> Futuro e
+              Visão
             </h3>
             <p>
               O TechConnect planeja expandir sua presença online e alcance para

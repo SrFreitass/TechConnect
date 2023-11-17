@@ -18,9 +18,6 @@ export function AsideHome() {
         <h3>Categorias</h3>
         <ul>
           <li>
-            <Link to="../category/fast">#fast</Link>
-          </li>
-          <li>
             <Link to="../category/inovação">#inovação</Link>
           </li>
           <li>
@@ -36,18 +33,6 @@ export function AsideHome() {
             <Link to="../category/empreendendorismo">#empreendendorismo</Link>
           </li>
         </ul>
-      </div>
-      <div>
-        <h3>Metaverso</h3>
-        <p>
-          Conecte com os membros do techconnect em nosso{" "}
-          <Link>
-            <u>Metaverso</u>
-          </Link>
-          <ButtonDefault>
-            <Link to="../metaverso">CONECTAR</Link>
-          </ButtonDefault>
-        </p>
       </div>
     </AsidePanel>
   );

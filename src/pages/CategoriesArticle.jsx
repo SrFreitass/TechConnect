@@ -69,10 +69,11 @@ export function CategoriesArticle() {
   return (
     <Wrapper>
       <Header />
-      <h2 style={{ color: "#8A8AE0" }}>{`#${tag}`}</h2>
+
       <Articles
         articlesList={articles}
         handleNextArticles={handleNextArticles}
+        isHome={false}
       />
     </Wrapper>
   );

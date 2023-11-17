@@ -5,9 +5,10 @@ import { AsidePanel } from "../ArticleFeed/style";
 import { ButtonsContainer } from "../ArticleFeed/style";
 import { ButtonDefault } from "../ArticleComposer/style";
 import DOMPurify from "dompurify";
-import { useEffect, useState, useRef, Suspense } from "react";
+import { useEffect, useState, useRef, Suspense, useCallback } from "react";
 import { Loader } from "../Loader";
 import { LoaderArticle } from "./LoaderArticle.jsx";
+import { GridArticle, SectionFeedStyle } from "./styledCommons";
 
 export function Articles({
   articlesList,
@@ -15,15 +16,41 @@ export function Articles({
   handleNextArticles,
   asidePanel,
   management,
+  isHome,
 }) {
   console.log(showButton);
   const element = useRef();
   const [count, setCount] = useState(0);
-  const [exchangeRate, setExchangeRate] = useState({}); //[USD, EUR, BTC
+
   const [loading, setLoading] = useState(false);
+  const { tag } = useParams();
+
+  const handleTagAbout = (tag) => {
+    const tagAbout = {
+      tecnologia:
+        "Explore as últimas tendências em hardware, software e gadgets. Mantenha-se atualizado sobre os avanços tecnológicos que estão moldando o futuro.",
+      inovação:
+        "Descubra as mais recentes inovações em diversas áreas, desde ideias revolucionárias até tecnologias emergentes e projetos disruptivos.",
+      jogos:
+        "Imersão total no universo dos jogos, com informações sobre lançamentos, análises, dicas e as últimas tendências no cenário de games.",
+      computação:
+        "Aprofunde-se em temas técnicos, programação, desenvolvimento de software, inteligência artificial e segurança cibernética.",
+      empreendedorismo:
+        "Para empreendedores e profissionais ambiciosos, oferecemos estratégias de negócios, histórias inspiradoras e dicas para startups.",
+    };
+
+    return tagAbout[tag];
+  };
 
   const dateConverter = (date) => {
-    return new Date(date * 1000).toLocaleString("pt-BR");
+    const options = {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+    };
+    return new Date(date * 1000).toLocaleString("pt-BR", options);
   };
 
   const innerContentHTML = (content) => {
@@ -49,18 +76,18 @@ export function Articles({
           <img src={article.imageURL} alt="" />
         </Link>
         <div>
-          <Link to={`../home/article/${article.id}`}>
-            <h2 dangerouslySetInnerHTML={innerContentHTML(article.title)} />
-          </Link>
-
-          <h3 dangerouslySetInnerHTML={innerContentHTML(article.summary)} />
-          <h4 dangerouslySetInnerHTML={innerContentHTML(article.author)} />
-
-          <p>{dateConverter(article.date?.seconds)}</p>
-
           <Link to={`../category/${article.category}`}>
             #{article.category}
           </Link>
+
+          <Link to={`../home/article/${article.id}`}>
+            <h2 dangerouslySetInnerHTML={innerContentHTML(article.title)} />
+            {/* // <h3 dangerouslySetInnerHTML={innerContentHTML(article.summary)} /> */}
+          </Link>
+
+          <h4 dangerouslySetInnerHTML={innerContentHTML(article.author)} />
+
+          <p>{dateConverter(article.date?.seconds)}h</p>
 
           {management?.isPageAdmin && (
             <>
@@ -90,56 +117,40 @@ export function Articles({
 
   return (
     <>
-      <section>
+      <SectionFeedStyle isHome={isHome}>
         {articles == "" ? (
-          <>
-            <br />
-            <LoaderArticle>
-              <div>
-                <span />
-                <div>
-                  <h2></h2>
-                  <p></p>
-                </div>
-              </div>
-            </LoaderArticle>
-            <br />
-            <LoaderArticle>
-              <div>
-                <span />
-                <div>
-                  <h2></h2>
-                  <p></p>
-                </div>
-              </div>
-            </LoaderArticle>
-            <br />
-            <LoaderArticle>
-              <div>
-                <span />
-                <div>
-                  <h2></h2>
-                  <p></p>
-                </div>
-              </div>
-              <br />
-            </LoaderArticle>
-            <LoaderArticle>
-              <div>
-                <span />
-                <div>
-                  <h2></h2>
-                  <p></p>
-                </div>
-              </div>
-              <br />
-            </LoaderArticle>
-          </>
+          <GridArticle isHome={true}>
+            <section>
+              <LoaderArticle>
+                <div></div>
+              </LoaderArticle>
+            </section>
+          </GridArticle>
         ) : (
-          articles
+          <>
+            <div></div>
+
+            <GridArticle isHome={isHome}>
+              {isHome ? (
+                ""
+              ) : (
+                <div>
+                  <h2 style={{ color: "#8A8AE0" }}>{`#${tag}`}</h2>
+                  <p>{tag ? handleTagAbout(tag) : "..."}</p>
+                </div>
+              )}
+              <section>{articles}</section>
+            </GridArticle>
+          </>
         )}
-        <br ref={element}></br>
-      </section>
+        <br ref={element} />
+
+        {showButton ? (
+          <ButtonDefault onClick={handleNextArticles}>Ler mais</ButtonDefault>
+        ) : (
+          ""
+        )}
+      </SectionFeedStyle>
     </>
   );
 }

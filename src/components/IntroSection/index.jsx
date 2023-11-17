@@ -31,7 +31,7 @@ export function IntroSection() {
             <Link to="./home">EXPLORAR</Link>
           </ButtonDefault>
         </div>
-        <img src={arrowImg} />
+        <img src={arrowImg} alt="Seta pra baixo" />
       </SectionContainer>
     </MainStyle>
   );
