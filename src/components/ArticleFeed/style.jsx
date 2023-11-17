@@ -70,9 +70,8 @@ export const NewsStyled = styled.article`
       width: 21rem;
     }
 
-    @media (max-width: 1270px) {
-      width: 27.5rem;
-      height: 15rem;
+    @media (max-width: 1260px) {
+      width: 22.5rem;
     }
   }
 
@@ -108,9 +107,7 @@ export const NewsStyled = styled.article`
     img {
       object-fit: cover;
       border-radius: 5px;
-      height: 10rem;
-      min-width: 20rem;
-      width: 18rem;
+      min-height: 13rem;
     }
   }
 
@@ -133,8 +130,8 @@ export const NewsStyled = styled.article`
     img {
       width: 100%;
       height: 100%;
-      min-height: 18rem;
-      max-height: 18rem;
+      min-height: 20rem;
+      max-height: 20rem;
       min-width: 0%;
       border-radius: 5px;
       object-fit: cover;
@@ -230,6 +227,12 @@ export const AsidePanel = styled.aside`
     }
   }
 
-  @media (max-width: 1430px) {
+  @media (max-width: 1440px) {
+    width: 95%;
+    justify-self: end;
+  }
+
+  @media (max-width: 1060px) {
+    display: none;
   }
 `;

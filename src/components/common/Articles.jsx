@@ -5,7 +5,7 @@ import { AsidePanel } from "../ArticleFeed/style";
 import { ButtonsContainer } from "../ArticleFeed/style";
 import { ButtonDefault } from "../ArticleComposer/style";
 import DOMPurify from "dompurify";
-import { useEffect, useState, useRef, Suspense } from "react";
+import { useEffect, useState, useRef, Suspense, useCallback } from "react";
 import { Loader } from "../Loader";
 import { LoaderArticle } from "./LoaderArticle.jsx";
 import { GridArticle, SectionFeedStyle } from "./styledCommons";
@@ -21,8 +21,26 @@ export function Articles({
   console.log(showButton);
   const element = useRef();
   const [count, setCount] = useState(0);
-  const [exchangeRate, setExchangeRate] = useState({});
+
   const [loading, setLoading] = useState(false);
+  const { tag } = useParams();
+
+  const handleTagAbout = (tag) => {
+    const tagAbout = {
+      tecnologia:
+        "Explore as últimas tendências em hardware, software e gadgets. Mantenha-se atualizado sobre os avanços tecnológicos que estão moldando o futuro.",
+      inovação:
+        "Descubra as mais recentes inovações em diversas áreas, desde ideias revolucionárias até tecnologias emergentes e projetos disruptivos.",
+      jogos:
+        "Imersão total no universo dos jogos, com informações sobre lançamentos, análises, dicas e as últimas tendências no cenário de games.",
+      computação:
+        "Aprofunde-se em temas técnicos, programação, desenvolvimento de software, inteligência artificial e segurança cibernética.",
+      empreendedorismo:
+        "Para empreendedores e profissionais ambiciosos, oferecemos estratégias de negócios, histórias inspiradoras e dicas para startups.",
+    };
+
+    return tagAbout[tag];
+  };
 
   const dateConverter = (date) => {
     const options = {
@@ -101,58 +119,37 @@ export function Articles({
     <>
       <SectionFeedStyle isHome={isHome}>
         {articles == "" ? (
-          <>
-            <br />
-            <LoaderArticle>
-              <div>
-                <span />
-                <div>
-                  <h2></h2>
-                  <p></p>
-                </div>
-              </div>
-            </LoaderArticle>
-            <br />
-            <LoaderArticle>
-              <div>
-                <span />
-                <div>
-                  <h2></h2>
-                  <p></p>
-                </div>
-              </div>
-            </LoaderArticle>
-            <br />
-            <LoaderArticle>
-              <div>
-                <span />
-                <div>
-                  <h2></h2>
-                  <p></p>
-                </div>
-              </div>
-              <br />
-            </LoaderArticle>
-            <LoaderArticle>
-              <div>
-                <span />
-                <div>
-                  <h2></h2>
-                  <p></p>
-                </div>
-              </div>
-              <br />
-            </LoaderArticle>
-          </>
+          <GridArticle isHome={true}>
+            <section>
+              <LoaderArticle>
+                <div></div>
+              </LoaderArticle>
+            </section>
+          </GridArticle>
         ) : (
           <>
             <div></div>
 
-            <GridArticle isHome={isHome}>{articles}</GridArticle>
+            <GridArticle isHome={isHome}>
+              {isHome ? (
+                ""
+              ) : (
+                <div>
+                  <h2 style={{ color: "#8A8AE0" }}>{`#${tag}`}</h2>
+                  <p>{tag ? handleTagAbout(tag) : "..."}</p>
+                </div>
+              )}
+              <section>{articles}</section>
+            </GridArticle>
           </>
         )}
         <br ref={element} />
-        <ButtonDefault onClick={handleNextArticles}>Ler mais</ButtonDefault>
+
+        {showButton ? (
+          <ButtonDefault onClick={handleNextArticles}>Ler mais</ButtonDefault>
+        ) : (
+          ""
+        )}
       </SectionFeedStyle>
     </>
   );

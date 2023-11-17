@@ -18,9 +18,6 @@ export function AsideHome() {
         <h3>Categorias</h3>
         <ul>
           <li>
-            <Link to="../category/fast">#fast</Link>
-          </li>
-          <li>
             <Link to="../category/inovação">#inovação</Link>
           </li>
           <li>

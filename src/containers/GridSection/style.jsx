@@ -7,10 +7,6 @@ export const GridSection = styled.div`
 
   margin-top: 0.8rem;
 
-  @media (max-width: 1270px) {
-    grid-template-columns: ${({ oneGrid }) => oneGrid};
-  }
-
   @media (max-width: 1050px) {
     grid-template-columns: none;
   }
