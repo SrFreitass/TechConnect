@@ -165,22 +165,18 @@ export function SectionAdmin() {
           adminFilter={{ setSearchFilter, searchFilter }}
           searchProps={{ search, setSearch }}
         />
-        {search ? (
-          ""
-        ) : (
-          <select onChange={handleFilterArticle} value={selectFilter}>
-            <option value="">Categoria</option>
-            <option value="emphasis">Destaques</option>
-            <option value="tecnologia">Tecnologia</option>
-            <option value="inovação">Inovação</option>
-            <option value="computação">Computação</option>
-            <option value="empreendendorismo">Empreendendorismo</option>
-            <option value="jogos">Jogos</option>
-          </select>
-        )}
+
+        <select onChange={handleFilterArticle} value={selectFilter}>
+          <option value="">Categoria</option>
+          <option value="emphasis">Destaques</option>
+          <option value="tecnologia">Tecnologia</option>
+          <option value="inovação">Inovação</option>
+          <option value="computação">Computação</option>
+          <option value="empreendendorismo">Empreendendorismo</option>
+          <option value="jogos">Jogos</option>
+        </select>
       </div>
       <Articles
-        isHome={true}
         articlesList={newsEdit}
         handleNextArticles={handleNextArticles}
         asidePanel={false}

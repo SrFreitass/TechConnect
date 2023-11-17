@@ -16,8 +16,6 @@ export function AdminPanel() {
   const [section, setSection] = useState("article");
   const navigate = useNavigate();
 
-  console.log("1");
-
   if (token === "admin") {
     return (
       <Wrapper>

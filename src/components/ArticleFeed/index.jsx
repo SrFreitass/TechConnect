@@ -79,7 +79,7 @@ export function News() {
   const handleNextArticles = async (e) => {
     try {
       console.log(lastVisible);
-      const next = query(
+      const next = await query(
         userCollectionRef,
         where("emphasis", "==", false),
         orderBy("date", "desc"),
@@ -119,12 +119,7 @@ export function News() {
           },
         }}
       />
-      <Articles
-        articlesList={news}
-        handleNextArticles={handleNextArticles}
-        isHome={true}
-        showButton={showButton}
-      />
+      <Articles articlesList={news} handleNextArticles={handleNextArticles} />
     </>
   );
 }
