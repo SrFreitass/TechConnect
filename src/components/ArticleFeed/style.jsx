@@ -51,7 +51,7 @@ export const NewsStyled = styled.article`
   img {
     object-fit: cover;
     border-radius: 5px;
-    height: 13rem;
+    height: 14rem;
     width: 100%;
 
     @media (max-width: 1440px) {
