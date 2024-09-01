@@ -1,9 +1,9 @@
-import { useRef, useState, useEffect } from 'react'
-import { db, storage } from '../../../../services/firebaseconfig'
-import { addDoc, collection } from '@firebase/firestore'
-import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
-import { serverTimestamp } from 'firebase/firestore'
-import toast, { Toaster } from 'react-hot-toast';
+import { addDoc, collection } from '@firebase/firestore';
+import { serverTimestamp } from 'firebase/firestore';
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { useEffect, useRef, useState } from 'react';
+import toast from 'react-hot-toast';
+import { db, storage } from '../../../../services/firebase';
 
 export function useArticleCreate() {
     const [content, setContent] = useState('');

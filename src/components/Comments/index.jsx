@@ -1,36 +1,28 @@
-import { useState, useEffect, useRef } from "react";
-import { useAsyncError, useParams } from "react-router-dom";
-import { auth, db } from "../../services/firebaseconfig";
+import { PaperPlaneRight, TrashSimple } from "@phosphor-icons/react";
+import { onAuthStateChanged } from "firebase/auth";
 import {
-  collection,
-  query,
-  where,
-  getDoc,
-  getDocs,
   addDoc,
+  collection,
   deleteDoc,
   doc,
-  Timestamp,
-  serverTimestamp,
+  getDocs,
   limit,
   orderBy,
-  startAfter,
+  query,
+  serverTimestamp,
+  startAfter
 } from "firebase/firestore";
-import {
-  ArticleStyled,
-  MainStyled,
-  ArticleContainerStyled,
-  CommentContainer,
-} from "./../ArticleBody/style";
-import DOMPurify from "dompurify";
-import { ButtonDefault } from "../ArticleComposer/style";
-import toast, { Toaster } from "react-hot-toast";
-import { onAuthStateChanged } from "firebase/auth";
-import { Pen, TrashSimple, PaperPlaneRight } from "@phosphor-icons/react";
-import { ContainerComments, Nocomments } from "./style";
-import { Link } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+import toast from "react-hot-toast";
+import { Link, useParams } from "react-router-dom";
 import { useAdminVerify } from "../../hooks/useAdminVerify";
+import { auth, db } from "../../services/firebase";
+import { ButtonDefault } from "../ArticleComposer/style";
 import { useVerifyEmail } from "../Auth/hook/useVerifyEmail";
+import {
+  CommentContainer
+} from "./../ArticleBody/style";
+import { ContainerComments, Nocomments } from "./style";
 
 export function Comments() {
   const [comments, setComments] = useState([]);
@@ -39,7 +31,6 @@ export function Comments() {
   const [userID, setUserID] = useState("");
   const [displayName, setDisplayName] = useState("");
   const inputRef = useRef();
-  const commentRef = useRef();
   const elementObserver = useRef(null);
   const token = useAdminVerify();
   const { titleID } = useParams();

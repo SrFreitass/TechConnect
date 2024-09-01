@@ -1,15 +1,15 @@
+import { ArrowLeft, EnvelopeSimple } from "@phosphor-icons/react";
 import { sendPasswordResetEmail } from "firebase/auth";
+import { useRef } from "react";
 import toast, { Toaster } from "react-hot-toast";
+import { Link } from "react-router-dom";
+import { auth } from "../../../services/firebase";
+import { ButtonDefault } from "../../ArticleComposer/style";
 import {
-  FormStyled,
   ContainerInputForm,
   ContainerMain,
+  FormStyled,
 } from "../Register/style";
-import { EnvelopeSimple, ArrowLeft } from "@phosphor-icons/react";
-import { ButtonDefault } from "../../ArticleComposer/style";
-import { Link } from "react-router-dom";
-import { useRef } from "react";
-import { auth } from "../../../services/firebaseconfig";
 
 export function PasswordRecovery() {
   const inputRef = useRef(null);

@@ -1,18 +1,8 @@
 import { MagnifyingGlass, X } from '@phosphor-icons/react';
-import { SearchContainer } from './style';
-import { useState, useRef } from 'react';
-import {
-  collection,
-  query,
-  where,
-  onSnapshot,
-  getDocs,
-} from 'firebase/firestore';
-import { db } from '../../../services/firebaseconfig';
-import { Navigate } from 'react-router-dom';
-import { list } from 'firebase/storage';
-import { useNavigate } from 'react-router-dom';
 import he from 'he';
+import { useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { SearchContainer } from './style';
 
 export function Search({ adminFilter, searchProps, menuProps }) {
   const inputRef = useRef();

@@ -1,22 +1,21 @@
-import { useState, useEffect } from "react";
-import {
-  ButtonDefault,
-  ButtonsContainer,
-  UploadContainer,
-} from "../ArticleComposer/style";
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import { storage, db, auth } from "../../services/firebaseconfig";
-import { CloudArrowDown, Share, X } from "@phosphor-icons/react";
+import { CloudArrowDown } from "@phosphor-icons/react";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
-import { MainStyled } from "./style";
-import { Wrapper } from "../../Styles/Wrapper";
-import { Header } from "../Header";
-import { MobileVideo } from "../SectionFast/style";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { Link } from "react-router-dom";
-import { ContainerInputForm } from "../Auth/Register/style";
 import { Theme } from "../../Styles/Theme";
+import { Wrapper } from "../../Styles/Wrapper";
 import posterPreview from "../../assets/images/thumbcreatefast.png";
+import { auth, db, storage } from "../../services/firebase";
+import {
+  ButtonDefault,
+  UploadContainer
+} from "../ArticleComposer/style";
+import { ContainerInputForm } from "../Auth/Register/style";
+import { Header } from "../Header";
+import { MobileVideo } from "../SectionFast/style";
+import { MainStyled } from "./style";
 
 export function FastCreation() {
   const [videoUpload, setVideoUpload] = useState("");

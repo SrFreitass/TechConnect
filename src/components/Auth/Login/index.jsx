@@ -1,33 +1,26 @@
 import {
-  ContainerInputForm,
-  FormStyled,
-  ContainerMain,
-} from "../Register/style";
-import { Wrapper } from "../../../Styles/Wrapper";
-import { Header } from "../../Header";
-import { useForm } from "react-hook-form";
-import { Link, Navigate } from "react-router-dom";
-import { ButtonDefault } from "../../ArticleComposer/style";
-import {
   EnvelopeSimple,
-  Warning,
-  Keyhole,
-  ArrowLeft,
-  EyeSlash,
   Eye,
+  EyeSlash,
+  Keyhole,
+  Warning
 } from "@phosphor-icons/react";
 import {
-  createUserWithEmailAndPassword,
-  sendEmailVerification,
-  sendPasswordResetEmail,
-  signInWithEmailAndPassword,
+  signInWithEmailAndPassword
 } from "firebase/auth";
-import { auth } from "../../../services/firebaseconfig";
 import { useState } from "react";
-import { useVerifyEmail } from "../hook/useVerifyEmail";
-import { useNavigate } from "react-router-dom";
-import toast, { Toaster } from "react-hot-toast";
+import { useForm } from "react-hook-form";
+import { Toaster } from "react-hot-toast";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import { auth } from "../../../services/firebase";
+import { ButtonDefault } from "../../ArticleComposer/style";
 import { Loader } from "../../Loader";
+import { useVerifyEmail } from "../hook/useVerifyEmail";
+import {
+  ContainerInputForm,
+  ContainerMain,
+  FormStyled,
+} from "../Register/style";
 
 export function Login() {
   const {

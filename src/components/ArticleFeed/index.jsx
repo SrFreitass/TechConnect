@@ -1,17 +1,16 @@
-import { db } from "../../services/firebaseconfig";
-import { useEffect, useState, useRef } from "react";
 import {
-  getDocs,
   collection,
-  where,
-  query,
-  orderBy,
+  getDocs,
   limit,
+  orderBy,
+  query,
   startAfter,
-  startAt,
+  where
 } from "firebase/firestore";
-import { Articles } from "../common/Articles";
+import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
+import { db } from "../../services/firebase";
+import { Articles } from "../common/Articles";
 
 export function News() {
   const [news, setNews] = useState([]);

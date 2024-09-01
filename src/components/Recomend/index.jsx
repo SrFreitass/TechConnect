@@ -1,22 +1,20 @@
-import { RecomentDiv } from "./style";
-import { db } from "../../services/firebaseconfig";
+import DOMPurify from "dompurify";
 import {
-  getDocs,
   collection,
-  where,
-  query,
-  orderBy,
+  getDocs,
   limit,
-  startAfter,
+  query,
+  where
 } from "firebase/firestore";
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import DOMPurify from "dompurify";
+import { Link } from "react-router-dom";
 import { styled } from "styled-components";
+import { db } from "../../services/firebase";
+import { RecomentDiv } from "./style";
 
 export function Recomend({ category, title }) {
   const [articleRecommends, setArticleRecommends] = useState([]);
-  const { titleID } = useParams();
+  
 
   useEffect(() => {
     const fetchRecommends = async () => {

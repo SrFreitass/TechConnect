@@ -1,12 +1,9 @@
-import { Wrapper } from "../Styles/Wrapper";
-import { Header } from "../components/Header";
-import { ArticleCreationForm } from "../components/ArticleComposer";
-import { useEffect, useState } from "react";
-import { collection, getDocs, query, where } from "firebase/firestore";
-import { Loader } from "../components/Loader";
 import { Navigate } from "react-router-dom";
+import { Wrapper } from "../Styles/Wrapper";
+import { ArticleCreationForm } from "../components/ArticleComposer";
+import { Header } from "../components/Header";
+import { Loader } from "../components/Loader";
 import { useAdminVerify } from "../hooks/useAdminVerify";
-import { auth } from "../services/firebaseconfig";
 
 export function CreateArticle() {
   const token = useAdminVerify();

@@ -1,4 +1,4 @@
-import { styled, css } from "styled-components";
+import { css, styled } from "styled-components";
 
 export const GridArticle = styled.div`
 
@@ -16,7 +16,7 @@ export const GridArticle = styled.div`
       isHome
         ? ""
         : css`
-            column-gap: 1.5rem;
+            column-gap: 4rem;
             article {
       img {
         width: 25rem;
@@ -37,6 +37,16 @@ export const SectionFeedStyle = styled.section`
     isHome
       ? ""
       : css`
+          @media (max-width: 1260px) {
+            div {
+                width: 100%;
+             }
+
+            img {
+                width: 100%; 
+            }
+          }
+
           display: flex;
           flex-direction: column;
           align-items: center;

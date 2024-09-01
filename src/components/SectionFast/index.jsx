@@ -1,48 +1,42 @@
 import {
-  MobileVideo,
-  SectionFastStyled,
-  ShareButtons,
-  SectionFastStyle,
-} from "./style";
-import {
-  InstagramLogo,
-  TelegramLogo,
   FacebookLogo,
-  TwitterLogo,
-  Pause,
-  Play,
-  SoundcloudLogo,
-  SpeakerSimpleHigh,
-  SpeakerSimpleSlash,
-  WhatsappLogo,
-  Share,
-  X,
-  TrashSimple,
+  InstagramLogo,
   NotePencil,
+  Pause,
   PencilSimpleLine,
+  Play,
   ShareFat,
   SignOut,
+  SpeakerSimpleHigh,
+  SpeakerSimpleSlash,
+  TelegramLogo,
+  TrashSimple,
+  TwitterLogo,
+  WhatsappLogo,
+  X
 } from "@phosphor-icons/react";
-import { useRef, useState, useEffect, useContext } from "react";
-import { Link, useParams } from "react-router-dom";
-import { Links } from "../Links";
 import {
-  getDocs,
-  query,
   collection,
-  where,
   deleteDoc,
-  updateDoc,
   doc,
+  getDocs,
   limit,
-  orderBy,
+  query,
+  updateDoc,
+  where
 } from "firebase/firestore";
-import { db } from "../../services/firebaseconfig";
-import toast, { Toaster } from "react-hot-toast";
 import he from "he";
+import { useEffect, useRef, useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
+import { Link, useParams } from "react-router-dom";
+import { db } from "../../services/firebase";
 import { ButtonDefault } from "../ArticleComposer/style";
-import { Search } from "../Header/Search";
-import { set } from "react-hook-form";
+import {
+  MobileVideo,
+  SectionFastStyle,
+  SectionFastStyled,
+  ShareButtons,
+} from "./style";
 
 export function SectionFast({ isAdmin }) {
   const videosRef = useRef(null);
@@ -51,15 +45,9 @@ export function SectionFast({ isAdmin }) {
   const [playing, setPlaying] = useState(true);
   const [sound, setSound] = useState(true);
   const [fast, setFast] = useState([]);
-  const [share, setShare] = useState(false);
-  const [visible, setVisible] = useState(false);
   const { titleID } = useParams("");
   const [fastEdit, setFastEdit] = useState(false);
-  const [title, setTitle] = useState("");
-  const [searchFilter, setSearchFilter] = useState("");
-  const [lastVisible, setLastVisible] = useState({});
-  const [isLast, setIsLast] = useState(false);
-
+  
   console.log("RENDERIZO");
 
   console.log(titleID);

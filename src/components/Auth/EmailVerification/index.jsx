@@ -1,12 +1,10 @@
-import { ButtonDefault } from "../../ArticleComposer/style";
-import { FormStyled, ProgressForm } from "../Register/style";
-import { VerificationContainer } from "./style";
-import { Link, useNavigate } from "react-router-dom";
-import { onAuthStateChanged, sendEmailVerification } from "firebase/auth";
-import { auth } from "../../../services/firebaseconfig";
 import { ArrowLeft } from "@phosphor-icons/react";
+import { sendEmailVerification } from "firebase/auth";
 import toast, { Toaster } from "react-hot-toast";
+import { Link, useNavigate } from "react-router-dom";
+import { auth } from "../../../services/firebase";
 import { ContainerMain } from "../Register/style";
+import { VerificationContainer } from "./style";
 
 export function EmailVerification({ status, setStatus }) {
   const sendConfirmEmail = async () => {

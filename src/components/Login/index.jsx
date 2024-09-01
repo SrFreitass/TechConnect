@@ -1,29 +1,22 @@
-import { FormStyled, PasswordStyled } from "./style";
-import { useState, useEffect, useLayoutEffect } from "react";
 import { signInWithEmailAndPassword } from "@firebase/auth";
-import { auth } from "../../services/firebaseconfig";
-import { ButtonStyled } from "../IntroSection/style";
 import { Eye, EyeSlash } from "@phosphor-icons/react";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { auth } from "../../services/firebase";
+import { ButtonStyled } from "../IntroSection/style";
+import { FormStyled, PasswordStyled } from "./style";
 
 export function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-
-  const navigate = useNavigate();
-  const onLogin = (e) => {
+  
+  const onLogin = async (e) => {
     console.log(e);
     e.preventDefault();
 
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user.uid;
-        localStorage.setItem("token", user);
-      })
-      .catch((error) => {
-        console.log("erro");
-      });
+    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    const user = userCredential.user.uid;
+    localStorage.setItem("token", user);
   };
 
   const handlePasswordChange = (e) => {
@@ -37,7 +30,7 @@ export function Login() {
         <h1>LOGIN</h1>
 
         <div>
-          <label for="email">E-mail</label>
+          <label htmlFor="email">E-mail</label>
           <input
             type="email"
             placeholder="Email"
@@ -46,7 +39,7 @@ export function Login() {
         </div>
 
         <div>
-          <label for="password">Senha</label>
+          <label htmlFor="password">Senha</label>
           <PasswordStyled>
             <input
               type={showPassword ? "text" : "password"}

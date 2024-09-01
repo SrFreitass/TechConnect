@@ -1,17 +1,12 @@
-import { SectionChoiceStyle } from "./style";
 import {
-  Graph,
-  ShieldCheck,
-  PlusCircle,
   ChatsTeardrop,
-  FastForwardCircle,
-  VirtualReality,
   Code,
+  FastForwardCircle,
   Infinity,
   LineSegments,
+  VirtualReality
 } from "@phosphor-icons/react";
-import { Wrapper } from "../../Styles/Wrapper";
-import { useEffect, useRef } from "react";
+import { SectionChoiceStyle } from "./style";
 
 export function WhyChooseSection() {
   return (

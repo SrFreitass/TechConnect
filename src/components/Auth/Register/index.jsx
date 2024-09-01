@@ -1,31 +1,26 @@
-import { Wrapper } from "../../../Styles/Wrapper";
-import { Header } from "../../Header";
-import { useForm } from "react-hook-form";
-import { Link, Navigate } from "react-router-dom";
-import { FormStyled, ContainerInputForm, ContainerCheckForm } from "./style";
-import { ButtonDefault } from "../../ArticleComposer/style";
 import {
-  Eye,
-  Keyhole,
-  Warning,
-  EnvelopeSimple,
-  User,
-  EyeSlash,
   ArrowLeft,
+  EnvelopeSimple,
+  Eye,
+  EyeSlash,
+  Keyhole,
+  User,
+  Warning,
 } from "@phosphor-icons/react";
 import {
   createUserWithEmailAndPassword,
-  onAuthStateChanged,
   sendEmailVerification,
-  signOut,
-  updateProfile,
+  updateProfile
 } from "firebase/auth";
-import { auth } from "../../../services/firebaseconfig";
-import { useEffect, useState } from "react";
-import { EmailVerification } from "../EmailVerification";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { Link, Navigate } from "react-router-dom";
+import { auth } from "../../../services/firebase";
+import { ButtonDefault } from "../../ArticleComposer/style";
 import { Loader } from "../../Loader";
+import { EmailVerification } from "../EmailVerification";
 import { useVerifyEmail } from "../hook/useVerifyEmail";
-import { ContainerMain } from "./style";
+import { ContainerCheckForm, ContainerInputForm, ContainerMain, FormStyled } from "./style";
 
 export function Register() {
   const {

@@ -1,39 +1,25 @@
-import { useState, useEffect, useRef } from "react";
-import { useParams } from "react-router-dom";
-import { auth, db } from "../../services/firebaseconfig";
-import {
-  collection,
-  query,
-  where,
-  getDoc,
-  getDocs,
-  addDoc,
-  deleteDoc,
-  doc,
-} from "firebase/firestore";
-import {
-  ArticleStyled,
-  MainStyled,
-  ArticleContainerStyled,
-  CommentContainer,
-} from "./style";
-import { ShareAside } from "../SectionFast";
 import DOMPurify from "dompurify";
+import {
+  doc,
+  getDoc
+} from "firebase/firestore";
 import he from "he";
-import toast, { Toaster } from "react-hot-toast";
+import { useEffect, useRef, useState } from "react";
+import { Toaster } from "react-hot-toast";
+import { useParams } from "react-router-dom";
+import { db } from "../../services/firebase";
 import { Comments } from "../Comments";
 import { Recomend } from "../Recomend";
+import { ShareAside } from "../SectionFast";
+import {
+  ArticleContainerStyled
+} from "./style";
 
 export function ArticleBody() {
   const [content, setContent] = useState({});
   const [title, setTitle] = useState("");
   const [image, setImage] = useState("");
-  const [comments, setComments] = useState([]);
-  const [eventHandlerComment, setEventHandlerComment] = useState(false);
-  const inputRef = useRef();
-  const imageRef = useRef();
   const contentRef = useRef();
-  const modalRef = useRef();
   const { titleID } = useParams();
 
   useEffect(() => {

@@ -1,11 +1,9 @@
+import { News } from "../components/ArticleFeed";
+import { AsideHome } from "../components/AsidePanel";
 import { Carousel } from "../components/Carousel";
 import { Header } from "../components/Header";
-import { SectionFast } from "../components/SectionFast";
-import { News } from "../components/ArticleFeed";
-import { auth } from "../services/firebaseconfig";
-import { Wrapper } from "../Styles/Wrapper";
-import { AsideHome } from "../components/AsidePanel";
 import { GridSection } from "../containers/GridSection/style";
+import { Wrapper } from "../Styles/Wrapper";
 
 export function MainPage() {
   return (

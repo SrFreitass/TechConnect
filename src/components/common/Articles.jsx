@@ -1,12 +1,8 @@
-import { NewsStyled } from "../ArticleFeed/style";
-import { Link, useParams } from "react-router-dom";
-import { ButtonStyled } from "../IntroSection/style";
-import { AsidePanel } from "../ArticleFeed/style";
-import { ButtonsContainer } from "../ArticleFeed/style";
-import { ButtonDefault } from "../ArticleComposer/style";
 import DOMPurify from "dompurify";
-import { useEffect, useState, useRef, Suspense, useCallback } from "react";
-import { Loader } from "../Loader";
+import { useEffect, useRef, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import { ButtonDefault } from "../ArticleComposer/style";
+import { ButtonsContainer, NewsStyled } from "../ArticleFeed/style";
 import { LoaderArticle } from "./LoaderArticle.jsx";
 import { GridArticle, SectionFeedStyle } from "./styledCommons";
 
@@ -22,7 +18,6 @@ export function Articles({
   const element = useRef();
   const [count, setCount] = useState(0);
 
-  const [loading, setLoading] = useState(false);
   const { tag } = useParams();
 
   const handleTagAbout = (tag) => {
@@ -135,7 +130,7 @@ export function Articles({
                 ""
               ) : (
                 <div>
-                  <h2 style={{ color: "#8A8AE0" }}>{`#${tag}`}</h2>
+                  <h2 style={{ color: "#8A8AE0" }}>{`#${tag || 'Resultados' }`}</h2>
                   <p>{tag ? handleTagAbout(tag) : "..."}</p>
                 </div>
               )}

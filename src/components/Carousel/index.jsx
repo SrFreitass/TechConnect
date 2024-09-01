@@ -1,19 +1,18 @@
-import { db } from "../../services/firebaseconfig";
+import { query, where } from "@firebase/firestore";
+import DOMPurify from "dompurify";
+import { collection, getDocs } from "firebase/firestore";
 import { useEffect, useState } from "react";
-import { getDocs, collection } from "firebase/firestore";
-import { CarouselStyled } from "./style";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import { Link } from "react-router-dom";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { Link } from "react-router-dom";
-import { query, where } from "@firebase/firestore";
-import DOMPurify from "dompurify";
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { db } from "../../services/firebase";
+import { CarouselStyled } from "./style";
 
 export function Carousel() {
   const [news, setNews] = useState([]);
-  const userCollectionRef = collection(db, "articles");
 
   useEffect(() => {
     const fetchEmphasizedArticles = async () => {

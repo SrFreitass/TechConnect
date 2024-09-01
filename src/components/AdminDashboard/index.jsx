@@ -1,8 +1,8 @@
-import { Files, ChartBar, Chat, Newspaper, Video } from "@phosphor-icons/react";
-import { ButtonDefault, IconsContainer } from "../ArticleComposer/style";
-import { AsideStyled } from "./style";
+import { Files, Video } from "@phosphor-icons/react";
 import { Link } from "react-router-dom";
 import { Theme } from "../../Styles/Theme";
+import { ButtonDefault } from "../ArticleComposer/style";
+import { AsideStyled } from "./style";
 
 export function ControlsAdmin({ sectionState }) {
   return (

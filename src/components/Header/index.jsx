@@ -1,34 +1,28 @@
-import { useState, useEffect, useRef } from "react";
-import {
-  HeaderContainer,
-  Logo,
-  DropDown,
-  HeaderContainerLoader,
-} from "./style";
 import { UserCircle, UserPlus, X } from "@phosphor-icons/react";
-import { Search } from "./Search";
-import { auth } from "../../services/firebaseconfig";
-import { onAuthStateChanged, signOut } from "firebase/auth";
+import { signOut } from "firebase/auth";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ButtonDefault } from "../ArticleComposer/style";
+import { auth } from "../../services/firebase";
 import { MobileMenu } from "./MobileMenu";
+import { Search } from "./Search";
+import {
+  DropDown,
+  HeaderContainer,
+  HeaderContainerLoader,
+  Logo,
+} from "./style";
 
 export function Header({ isIntroductionPage }) {
   const [menu, setMenu] = useState(false);
   const [userMenu, setUserMenu] = useState(false);
   const [search, setSearch] = useState(false);
-  const [accountMenu, setAccountMenu] = useState(false);
 
-  const userMenuElement = useRef(null);
   const { currentUser } = auth;
 
   const handleUserMenu = () => {
     setUserMenu(!userMenu);
   };
 
-  const observerMenu = () => {
-    setUserMenu && setUserMenu(false);
-  };
 
   const handleSignOut = async () => {
     try {

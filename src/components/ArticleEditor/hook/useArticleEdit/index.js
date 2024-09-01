@@ -1,9 +1,9 @@
-import { useState, useEffect, useRef } from "react";
-import { db, storage } from "../../../../services/firebaseconfig";
-import { collection, query, where, getDoc, updateDoc, doc } from "firebase/firestore"
-import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { useEffect, useRef, useState } from "react";
+import { toast } from 'react-hot-toast';
 import { useParams } from "react-router-dom";
-import { toast } from 'react-hot-toast'
+import { db, storage } from "../../../../services/firebase";
 
 export function useArticleEdit() {
 

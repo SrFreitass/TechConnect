@@ -1,31 +1,20 @@
-import { db } from "../../services/firebaseconfig";
 import {
   collection,
-  getDocs,
   deleteDoc,
-  query,
-  where,
   doc,
+  getDocs,
   limit,
   orderBy,
+  query,
   startAfter,
+  where,
 } from "firebase/firestore";
-import {
-  CloudArrowDown,
-  TrashSimple,
-  NotePencil,
-  Bookmarks,
-} from "@phosphor-icons/react";
 import { useEffect, useState } from "react";
-import { NewsStyled, ButtonsContainer } from "../ArticleFeed/style";
-import { Link } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
-import { Loader } from "../Loader";
-import { SectionAdminStyled } from "./style";
-import DOMPurify from "dompurify";
-import { ButtonDefault } from "../ArticleComposer/style";
+import { db } from "../../services/firebase";
 import { Search } from "../Header/Search";
 import { Articles } from "../common/Articles";
+import { SectionAdminStyled } from "./style";
 
 export function SectionAdmin() {
   const [newsEdit, setNewsEdit] = useState([]);

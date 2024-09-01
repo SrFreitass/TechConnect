@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import { onAuthStateChanged } from "firebase/auth";
 import { collection, getDocs, query, where } from "firebase/firestore";
-import { auth, db } from "../../services/firebaseconfig";
-import { onAuthStateChanged } from "firebase/auth"
+import { useEffect, useState } from "react";
+import { auth, db } from "../../services/firebase";
 
 
 export const useAdminVerify = () => {

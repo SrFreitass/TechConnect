@@ -1,20 +1,18 @@
 import {
-  query,
   collection,
-  where,
   getDocs,
-  orderBy,
   limit,
+  orderBy,
+  query,
   startAfter,
+  where,
 } from "firebase/firestore";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { db } from "../services/firebaseconfig";
-import { useState } from "react";
-import { Header } from "../components/Header";
-import { Wrapper } from "../Styles/Wrapper";
-import DOMPurify from "dompurify";
 import { Articles } from "../components/common/Articles";
+import { Header } from "../components/Header";
+import { db } from "../services/firebase";
+import { Wrapper } from "../Styles/Wrapper";
 
 export function CategoriesArticle() {
   const { tag } = useParams();

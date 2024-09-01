@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
-import { auth } from '../../../services/firebaseconfig';
+import { useEffect, useState } from 'react';
+import { auth } from '../../../services/firebase';
 
 export const useVerifyEmail = () => {
   const [status, setStatus] = useState('');

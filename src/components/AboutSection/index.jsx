@@ -1,8 +1,7 @@
-import { SectionAboutStyle } from "./style";
+import hand3D from "../../assets/images/hand.png";
 import target3D from "../../assets/images/target.png";
 import team3D from "../../assets/images/team.png";
-import hand3D from "../../assets/images/hand.png";
-import { useEffect, useRef } from "react";
+import { SectionAboutStyle } from "./style";
 
 export function AboutSection() {
   return (

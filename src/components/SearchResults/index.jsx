@@ -1,22 +1,17 @@
-import { NewsStyled } from "../ArticleFeed/style";
-import { Link, useParams } from "react-router-dom";
-import { db } from "../../services/firebaseconfig";
-import { useEffect, useState } from "react";
 import {
-  getDocs,
   collection,
-  where,
+  getDocs,
+  limit,
   query,
   startAfter,
-  limit,
+  where,
 } from "firebase/firestore";
-import { ArticleStyled } from "../ArticleBody/style";
-import { ButtonStyled } from "../IntroSection/style";
-import DOMPurify from "dompurify";
-import { Loader } from "../Loader";
+import he from "he";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { db } from "../../services/firebase";
 import { Articles } from "../common/Articles";
 import { SearchResultsStyled } from "./style";
-import he from "he";
 
 export function SearchContainer() {
   const [newsResults, setNewsResults] = useState([]);
@@ -90,7 +85,7 @@ export function SearchContainer() {
   return (
     <SearchResultsStyled>
       {searchHasResults ? (
-        <p>vai se fuder</p>
+        null
       ) : (
         <>
           <strong>Não há resultado para: "{searchTitle}"</strong>
