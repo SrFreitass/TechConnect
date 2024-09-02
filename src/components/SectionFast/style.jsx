@@ -6,7 +6,7 @@ export const SectionFastStyle = styled.div`
     isAdmin
       ? css`
           max-width: 100vw;
-          margin-left: -1.54rem;
+          margin-left: -0.5rem;
         `
       : ""}
 

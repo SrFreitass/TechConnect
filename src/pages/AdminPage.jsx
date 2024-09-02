@@ -22,7 +22,9 @@ export function AdminPanel() {
         <GridSection oneGrid="0.5fr" twoGrid="3fr">
           <ControlsAdmin sectionState={{ section, setSection }} />
           {section == "fast" ? (
-            <SectionFast isAdmin={true} />
+            <>
+              <SectionFast isAdmin={true} />
+            </>
           ) : (
             <SectionAdmin />
           )}

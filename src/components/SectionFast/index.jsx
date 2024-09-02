@@ -1,42 +1,48 @@
 import {
-  FacebookLogo,
-  InstagramLogo,
-  NotePencil,
-  Pause,
-  PencilSimpleLine,
-  Play,
-  ShareFat,
-  SignOut,
-  SpeakerSimpleHigh,
-  SpeakerSimpleSlash,
-  TelegramLogo,
-  TrashSimple,
-  TwitterLogo,
-  WhatsappLogo,
-  X
-} from "@phosphor-icons/react";
-import {
-  collection,
-  deleteDoc,
-  doc,
-  getDocs,
-  limit,
-  query,
-  updateDoc,
-  where
-} from "firebase/firestore";
-import he from "he";
-import { useEffect, useRef, useState } from "react";
-import toast, { Toaster } from "react-hot-toast";
-import { Link, useParams } from "react-router-dom";
-import { db } from "../../services/firebase";
-import { ButtonDefault } from "../ArticleComposer/style";
-import {
   MobileVideo,
-  SectionFastStyle,
   SectionFastStyled,
   ShareButtons,
+  SectionFastStyle,
 } from "./style";
+import {
+  InstagramLogo,
+  TelegramLogo,
+  FacebookLogo,
+  TwitterLogo,
+  Pause,
+  Play,
+  SoundcloudLogo,
+  SpeakerSimpleHigh,
+  SpeakerSimpleSlash,
+  WhatsappLogo,
+  Share,
+  X,
+  TrashSimple,
+  NotePencil,
+  PencilSimpleLine,
+  ShareFat,
+  SignOut,
+} from "@phosphor-icons/react";
+import { useRef, useState, useEffect, useContext } from "react";
+import { Link, useParams } from "react-router-dom";
+import { Links } from "../Links";
+import {
+  getDocs,
+  query,
+  collection,
+  where,
+  deleteDoc,
+  updateDoc,
+  doc,
+  limit,
+  orderBy,
+} from "firebase/firestore";
+import { db } from "../../services/firebase";
+import toast, { Toaster } from "react-hot-toast";
+import he from "he";
+import { ButtonDefault } from "../ArticleComposer/style";
+import { Search } from "../Header/Search";
+import { set } from "react-hook-form";
 
 export function SectionFast({ isAdmin }) {
   const videosRef = useRef(null);
@@ -45,9 +51,15 @@ export function SectionFast({ isAdmin }) {
   const [playing, setPlaying] = useState(true);
   const [sound, setSound] = useState(true);
   const [fast, setFast] = useState([]);
+  const [share, setShare] = useState(false);
+  const [visible, setVisible] = useState(false);
   const { titleID } = useParams("");
   const [fastEdit, setFastEdit] = useState(false);
-  
+  const [title, setTitle] = useState("");
+  const [searchFilter, setSearchFilter] = useState("");
+  const [lastVisible, setLastVisible] = useState({});
+  const [isLast, setIsLast] = useState(false);
+
   console.log("RENDERIZO");
 
   console.log(titleID);
@@ -243,7 +255,7 @@ export function SectionFast({ isAdmin }) {
                       onBlur={(e) => handleEditTitle(e, fast.id)}
                       contentEditable={fastEdit}
                     >
-                      {fast.title} {isAdmin ? "" : <span>#fast🎬</span>}{" "}
+                      {fast.title || ''} {isAdmin ? "" : <span>#fast🎬</span>}{" "}
                     </h3>
                     <p>De: {fast.author}</p>
                   </footer>
